@@ -1,5 +1,7 @@
 package cafeint;
 
-public class Spielfeld {
+import javax.swing.JPanel;
+
+public class Spielfeld extends JPanel {
 
 }
