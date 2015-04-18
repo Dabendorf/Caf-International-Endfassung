@@ -11,8 +11,7 @@ import javax.swing.JFrame;
 
 public class CafeIntMain {
 	
-	public Variablenkammer varkam = new Variablenkammer();
-    private JFrame spielframe = new JFrame(Variablenkammer.getMsgbox().programmname);
+	private JFrame spielframe = new JFrame(Variablenkammer.getMsgbox().programmname);
     
     public CafeIntMain() {
     	oberflaeche();
@@ -21,8 +20,8 @@ public class CafeIntMain {
     
     private void oberflaeche() {
     	spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        spielframe.setPreferredSize(new Dimension(1400,800));
-        spielframe.setMinimumSize(new Dimension(1050,600));
+        spielframe.setPreferredSize(new Dimension(1400,800)); //Nachsehen, was kommmt
+        spielframe.setMinimumSize(new Dimension(1050,600)); //Nachsehen, was kommmt
         spielframe.setResizable(true);
         try {
 			spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage(new URL(BaseURL.getJarBase(Spielfeld.class), "./favicon.png")));
@@ -33,7 +32,7 @@ public class CafeIntMain {
         contentPane.setLayout(new GridBagLayout());
 
         //spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, 0.15, 0.5));
-        //spielframe.add(new Uebersichtsecke(), new GridBagFelder(0, 1, 1, 1, 0.15, 0.5));
+        //spielframe.add(new Statistikecke(), new GridBagFelder(0, 1, 1, 1, 0.15, 0.5));
         spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, 0.67, 1.0));
         //spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, 0.18, 0.6));
         //spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, 0.18, 0.4));
