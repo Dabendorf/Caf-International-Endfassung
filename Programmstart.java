@@ -14,32 +14,40 @@ import cafeint.Gastkarte.Land;
 
 public class Programmstart {
 	
+	protected void grafikladen() {
+		bilderladen();
+        //neuesspiel();
+		spielfeldgenerieren();
+		tischstuhlzuordnung();
+		zellelementzuordnung();
+	}
+	
 	public boolean SysWin() {
         return (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0);
     }
 	
-	public void namensfrage() { //Namensfrage muss ausgeweitet werden
+	public void namensfrage() {
 		Meldungen msgbox = new Meldungen();
 		
 		JTextField spielername00 = new JTextField(new Feldbegrenzung(12), "", 0);
 		JTextField spielername01 = new JTextField(new Feldbegrenzung(12), "", 0);
 		
-		/*Object[] namensfrage = {msgbox.spielernameint(1), spielername00, msgbox.spielernameint(2), spielername01};
+		Object[] namensfrage = {msgbox.spielernameint(1), spielername00, msgbox.spielernameint(2), spielername01};
 	    JOptionPane pane = new JOptionPane(namensfrage, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);
 	    pane.createDialog(null, msgbox.fragespielername).setVisible(true);
 	    
-	    CafeMain.getSpieler(0).setName(spielername00.getText());
-	    CafeMain.getSpieler(1).setName(spielername01.getText());
+	    Variablenkammer.getSpieler(0).setName(spielername00.getText());
+	    Variablenkammer.getSpieler(1).setName(spielername01.getText());
 	    
-	    if(CafeMain.getSpieler(0).getName().equals("") || CafeMain.getSpieler(1).getName().equals("")) {
+	    if(Variablenkammer.getSpieler(0).getName().equals("") || Variablenkammer.getSpieler(1).getName().equals("")) {
 	    	JOptionPane.showMessageDialog(null, msgbox.spielernamevergessen, msgbox.titelunvollstaendig, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
-	    } else if(CafeMain.getSpieler(0).getName().equalsIgnoreCase(CafeMain.getSpieler(1).getName())) {
+	    } else if(Variablenkammer.getSpieler(0).getName().equalsIgnoreCase(Variablenkammer.getSpieler(1).getName())) {
 	    	JOptionPane.showMessageDialog(null, msgbox.spielernamengleich, msgbox.titelnamensgleichheit, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
 	    }
-	    Uebersichtsecke.getInfz(0).punktzahlschreiben();
-        Uebersichtsecke.getInfz(1).punktzahlschreiben();*/
+	    //Uebersichtsecke.getInfz(0).punktzahlschreiben();
+        //Uebersichtsecke.getInfz(1).punktzahlschreiben();
 	}
 	
 	private void bilderladen() {
@@ -116,6 +124,16 @@ public class Programmstart {
 		}
 	}
 	
+	private void tischstuhlzuordnung() {
+		int[] stuhl1 = {11, 1, 2, 3, 4, 5, 6, 7, 7, 8, 9, 9};
+		int[] stuhl2 = {12, 2, 3, 4, 5, 6, 7,18, 8, 9,10,10};
+		int[] stuhl3 = {13,12,13, 5,15,16,17,19,20,21,22,11};
+		int[] stuhl4 = { 0,13,14,14,16,17,18,20,21,22,23, 0};
+		for(int i=0;i<12;i++) {
+			Variablenkammer.getTische().get(i).setStuehle(stuhl1[i],stuhl2[i],stuhl3[i],stuhl4[i]);
+		}
+	}
+	
 	private void zellelementzuordnung() {
 		for(int n=0;n<Spielfeld.getSpielfeldtisch().size();n++) {
 			Spielfeld.getSpielfeldtisch().get(n).setTisch(Variablenkammer.getTische().get(n));
@@ -124,16 +142,6 @@ public class Programmstart {
 		for(int n=0;n<Spielfeld.getSpielfeldstuhl().size();n++) {
 			Spielfeld.getSpielfeldstuhl().get(n).setStuhl(Variablenkammer.getStuehle().get(n));
 			Variablenkammer.getStuehle().get(n).setSpielzelle(Spielfeld.getSpielfeldstuhl().get(n));
-		}
-	}
-	
-	private void tischstuhlzuordnung() {
-		int[] stuhl1 = {11, 1, 2, 3, 4, 5, 6, 7, 7, 8, 9, 9};
-		int[] stuhl2 = {12, 2, 3, 4, 5, 6, 7,18, 8, 9,10,10};
-		int[] stuhl3 = {13,12,13, 5,15,16,17,19,20,21,22,11};
-		int[] stuhl4 = { 0,13,14,14,16,17,18,20,21,22,23, 0};
-		for(int i=0;i<12;i++) {
-			Variablenkammer.getTische().get(i).setStuehle(stuhl1[i],stuhl2[i],stuhl3[i],stuhl4[i]);
 		}
 	}
 

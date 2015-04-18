@@ -1,12 +1,11 @@
 package cafeint;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Stuhl {
 	
 	private Gastkarte gast;
-    private Tisch[] tische;
+	private ArrayList<Tisch> tische = new ArrayList<Tisch>();
     private Spielzelle sz;
     
 	public Gastkarte getGast() {
@@ -22,14 +21,7 @@ public class Stuhl {
 	}*/
 	
 	public void addTisch(Tisch tisch) {
-		ArrayList<Tisch> tischetemp = new ArrayList<Tisch>(Arrays.asList(this.tische));
-		tischetemp.add(tisch);
-		
-		Tisch[] tischetemparr = new Tisch[tischetemp.size()];
-		for(Tisch t:tischetemp) {
-			tischetemparr[tischetemp.indexOf(t)] = t;
-		}
-		this.tische = tischetemparr;
+		this.tische.add(tisch);
 	}
 	
 	/*public Spielzelle getSpielzelle() {

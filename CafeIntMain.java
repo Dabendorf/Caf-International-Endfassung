@@ -43,23 +43,13 @@ public class CafeIntMain {
     }
     
     private void ablauf() {
-    	/*Spielstart spst = new Spielstart();
-        if(spst.SysWin()) {
-            msgbox.windows();
+    	Programmstart progst = new Programmstart();
+    	if(progst.SysWin()) {
+            new Meldungen().windows();
         }
-        //spst.namensfrage();
-        spieler[0].setName("Lukas"); //KURZWEG
-        spieler[1].setName("Malte"); //KURZWEG
-        Uebersichtsecke.getInfz(0).punktzahlschreiben(); //KURZWEG
-        Uebersichtsecke.getInfz(1).punktzahlschreiben(); //KURZWEG
-        
-        long zeit1 = Debug.zeitnehmen(); //DEBUG
-        spst.grafikladen();
+        progst.namensfrage();
+        progst.grafikladen();
         spielframe.setVisible(true);
-        long zeit2 = Debug.zeitnehmen(); //DEBUG
-        Debug.laufzeitschreiben(zeit2-zeit1); //DEBUG
-        Spielfeld.getMeldungsbox().setText("Startzeit: "+(zeit2-zeit1)); //DEBUG*/
-    	spielframe.setVisible(true);
     }
 
 	public static void main(String[] args) {
