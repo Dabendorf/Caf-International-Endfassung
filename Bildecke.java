@@ -1,5 +1,7 @@
 package cafeint;
 
-public class Bildecke {
+import javax.swing.JPanel;
+
+public class Bildecke extends JPanel {
 
 }

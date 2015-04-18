@@ -31,12 +31,12 @@ public class CafeIntMain {
         Container contentPane = spielframe.getContentPane();
         contentPane.setLayout(new GridBagLayout());
 
-        //spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, 0.15, 0.5));
-        //spielframe.add(new Statistikecke(), new GridBagFelder(0, 1, 1, 1, 0.15, 0.5));
+        /*spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, 0.15, 0.5));
+        spielframe.add(new Statistikecke(), new GridBagFelder(0, 1, 1, 1, 0.15, 0.5));
         spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, 0.67, 1.0));
-        //spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, 0.18, 0.6));
-        //spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, 0.18, 0.4));
-        //Auskommentiert, da noch nicht relevant
+        spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, 0.18, 0.6));
+        spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, 0.18, 0.4));*/
+        spielframe.add(new Spielfeld(), new GridBagFelder(0,0,1,1,1.0,1.0));
         
         spielframe.pack();
         spielframe.setLocationRelativeTo(null);
@@ -59,6 +59,7 @@ public class CafeIntMain {
         long zeit2 = Debug.zeitnehmen(); //DEBUG
         Debug.laufzeitschreiben(zeit2-zeit1); //DEBUG
         Spielfeld.getMeldungsbox().setText("Startzeit: "+(zeit2-zeit1)); //DEBUG*/
+    	spielframe.setVisible(true);
     }
 
 	public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package cafeint;
 
-public class Spielkartenecke {
+import javax.swing.JPanel;
+
+public class Spielkartenecke extends JPanel {
 
 }

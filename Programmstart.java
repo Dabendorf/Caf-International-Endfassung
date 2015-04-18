@@ -71,7 +71,7 @@ public class Programmstart {
             Variablenkammer.getTischcache().put(key, bitisch);
         } catch (MalformedURLException e) {} catch (IOException e) {}
     	
-    	//13*2 = 26 Gäste + 2 Platzhalter
+    	//13*2 = 26 Gaeste + 2 Platzhalter
     	for(Land land : Land.values()) {
     		for(Geschlecht geschlecht : Geschlecht.values()) {
     			try {
@@ -106,8 +106,27 @@ public class Programmstart {
         } catch (MalformedURLException e) {} catch (IOException e) {}
     }
 	
-	//private void spielfeldgenerieren() {
-	//private void zellelementzuordnung() {
+	private void spielfeldgenerieren() {
+		for(int n=0;n<12;n++) {
+			Variablenkammer.getTische().add(new Tisch());
+			//new Spielzuege().legetischkarte(n); //hier muss dann noch eine Karte abgelegt werden
+		}
+		for(int n=0;n<24;n++) {
+			Variablenkammer.getStuehle().add(new Stuhl());
+		}
+	}
+	
+	private void zellelementzuordnung() {
+		for(int n=0;n<Spielfeld.getSpielfeldtisch().size();n++) {
+			Spielfeld.getSpielfeldtisch().get(n).setTisch(Variablenkammer.getTische().get(n));
+			Variablenkammer.getTische().get(n).setSpielzelle(Spielfeld.getSpielfeldtisch().get(n));
+		}
+		for(int n=0;n<Spielfeld.getSpielfeldstuhl().size();n++) {
+			Spielfeld.getSpielfeldstuhl().get(n).setStuhl(Variablenkammer.getStuehle().get(n));
+			Variablenkammer.getStuehle().get(n).setSpielzelle(Spielfeld.getSpielfeldstuhl().get(n));
+		}
+	}
+	
 	//private void tischstuhlzuordnung() {
 
 }

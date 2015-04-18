@@ -1,5 +1,7 @@
 package cafeint;
 
-public class Statistikecke {
+import javax.swing.JPanel;
+
+public class Statistikecke extends JPanel {
 
 }

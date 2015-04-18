@@ -1,5 +1,7 @@
 package cafeint;
 
-public class Barkartenecke {
+import javax.swing.JPanel;
+
+public class Barkartenecke extends JPanel {
 
 }

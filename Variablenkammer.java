@@ -65,4 +65,16 @@ public class Variablenkammer {
 		return stuhlcache;
 	}
 
+	public static List<Gastkarte> getBarkarten() {
+		return barkarten;
+	}
+
+	public static List<Tisch> getTische() {
+		return tische;
+	}
+
+	public static List<Stuhl> getStuehle() {
+		return stuehle;
+	}
+
 }
