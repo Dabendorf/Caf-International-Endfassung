@@ -127,6 +127,14 @@ public class Programmstart {
 		}
 	}
 	
-	//private void tischstuhlzuordnung() {
+	private void tischstuhlzuordnung() {
+		int[] stuhl1 = {11, 1, 2, 3, 4, 5, 6, 7, 7, 8, 9, 9};
+		int[] stuhl2 = {12, 2, 3, 4, 5, 6, 7,18, 8, 9,10,10};
+		int[] stuhl3 = {13,12,13, 5,15,16,17,19,20,21,22,11};
+		int[] stuhl4 = { 0,13,14,14,16,17,18,20,21,22,23, 0};
+		for(int i=0;i<12;i++) {
+			Variablenkammer.getTische().get(i).setStuehle(stuhl1[i],stuhl2[i],stuhl3[i],stuhl4[i]);
+		}
+	}
 
 }
