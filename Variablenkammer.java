@@ -41,17 +41,17 @@ public class Variablenkammer {
 		return laenderkarten;
 	}
 
-	public static int getAktspieler() {
+	public static int getAktSpieler() {
 		return aktspieler;
 	}
 
-	public static void setAktspieler(int aktspieler) {
+	public static void setAktSpieler(int aktspieler) {
 		Variablenkammer.aktspieler = aktspieler;
 	}
 
 	public static Spieler getSpieler(int num) {
 		if(num == 42) {
-			return spieler[Variablenkammer.getAktspieler()];
+			return spieler[Variablenkammer.getAktSpieler()];
 		} else {
 			return spieler[num];
 		}

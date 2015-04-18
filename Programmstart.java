@@ -14,12 +14,12 @@ import cafeint.Gastkarte.Land;
 
 public class Programmstart {
 	
-	protected void grafikladen() {
+	public void grafikladen() {
 		bilderladen();
-        new Spielstart().neuesspiel();
 		spielfeldgenerieren();
 		tischstuhlzuordnung();
 		zellelementzuordnung();
+		new Spielstart().neuesspiel();
 	}
 	
 	public boolean SysWin() {
@@ -46,8 +46,6 @@ public class Programmstart {
 	    	JOptionPane.showMessageDialog(null, msgbox.spielernamengleich, msgbox.titelnamensgleichheit, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
 	    }
-	    //Uebersichtsecke.getInfz(0).punktzahlschreiben();
-        //Uebersichtsecke.getInfz(1).punktzahlschreiben();
 	}
 	
 	private void bilderladen() {

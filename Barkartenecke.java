@@ -1,5 +1,6 @@
 package cafeint;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -13,6 +14,7 @@ public class Barkartenecke extends JPanel {
 	private static int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
 	
 	public Barkartenecke() {
+		this.setBackground(new Color(0x20324F));
 		setLayout(new GridLayout(7,3));
 		for(int i=0;i<21;i++) {
 			Barzelle bz = new Barzelle(barpunkte[i]);

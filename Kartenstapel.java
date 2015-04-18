@@ -39,7 +39,7 @@ public class Kartenstapel extends JPanel {
 		} else if(typ.equals(Typ.Handkarte) || typ.equals(Typ.HandkarteInfo)) {
 			int spielertemp;
 			if(typ.equals(Typ.Handkarte)) {
-				spielertemp = Variablenkammer.getAktspieler();
+				spielertemp = Variablenkammer.getAktSpieler();
 			} else {
 				spielertemp = this.spieler;
 			}

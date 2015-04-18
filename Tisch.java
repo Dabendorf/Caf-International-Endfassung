@@ -10,11 +10,11 @@ public class Tisch {
 		return land;
 	}
 	
-	/*public void setLand(Laenderkarte land) {
+	public void setLand(Laenderkarte land) {
 		this.land = land;
 	}
 	
-	public Stuhl[] getStuehle() {
+	/*public Stuhl[] getStuehle() {
 		return stuehle;
 	}*/
 	
@@ -30,9 +30,9 @@ public class Tisch {
 		this.stuehle = stuehletemp;
 	}
 	
-	/*public Spielzelle getSpielzelle() {
+	public Spielzelle getSpielzelle() {
 		return sz;
-	}*/
+	}
 	
 	public void setSpielzelle(Spielzelle sz) {
 		this.sz = sz;
