@@ -16,7 +16,7 @@ public class Programmstart {
 	
 	protected void grafikladen() {
 		bilderladen();
-        //neuesspiel();
+        new Spielstart().neuesspiel();
 		spielfeldgenerieren();
 		tischstuhlzuordnung();
 		zellelementzuordnung();
