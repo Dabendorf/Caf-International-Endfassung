@@ -8,7 +8,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -19,10 +18,11 @@ public class Spielfeld extends JPanel {
 	private JLabel meldungsbox = new JLabel();
 	private static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
 	private static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
+	private Color hingrdfarb = new Color(0x376285);
 	//private int aktstuhlnummer;
 
 	public Spielfeld() {
-		this.setBackground(new Color(0x376285));
+		this.setBackground(hingrdfarb);
 		layoutgenerieren();
 		eigenschaften();
 	}
@@ -40,12 +40,12 @@ public class Spielfeld extends JPanel {
 				gbc.gridy = y;
 				if(y<10) {
 					spielfeldzelle[x][y] = new Spielzelle(Spielzelle.Typ.Leer);
-					spielfeldzelle[x][y].setBackground(new Color(0x376285));
+					spielfeldzelle[x][y].setBackground(hingrdfarb);
 					spielfeldzelle[x][y].setOpaque(true);
 					add(spielfeldzelle[x][y], gbc);
 				} else if(y==10) {
 					gbc.gridwidth = 11;
-					meldungsbox.setBackground(new Color(0x376285));
+					meldungsbox.setBackground(hingrdfarb);
 					meldungsbox.setOpaque(true);
 					meldungsbox.setPreferredSize(new Dimension(0, 20));
 					meldungsbox.setHorizontalAlignment(SwingConstants.CENTER);
