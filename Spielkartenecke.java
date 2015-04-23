@@ -14,8 +14,10 @@ public class Spielkartenecke extends JPanel {
 	
 	private static Kartenstapel handkarten[] = new Kartenstapel[5]; //WICHTIGE INFORMATION: Die Anzahl der Restkarten muss festgehalten werden.
 	private static int akthandkartnum = -1;
+	private Color hintgrdfarb = new Color(0x000000);
 	
 	protected Spielkartenecke() {
+		this.setBackground(hintgrdfarb);
 		setLayout(new GridLayout(5,2));
 		for(int i=0;i<10;i++) {
 			if(i%2==0) {

@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -18,11 +19,11 @@ public class Spielfeld extends JPanel {
 	private JLabel meldungsbox = new JLabel();
 	private static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
 	private static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
-	private Color hingrdfarb = new Color(0x376285);
+	private Color hintgrdfarb = new Color(0x538fcb);
 	//private int aktstuhlnummer;
 
 	public Spielfeld() {
-		this.setBackground(hingrdfarb);
+		this.setBackground(hintgrdfarb);
 		layoutgenerieren();
 		eigenschaften();
 	}
@@ -35,18 +36,31 @@ public class Spielfeld extends JPanel {
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		for(int y=0;y<11;y++) {
+			if(y==0) {
+				gbc.weighty = 0.2;
+			} else {
+				gbc.weighty = 1.0;
+			}
 			for(int x=0;x<11;x++) {
 				gbc.gridx = x;
 				gbc.gridy = y;
 				if(y<10) {
+					if(x==0 || x==10) {
+						gbc.weightx=0.2;
+					} else {
+						gbc.weightx=1.0;
+					}
 					spielfeldzelle[x][y] = new Spielzelle(Spielzelle.Typ.Leer);
-					spielfeldzelle[x][y].setBackground(hingrdfarb);
+					spielfeldzelle[x][y].setBackground(hintgrdfarb);
+					spielfeldzelle[x][y].setBorder(BorderFactory.createLineBorder(hintgrdfarb, 3));
 					spielfeldzelle[x][y].setOpaque(true);
 					add(spielfeldzelle[x][y], gbc);
 				} else if(y==10) {
 					gbc.gridwidth = 11;
-					meldungsbox.setBackground(hingrdfarb);
+					gbc.weighty = 0.5;
+					meldungsbox.setBackground(hintgrdfarb);
 					meldungsbox.setOpaque(true);
+					meldungsbox.setBorder(BorderFactory.createLineBorder(hintgrdfarb, 3));
 					meldungsbox.setPreferredSize(new Dimension(0, 20));
 					meldungsbox.setHorizontalAlignment(SwingConstants.CENTER);
 					add(meldungsbox, gbc);

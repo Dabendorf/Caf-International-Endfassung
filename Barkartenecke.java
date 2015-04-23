@@ -12,9 +12,10 @@ public class Barkartenecke extends JPanel {
 	
 	private static ArrayList<Barzelle> barzellen = new ArrayList<Barzelle>(21);
 	private static int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
+	private Color hintgrdfarb = new Color(0x000000);
 	
 	public Barkartenecke() {
-		this.setBackground(new Color(0x20324F));
+		this.setBackground(hintgrdfarb);
 		setLayout(new GridLayout(7,3));
 		for(int i=0;i<21;i++) {
 			Barzelle bz = new Barzelle(barpunkte[i]);

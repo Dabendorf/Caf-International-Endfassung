@@ -25,8 +25,8 @@ public class Variablenkammer {
     private static List<Stuhl> stuehle = new ArrayList<Stuhl>(24);
     
     //Grafik
-    private static Map<String, BufferedImage> tischcache = new TreeMap<>();
-    private static Map<String, BufferedImage> stuhlcache = new TreeMap<>();
+    private static Map<String,BufferedImage> tischcache = new TreeMap<String,BufferedImage>();
+    private static Map<String,BufferedImage> stuhlcache = new TreeMap<String,BufferedImage>();
     
     //Getter und Setter
 	public static Meldungen getMsgbox() {

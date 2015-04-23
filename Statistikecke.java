@@ -13,8 +13,10 @@ public class Statistikecke extends JPanel {
 	
 	private static Kartenstapel handkarten[][] = new Kartenstapel[2][5];
 	private static Informationszelle[] infz = new Informationszelle[2];
+	private Color hintgrdfarb = new Color(0x000000);
 	
 	public Statistikecke() {
+		this.setBackground(hintgrdfarb);
 		setLayout(new GridLayout(6,2));
 		for(int i=0;i<2;i++) {
 			infz[i] = new Informationszelle(i);
