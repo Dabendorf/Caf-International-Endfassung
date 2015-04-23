@@ -25,7 +25,7 @@ public class Barkartenecke extends JPanel {
             	@Override
 				public void mouseClicked(MouseEvent e) {
             		if(Spielkartenecke.getAkthandkartnum()!=-1) {
-            			//new Spielzuege().legebarkarte(Spielkartenecke.getAkthandkartnum()); //dieser Zug muss noch umgesetzt werden
+            			new Spielzuege().legebarkarte(Spielkartenecke.getAkthandkartnum());
             		}
             	}
             });

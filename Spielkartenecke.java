@@ -25,13 +25,13 @@ public class Spielkartenecke extends JPanel {
 				handkarten[i/2].setOpaque(true);
 				handkarten[i/2].setHandkartnum(i/2);
 				handkarten[i/2].setBorder(BorderFactory.createLineBorder(Color.black, 2));
-				//final int index = i/2; //kommentiert, siehe unten
+				final int index = i/2;
 				handkarten[i/2].addMouseListener(new MouseAdapter() {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
-	            		/*if(Variablenkammer.getZustand()==11 || Variablenkammer.getZustand()==12) {
+	            		//if(Variablenkammer.getZustand()==11 || Variablenkammer.getZustand()==12) {
 	            			klickhand(index);
-	            		}*/
+	            		//} Das muss noch beachtet werden
 	            	}
 	            });
 				add(handkarten[i/2]);
@@ -60,7 +60,7 @@ public class Spielkartenecke extends JPanel {
 		}
 	}
 	
-	private void klickhand(int num) { //Fehlermeldungen, weil oben kommmentiert
+	private void klickhand(int num) {
 		if(handkarten[num].isGeklickt()) {
 			handkarten[num].setBorder(BorderFactory.createLineBorder(Color.black, 2));
 			handkarten[num].setGeklickt(false);
