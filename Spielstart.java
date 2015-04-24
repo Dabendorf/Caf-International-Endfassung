@@ -27,8 +27,8 @@ public class Spielstart {
 		}
 		
 		Variablenkammer.setAktSpieler(0);
-		/*new Spielzuege().handkartendemarkieren();
-		Variablenkammer.setZustand(12);*/ //Existiert auch noch nicht
+		new Spielzuege().handkartendemarkieren();
+		//Variablenkammer.setZustand(12); //Existiert auch noch nicht
 		
 		for(int i=0;i<2;i++) {
 			Statistikecke.getInfz(i).punktzahlschreiben();

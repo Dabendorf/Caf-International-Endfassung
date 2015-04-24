@@ -1,6 +1,8 @@
 package cafeint;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -15,6 +17,9 @@ public class Kartenstapel extends JPanel {
 	private int handkartnum, spieler;
 	private String key;
 	private boolean geklickt = false;
+	private String num;
+	private Font font = new Font("Arial", Font.BOLD,16);
+	private FontMetrics fm;
 
 	public Kartenstapel(Typ typ) {
 		this.typ = typ;
@@ -26,6 +31,13 @@ public class Kartenstapel extends JPanel {
 	    bildLaden();
 	    if(bi!=null) {
 	    	gr.drawImage(bi, 0, 0, getWidth(), getHeight(), null);
+	    }
+	    if(typ.equals(Typ.Gastkartenstapel) || typ.equals(Typ.Laenderkartenstapel)) {
+	    	fm = gr.getFontMetrics(font);
+			gr.setFont(font);
+			gr.setColor(Color.black);
+			restkartenzahl();
+			gr.drawString(num,fm.stringWidth(num)/2,(int)(this.getHeight()*0.85));
 	    }
 	}
 	
@@ -60,6 +72,14 @@ public class Kartenstapel extends JPanel {
 		}
 	}
 	
+	private void restkartenzahl() {
+		if(typ.equals(Typ.Gastkartenstapel)) {
+			num = Integer.toString(Variablenkammer.getGastkarten().size());
+		} else if(typ.equals(Typ.Laenderkartenstapel)) {
+			num = Integer.toString(Variablenkammer.getLaenderkarten().size());
+		}
+	}
+	
 	public void setHandkartnum(int handkartnum) {
 		this.handkartnum = handkartnum;
 	}
@@ -91,13 +111,7 @@ public void setTyp(Typ t) {
 	this.t = t;
 }
 
-
-
 public int getHandkartnum() {
 	return handkartnum;
-}
-
-public void setHandkartnum(int handkartnum) {
-	this.handkartnum = handkartnum;
 }
 */

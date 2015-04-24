@@ -31,7 +31,47 @@ public class Spielzuege {
 			  }
 		);
 		thread.start();
-		//Variablenkammer.setZustand(21);
+		//Variablenkammer.setZustand(21); //Mit Zuständen arbeiten
+	}
+	
+	public void legegastkarte() {
+		/*if(CafeMain.getStuehle().get(stuhlNr).setGast(CafeMain.getSpieler(42).getHandkarten().get(handkartennum)) == true) {
+			CafeMain.getSpieler(42).getHandkarten().set(handkartennum,null);
+			Uebersichtsecke.getKartsp(CafeMain.getAktSpieler(), handkartennum).repaint();
+		}
+		//Punktzahl und Neuekartenziehen
+		handkartendemarkieren();*/
+	}
+	
+	public void gastkarteziehen(int handkartennum) {
+		Variablenkammer.getSpieler(42).getHandkarten().set(handkartennum,Variablenkammer.getGastkarten().get(0));
+		Variablenkammer.getGastkarten().remove(0);
+		
+		Statistikecke.getKartsp(Variablenkammer.getAktSpieler(),handkartennum).repaint();
+		Statistikecke.getKartsp(Variablenkammer.getAktSpieler(),handkartennum).setBorder(BorderFactory.createLineBorder(Color.red, 2));
+		
+		Thread thread = new Thread(new Runnable() {
+			  @Override
+			  public void run() {
+				  try {
+					  Thread.sleep(1500);
+					  Statistikecke.getKartsp(0, handkartennum).setBorder(BorderFactory.createLineBorder(Color.black, 2));
+					  Statistikecke.getKartsp(1, handkartennum).setBorder(BorderFactory.createLineBorder(Color.black, 2));
+					  } catch(InterruptedException e) {}
+				  }
+			  }
+		);
+		thread.start();
+		handkartendemarkieren();
+		Spielkartenecke.gastkstzahlLaden();
+		//spielerwechsel(); //Passiert nun nicht mehr Automatisch
+		//Variablenkammer.setZustand(12); //mit Zuständen arbeiten
+		//Spielendszenario
+		/*if(new Spielende().barvoll()) { //man könnte mit int Zustand statt Boolean arbeiten
+		} else if(new Spielende().keinegastkarten()) {
+		} else {
+			spielerwechsel();
+		}*/
 	}
 	
 	public void punktzahl(int addition) {

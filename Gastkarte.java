@@ -8,7 +8,7 @@ public class Gastkarte {
 	private final Land land;
 	private final Geschlecht geschlecht;
 	 
-	protected Gastkarte(Land land, Geschlecht geschlecht){
+	public Gastkarte(Land land, Geschlecht geschlecht){
 		this.land = land;
 		this.geschlecht= geschlecht;
 	}
@@ -17,11 +17,11 @@ public class Gastkarte {
 		return land + ":" + geschlecht;
 	}
 
-	protected Land getLand() {
+	public Land getLand() {
 		return land;
 	}
 
-	protected Geschlecht getGeschlecht() {
+	public Geschlecht getGeschlecht() {
 		return geschlecht;
 	}
 

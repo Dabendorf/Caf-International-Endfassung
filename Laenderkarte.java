@@ -6,7 +6,7 @@ public class Laenderkarte {
 	
 	private final Land land;
 	 
-	protected Laenderkarte(Land land) {
+	public Laenderkarte(Land land) {
 		this.land = land;
 	}
 	 

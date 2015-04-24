@@ -12,7 +12,9 @@ import cafeint.Kartenstapel.Typ;
 
 public class Spielkartenecke extends JPanel {
 	
-	private static Kartenstapel handkarten[] = new Kartenstapel[5]; //WICHTIGE INFORMATION: Die Anzahl der Restkarten muss festgehalten werden.
+	private static Kartenstapel handkarten[] = new Kartenstapel[5];
+	private static Kartenstapel gastkst = new Kartenstapel(Typ.Gastkartenstapel);
+	private static Kartenstapel landkst = new Kartenstapel(Typ.Laenderkartenstapel);
 	private static int akthandkartnum = -1;
 	private Color hintgrdfarb = new Color(0x000000);
 	
@@ -36,21 +38,21 @@ public class Spielkartenecke extends JPanel {
 	            });
 				add(handkarten[i/2]);
 			} else if(i==3) {
-				Kartenstapel kst = new Kartenstapel(Typ.Laenderkartenstapel);
-				kst.setOpaque(true);
-				kst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-				add(kst);
-			} else if(i==7) {
-				Kartenstapel kst = new Kartenstapel(Typ.Gastkartenstapel);
-				kst.setOpaque(true);
-				kst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-				kst.addMouseListener(new MouseAdapter() {
+				gastkst = new Kartenstapel(Typ.Gastkartenstapel);
+				gastkst.setOpaque(true);
+				gastkst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+				gastkst.addMouseListener(new MouseAdapter() {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
 	            		klickgast();
 	            	}
 	            });
-				add(kst);
+				add(gastkst);
+			} else if(i==7) {
+				landkst = new Kartenstapel(Typ.Laenderkartenstapel);
+				landkst.setOpaque(true);
+				landkst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+				add(landkst);
 			} else {
 				Kartenstapel kst = new Kartenstapel(Typ.Leer);
 				kst.setOpaque(true);
@@ -81,9 +83,17 @@ public class Spielkartenecke extends JPanel {
 	private void klickgast() {
 		for(int i=0;i<5;i++) {
 			if(handkarten[i].getImage()==null) {
-				//new Spielzuege().gastkarteziehen(i); //Diese Methode existiert vorläufig nicht
+				new Spielzuege().gastkarteziehen(i);
 			}
 		}
+	}
+	
+	public static void gastkstzahlLaden() {
+		gastkst.repaint();
+	}
+	
+	public static void landkstzahlLaden() {
+		landkst.repaint();
 	}
 	
 	public static Kartenstapel getHandkarte(int n) {
