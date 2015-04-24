@@ -16,7 +16,7 @@ import javax.swing.SwingConstants;
 public class Spielfeld extends JPanel {
 
 	private Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
-	private JLabel meldungsbox = new JLabel();
+	private static JLabel warnungsbox = new JLabel();
 	private static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
 	private static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
 	private Color hintgrdfarb = new Color(0x538fcb);
@@ -58,12 +58,12 @@ public class Spielfeld extends JPanel {
 				} else if(y==10) {
 					gbc.gridwidth = 11;
 					gbc.weighty = 0.5;
-					meldungsbox.setBackground(hintgrdfarb);
-					meldungsbox.setOpaque(true);
-					meldungsbox.setBorder(BorderFactory.createLineBorder(hintgrdfarb, 3));
-					meldungsbox.setPreferredSize(new Dimension(0, 20));
-					meldungsbox.setHorizontalAlignment(SwingConstants.CENTER);
-					add(meldungsbox, gbc);
+					warnungsbox.setBackground(hintgrdfarb);
+					warnungsbox.setOpaque(true);
+					warnungsbox.setBorder(BorderFactory.createLineBorder(hintgrdfarb, 3));
+					warnungsbox.setPreferredSize(new Dimension(0, 20));
+					warnungsbox.setHorizontalAlignment(SwingConstants.CENTER);
+					add(warnungsbox, gbc);
 					break;
 				}
 			}
@@ -112,8 +112,8 @@ public class Spielfeld extends JPanel {
 		Spielfeld.spielfeldstuhl = spielfeldstuhl;
 	}
 
-	public JLabel getMeldungsbox() {
-		return meldungsbox;
+	public static JLabel getWarnungsbox() {
+		return warnungsbox;
 	}
 	
 }

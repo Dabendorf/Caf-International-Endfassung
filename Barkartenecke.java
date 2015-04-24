@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import cafeint.Gastkarte.Land;
+
 public class Barkartenecke extends JPanel {
 	
 	private static ArrayList<Barzelle> barzellen = new ArrayList<Barzelle>(21);
@@ -25,7 +27,12 @@ public class Barkartenecke extends JPanel {
             	@Override
 				public void mouseClicked(MouseEvent e) {
             		if(Spielkartenecke.getAkthandkartnum()!=-1) {
-            			new Spielzuege().legebarkarte(Spielkartenecke.getAkthandkartnum());
+            			if(!Variablenkammer.getSpieler(42).getHandkarten().get(Spielkartenecke.getAkthandkartnum()).getLand().equals(Land.JOKER)) {
+            				new Spielzuege().legebarkarte(Spielkartenecke.getAkthandkartnum());
+            			} else {
+            				Spielfeld.getWarnungsbox().setText(Variablenkammer.getMsgbox().barjoker);
+            				new Spielzuege().handkartendemarkieren();
+            			}
             		}
             	}
             });
@@ -34,7 +41,7 @@ public class Barkartenecke extends JPanel {
 		}
 	}
 
-	public static Barzelle getBarzellen(int num) {
+	public static Barzelle getBarzelle(int num) {
 		return barzellen.get(num);
 	}
 

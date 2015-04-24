@@ -22,6 +22,7 @@ public class Meldungen {
 	public String gastzuvielemaenner = "Es sitzen zu viele Männer an diesem Tisch!";
 	public String gastzuvielefrauen = "Es sitzen zu viele Frauen an diesem Tisch!";
 	public String gastpartnerfalsch = "Dieser Gast würde allein sitzen. Du hast keine passenden Karten auf der Hand!";
+	public String barjoker = "Es ist verboten, Joker in die Bar abzuwerfen. Bitte setze den Gast an einen Tisch.";
 	
 	public void windows() {
 		JOptionPane.showMessageDialog(null, "Dein System ist hoffnungslos veraltet!\nWindoof ist nicht kompatibel mit diesem Spiel.\nSollte es zu Problemen bei der Ausführung kommen,\ndann öffne das Spiel bitte auf einem PC\nmit Mac OS oder Linux!", "System veraltet", JOptionPane.WARNING_MESSAGE);

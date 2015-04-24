@@ -32,7 +32,9 @@ public class Spielkartenecke extends JPanel {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
 	            		//if(Variablenkammer.getZustand()==11 || Variablenkammer.getZustand()==12) {
+	            		if(handkarten[index].getImage()!=null) {
 	            			klickhand(index);
+	            		}
 	            		//} Das muss noch beachtet werden
 	            	}
 	            });

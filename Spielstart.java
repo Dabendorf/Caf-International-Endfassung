@@ -13,8 +13,8 @@ public class Spielstart {
 			Variablenkammer.getSpieler(i).getHandkarten().clear();
 		}
 		for(int i=0;i<21;i++) {
-			Barkartenecke.getBarzellen(i).setGast(null);
-			Barkartenecke.getBarzellen(i).repaint();
+			Barkartenecke.getBarzelle(i).setGast(null);
+			Barkartenecke.getBarzelle(i).repaint();
 		}
 		
 		Variablenkammer.getGastkarten().clear();

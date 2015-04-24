@@ -14,18 +14,18 @@ public class Spielzuege {
 	public void legebarkarte(int handkartennum) {
 		int barnum = Variablenkammer.getBarkarten().size();
 		Variablenkammer.getBarkarten().add(Variablenkammer.getSpieler(42).getHandkarten().get(handkartennum));
-		Barkartenecke.getBarzellen(barnum).setGast(Variablenkammer.getSpieler(42).getHandkarten().get(handkartennum));
+		Barkartenecke.getBarzelle(barnum).setGast(Variablenkammer.getSpieler(42).getHandkarten().get(handkartennum));
 		Variablenkammer.getSpieler(42).getHandkarten().set(handkartennum,null);
 		Statistikecke.getKartsp(Variablenkammer.getAktSpieler(),handkartennum).repaint();
-		punktzahl(Barkartenecke.getBarzellen(barnum).getPunkte());
+		punktzahl(Barkartenecke.getBarzelle(barnum).getPunkte());
 		handkartendemarkieren();
-		Barkartenecke.getBarzellen(barnum).setBorder(BorderFactory.createLineBorder(Color.red));
+		Barkartenecke.getBarzelle(barnum).setBorder(BorderFactory.createLineBorder(Color.red));
 		Thread thread = new Thread(new Runnable() {
 			  @Override
 			  public void run() {
 				  try {
 					  Thread.sleep(1500);
-					  Barkartenecke.getBarzellen(barnum).setBorder(BorderFactory.createLineBorder(Color.black));
+					  Barkartenecke.getBarzelle(barnum).setBorder(BorderFactory.createLineBorder(Color.black));
 					  } catch(InterruptedException e) {}
 				  }
 			  }
