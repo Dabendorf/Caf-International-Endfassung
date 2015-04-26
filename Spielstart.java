@@ -28,6 +28,8 @@ public class Spielstart {
 		
 		Variablenkammer.setAktSpieler(0);
 		new Spielzuege().handkartendemarkieren();
+		Spielkartenecke.gastkstzahlLaden(); //89, weil Eigenklick, usw., siehe Zustände
+		Spielkartenecke.landkstzahlLaden();
 		//Variablenkammer.setZustand(12); //Existiert auch noch nicht
 		
 		for(int i=0;i<2;i++) {

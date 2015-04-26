@@ -3,11 +3,33 @@ package cafeint;
 import javax.swing.JOptionPane;
 
 public class Spielende {
+	public boolean spielvorbei() {
+		if(keinegastkarten()) {
+			siegmeldung(0);
+			return true;
+		} else if(keinelaenderkarten()) {
+			siegmeldung(1);
+			return true;
+		} else if(barvoll()) {
+			siegmeldung(2);
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	private boolean keinegastkarten() {
 		if(Variablenkammer.getGastkarten().size() == 0) {
-			//Variablenkammer.setZustand(21);
-			siegmeldung(0);
+			//Variablenkammer.setZustand(31);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	private boolean keinelaenderkarten() {
+		if(Variablenkammer.getLaenderkarten().size() == 0) {
+			//Variablenkammer.setZustand(32);
 			return true;
 		} else {
 			return false;
@@ -17,15 +39,12 @@ public class Spielende {
 	private boolean barvoll() {
 		if(Variablenkammer.getBarkarten().size() == 21) {
 			//Variablenkammer.setZustand(33);
-			siegmeldung(2);
 			return true;
 		}
 		else {
 			return false;
 		}
 	}
-	
-	//Lanederkarten leer. Außerdem denke daran, den Zustand-int zu reformieren und auch die Einer bei 0 zu zählen.
 	
 	private void siegmeldung(int art) {
 		Meldungen msgbox = new Meldungen();

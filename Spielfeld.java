@@ -19,7 +19,7 @@ public class Spielfeld extends JPanel {
 	private static JLabel warnungsbox = new JLabel();
 	private static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
 	private static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
-	private Color hintgrdfarb = new Color(0x538fcb);
+	private static Color hintgrdfarb = new Color(0x538fcb);
 	//private int aktstuhlnummer;
 
 	public Spielfeld() {
@@ -114,6 +114,10 @@ public class Spielfeld extends JPanel {
 
 	public static JLabel getWarnungsbox() {
 		return warnungsbox;
+	}
+
+	public static Color getHintgrdfarb() {
+		return hintgrdfarb;
 	}
 	
 }
