@@ -6,15 +6,13 @@ import javax.swing.BorderFactory;
 
 public class Spielzuege {
 	
-	public void legegastkarte() {
-		/*if(CafeMain.getStuehle().get(stuhlNr).setGast(CafeMain.getSpieler(42).getHandkarten().get(handkartennum)) == true) {
-			CafeMain.getSpieler(42).getHandkarten().set(handkartennum,null);
-			Uebersichtsecke.getKartsp(CafeMain.getAktSpieler(), handkartennum).repaint();
+	public void legegastkarte(int handkartennum,int stuhlNr) {
+		if(Variablenkammer.getStuehle().get(stuhlNr).setGast(Variablenkammer.getSpieler(42).getHandkarten().get(handkartennum)) == true) {
+			Variablenkammer.getSpieler(42).getHandkarten().set(handkartennum,null);
+			Statistikecke.getKartsp(Variablenkammer.getAktSpieler(), handkartennum).repaint();
 		}
-		//Punktzahl und Neuekartenziehen
-		handkartendemarkieren();*/
-		
-		//Beachte NullpointerException bei Spielende: bspw: 1 Restkarte, zwei Ziehen
+		handkartendemarkieren();
+		//Punktzahl bestimmen
 	}
 	
 	public void legetischkarte(int tischnr) {
@@ -43,7 +41,7 @@ public class Spielzuege {
 			  }
 		);
 		thread.start();
-		//Variablenkammer.setZustand(21); //Mit Zuständen arbeiten
+		Variablenkammer.setZustand(21);
 	}
 	
 	public void gastkarteziehen(int handkartennum) {
@@ -68,16 +66,8 @@ public class Spielzuege {
 		handkartendemarkieren();
 		Spielkartenecke.gastkstzahlLaden();
 		if(!new Spielende().spielvorbei()) {
-			///spielerwechsel(); //verhindern, weil sonst wieder alles rundherum wechselt
+			Variablenkammer.setZustand(12);
 		}
-		//spielerwechsel(); //Passiert nun nicht mehr Automatisch
-		//Variablenkammer.setZustand(12); //mit Zuständen arbeiten
-		//Spielendszenario
-		/*if(new Spielende().barvoll()) { //man könnte mit int Zustand statt Boolean arbeiten
-		} else if(new Spielende().keinegastkarten()) {
-		} else {
-			spielerwechsel();
-		}*/
 	}
 	
 	public void punktzahl(int addition) {
@@ -104,6 +94,18 @@ public class Spielzuege {
 		}
 	}
 	
+	public void tischedemarkieren() {
+		for(Tisch tisch:Variablenkammer.getTische()) {
+			tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+		}
+	}
+	
+	public void stuehledemarkieren() {
+		for(Stuhl stuhl:Variablenkammer.getStuehle()) {
+			stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+		}
+	}
+	
 	public void warnungsboxtext(String text) {
 		Spielfeld.getWarnungsbox().setText(text);
 		Spielfeld.getWarnungsbox().setBorder(BorderFactory.createLineBorder(Color.red, 2));
@@ -112,13 +114,17 @@ public class Spielzuege {
 			  public void run() {
 				  try {
 					  Thread.sleep(5000);
-					  Spielfeld.getWarnungsbox().setText("");
-					  Spielfeld.getWarnungsbox().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 2));
+					  warnungsboxreseten();
 					  } catch(InterruptedException e) {}
 				  }
 			  }
 		);
 		thread.start();
+	}
+	
+	public void warnungsboxreseten() {
+		Spielfeld.getWarnungsbox().setText("");
+		Spielfeld.getWarnungsbox().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 2));
 	}
 
 }

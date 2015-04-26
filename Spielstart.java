@@ -30,7 +30,7 @@ public class Spielstart {
 		new Spielzuege().handkartendemarkieren();
 		Spielkartenecke.gastkstzahlLaden(); //89, weil Eigenklick, usw., siehe Zustände
 		Spielkartenecke.landkstzahlLaden();
-		//Variablenkammer.setZustand(12); //Existiert auch noch nicht
+		Variablenkammer.setZustand(12);
 		
 		for(int i=0;i<2;i++) {
 			Statistikecke.getInfz(i).punktzahlschreiben();

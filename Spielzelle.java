@@ -34,8 +34,8 @@ public class Spielzelle extends JPanel {
 				key = "./stuhl_leer.png";
 			}
 		} else if(typ.equals(Typ.Tisch)) {
-			if(this.tisch.getLand()!=null) {
-				key = "./tisch_"+this.tisch.getLand()+".png";
+			if(this.tisch.getLaenderkarte()!=null) {
+				key = "./tisch_"+this.tisch.getLaenderkarte()+".png";
 			} else {
 				key = "./tisch_leer.png";
 			}

@@ -2,21 +2,24 @@ package cafeint;
 
 public class Tisch {
 	
-	private Laenderkarte land; //Tisch leeren -> Erst feststellen, dann leeren, für Fehlervermeidung und PktBerechnung bei mehreren Tischen
+	private Laenderkarte laenderkarte; //Tisch leeren -> Erst feststellen, dann leeren, für Fehlervermeidung und PktBerechnung bei mehreren Tischen
     private Stuhl[] stuehle;
 	private Spielzelle sz;
 	
-	public Laenderkarte getLand() {
-		return land;
+	public Laenderkarte getLaenderkarte() {
+		return laenderkarte;
 	}
 	
 	public void setLand(Laenderkarte land) {
-		this.land = land;
+		this.laenderkarte = land;
+		if(sz!=null) {
+			this.sz.repaint();
+		}
 	}
 	
-	/*public Stuhl[] getStuehle() {
+	public Stuhl[] getStuehle() {
 		return stuehle;
-	}*/
+	}
 	
 	public void setStuehle(int...stuehleNr) {
 		Stuhl[] stuehletemp = new Stuhl[stuehleNr.length];

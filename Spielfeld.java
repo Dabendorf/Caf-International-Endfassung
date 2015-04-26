@@ -20,7 +20,6 @@ public class Spielfeld extends JPanel {
 	private static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
 	private static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
 	private static Color hintgrdfarb = new Color(0x538fcb);
-	//private int aktstuhlnummer;
 
 	public Spielfeld() {
 		this.setBackground(hintgrdfarb);
@@ -81,16 +80,20 @@ public class Spielfeld extends JPanel {
 		int[] stuhlkoordx = {4,5,6,7,8,7,6,5,4,3,2,3,4,5,6,9,8,7,6,5,4,3,2,1};
 		int[] stuhlkoordy = {4,1,2,3,4,5,6,7,6,5,4,3,2,3,4,5,6,7,8,9,8,7,6,5};
 		for(int i=0;i<24;i++) {
-			//final int j = i; //auskommentiert, siehe unten
+			final int j = i;
 			spielfeldstuhl.add(spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]]);
 			spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]].setTyp(Spielzelle.Typ.Stuhl);
 			spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]].addMouseListener(new MouseAdapter() {
             	@Override
 				public void mouseClicked(MouseEvent e) {
-            		//MouseListener muss noch generiert werden
-            		/*if(Spielkartenecke.getAkthandkartnum()!=-1) {
-            			new Spielzuege().legegastkarte(Spielkartenecke.getAkthandkartnum(),j);
-            		}*/
+            		if(Spielkartenecke.getAkthandkartnum()!=-1) {
+            			if(Variablenkammer.getStuehle().get(j).getGast()==null) {
+            				new Spielzuege().legegastkarte(Spielkartenecke.getAkthandkartnum(),j);
+            			} else {
+            				new Spielzuege().warnungsboxtext(Variablenkammer.getMsgbox().stuhlbesetzt);
+            				new Spielzuege().handkartendemarkieren();
+            			}
+            		}
             	}
             });
 		}

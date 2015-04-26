@@ -20,7 +20,7 @@ public class Spielende {
 	
 	private boolean keinegastkarten() {
 		if(Variablenkammer.getGastkarten().size() == 0) {
-			//Variablenkammer.setZustand(31);
+			Variablenkammer.setZustand(31);
 			return true;
 		} else {
 			return false;
@@ -29,7 +29,7 @@ public class Spielende {
 	
 	private boolean keinelaenderkarten() {
 		if(Variablenkammer.getLaenderkarten().size() == 0) {
-			//Variablenkammer.setZustand(32);
+			Variablenkammer.setZustand(32);
 			return true;
 		} else {
 			return false;
@@ -38,7 +38,7 @@ public class Spielende {
 	
 	private boolean barvoll() {
 		if(Variablenkammer.getBarkarten().size() == 21) {
-			//Variablenkammer.setZustand(33);
+			Variablenkammer.setZustand(33);
 			return true;
 		}
 		else {

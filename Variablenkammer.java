@@ -27,6 +27,8 @@ public class Variablenkammer {
     //Grafik
     private static Map<String,BufferedImage> tischcache = new TreeMap<String,BufferedImage>();
     private static Map<String,BufferedImage> stuhlcache = new TreeMap<String,BufferedImage>();
+    private static int zustand = 0;
+    //(0:Spielstart),(11:1Karte legbar),(12:2Karten legbar),(21:Gastkarte ziehen),(22:Tischkarte ziehen),(31:SpielendeGast),(32:SpielendeTisch),(33:SpielendeBar)
     
     //Getter und Setter
 	public static Meldungen getMsgbox() {
@@ -75,6 +77,14 @@ public class Variablenkammer {
 
 	public static List<Stuhl> getStuehle() {
 		return stuehle;
+	}
+
+	public static int getZustand() {
+		return zustand;
+	}
+
+	public static void setZustand(int zustand) {
+		Variablenkammer.zustand = zustand;
 	}
 
 }

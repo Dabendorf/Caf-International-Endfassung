@@ -31,11 +31,11 @@ public class Spielkartenecke extends JPanel {
 				handkarten[i/2].addMouseListener(new MouseAdapter() {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
-	            		//if(Variablenkammer.getZustand()==11 || Variablenkammer.getZustand()==12) {
-	            		if(handkarten[index].getImage()!=null) {
+	            		if((Variablenkammer.getZustand()==11 || Variablenkammer.getZustand()==12) && handkarten[index].getImage()!=null) {
 	            			klickhand(index);
+	            		} else {
+	            			new Spielzuege().warnungsboxtext(new Meldungen().gastkarteziehen);
 	            		}
-	            		//} Das muss noch beachtet werden
 	            	}
 	            });
 				add(handkarten[i/2]);
@@ -46,7 +46,12 @@ public class Spielkartenecke extends JPanel {
 				gastkst.addMouseListener(new MouseAdapter() {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
-	            		klickgast();
+	            		if(Variablenkammer.getZustand()==21 || Variablenkammer.getZustand()==11) {
+	            			klickgast();
+		            		new Spielzuege().spielerwechsel();
+	    				} else {
+	    					new Spielzuege().warnungsboxtext(new Meldungen().gastkartelegen);
+	    				}
 	            	}
 	            });
 				add(gastkst);
@@ -84,7 +89,7 @@ public class Spielkartenecke extends JPanel {
 	
 	private void klickgast() {
 		for(int i=0;i<5;i++) {
-			if(handkarten[i].getImage()==null) {
+			if(handkarten[i].getImage()==null && Variablenkammer.getGastkarten().size() > 0) {
 				new Spielzuege().gastkarteziehen(i);
 			}
 		}
