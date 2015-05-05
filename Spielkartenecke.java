@@ -31,7 +31,7 @@ public class Spielkartenecke extends JPanel {
 				handkarten[i/2].addMouseListener(new MouseAdapter() {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
-	            		if((Variablenkammer.getZustand()==11 || Variablenkammer.getZustand()==12) && handkarten[index].getImage()!=null) {
+	            		if((Variablenkammer.getZustand()==10 || Variablenkammer.getZustand()==11 || Variablenkammer.getZustand()==12) && handkarten[index].getImage()!=null) {
 	            			klickhand(index);
 	            		} else {
 	            			new Spielzuege().warnungsboxtext(new Meldungen().gastkarteziehen);

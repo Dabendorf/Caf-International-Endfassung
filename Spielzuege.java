@@ -22,7 +22,7 @@ public class Spielzuege {
 	}
 	
 	public void legebarkarte(int handkartennum) {
-		int barnum = Variablenkammer.getBarkarten().size();
+		final int barnum = Variablenkammer.getBarkarten().size();
 		Variablenkammer.getBarkarten().add(Variablenkammer.getSpieler(42).getHandkarten().get(handkartennum));
 		Barkartenecke.getBarzelle(barnum).setGast(Variablenkammer.getSpieler(42).getHandkarten().get(handkartennum));
 		Variablenkammer.getSpieler(42).getHandkarten().set(handkartennum,null);
@@ -44,7 +44,7 @@ public class Spielzuege {
 		Variablenkammer.setZustand(21);
 	}
 	
-	public void gastkarteziehen(int handkartennum) {
+	public void gastkarteziehen(final int handkartennum) {
 		Variablenkammer.getSpieler(42).getHandkarten().set(handkartennum,Variablenkammer.getGastkarten().get(0));
 		Variablenkammer.getGastkarten().remove(0);
 		
@@ -100,9 +100,15 @@ public class Spielzuege {
 		}
 	}
 	
-	public void stuehledemarkieren() {
+	public void stuehledemarkieren(boolean zugende) {
 		for(Stuhl stuhl:Variablenkammer.getStuehle()) {
-			stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+			if(!stuhl.isPartnerNoetig() || zugende) {
+				stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+				stuhl.setPartnerNoetig(false);
+			} else {
+				stuhl.gruenfaerben();
+			}
+			
 		}
 	}
 	

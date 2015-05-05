@@ -15,7 +15,7 @@ public class Meldungen {
 	public String endelaenderkarten = "Alle Nationenkarten sind aufgebraucht.\n";
 	public String endebar = "Alle Barplätze sind besetzt.\n";
 	public String spielende = "Das Spiel ist vorbei";
-	public Object[] endoptionen = {"Neues Spiel", "Beenden"};
+	public String[] endoptionen = {"Neues Spiel", "Beenden"};
 	public String endetitel = "Möchtest Du eine neue Partie starten?";
 	public String endefrage = "Spielende";
 	public String gastlandfalsch = "Die Nationalität dieses Gastes stimmt nicht mit der Tischnationalität überein!";

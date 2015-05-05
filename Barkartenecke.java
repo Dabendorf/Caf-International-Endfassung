@@ -30,7 +30,7 @@ public class Barkartenecke extends JPanel {
             			if(Variablenkammer.getSpieler(42).getHandkarten().get(Spielkartenecke.getAkthandkartnum()).getLand().equals(Land.JOKER)) {
             				new Spielzuege().warnungsboxtext(Variablenkammer.getMsgbox().barjoker);
             				new Spielzuege().handkartendemarkieren();
-            			} else if(Variablenkammer.getZustand() == 11) {
+            			} else if(Variablenkammer.getZustand() == 10 || Variablenkammer.getZustand() == 11) {
             				new Spielzuege().warnungsboxtext(Variablenkammer.getMsgbox().barzuspaet);
             				new Spielzuege().handkartendemarkieren();
             			} else {

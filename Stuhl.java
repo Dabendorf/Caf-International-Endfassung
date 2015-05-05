@@ -13,6 +13,7 @@ public class Stuhl {
 	private Gastkarte gast;
 	private ArrayList<Tisch> tische = new ArrayList<Tisch>();
     private Spielzelle sz;
+    private boolean partnerNoetig = false;
     
 	public Gastkarte getGast() {
 		return gast;
@@ -22,6 +23,8 @@ public class Stuhl {
 		Meldungen msgbox = new Meldungen();
 		if(!gastLandKorrekt(gasttemp)) {
 			new Spielzuege().warnungsboxtext(msgbox.gastlandfalsch);
+			partnerNoetig = false;
+			new Spielzuege().stuehledemarkieren(false);
 			return false;
 		} else if(!gastGeschlechtKorrekt(gasttemp)) {
 			if(gasttemp.getGeschlecht().equals(Geschlecht.Mann)) {
@@ -29,6 +32,8 @@ public class Stuhl {
 			} else {
 				new Spielzuege().warnungsboxtext(msgbox.gastzuvielefrauen);
 			}
+			partnerNoetig = false;
+			new Spielzuege().stuehledemarkieren(false);
 			return false;
 		} else if(!gastPartnerKorrekt(gasttemp)) {
 			new Spielzuege().warnungsboxtext(msgbox.gastpartnerfalsch);
@@ -37,16 +42,24 @@ public class Stuhl {
 			if(Variablenkammer.getZustand() == 12) {
 				this.gast = gasttemp;
 				this.sz.repaint();
-				Variablenkammer.setZustand(11);
 				new Spielzuege().tischedemarkieren();
 				new Spielzuege().warnungsboxreseten();
+				if(partnerNoetig) {
+					Variablenkammer.setZustand(10);
+					new Spielzuege().stuehledemarkieren(false);
+					gruenfaerben();
+				} else {
+					Variablenkammer.setZustand(11);
+					new Spielzuege().stuehledemarkieren(true);
+				}
 				return true;
-			} else if(Variablenkammer.getZustand() == 11) {
+			} else if(Variablenkammer.getZustand() == 10 || Variablenkammer.getZustand() == 11) {
 				this.gast = gasttemp;
 				this.sz.repaint();
 				Variablenkammer.setZustand(21);
 				new Spielzuege().tischedemarkieren();
 				new Spielzuege().warnungsboxreseten();
+				new Spielzuege().stuehledemarkieren(true);
 				return true;
 			} else {
 				return false;
@@ -54,9 +67,9 @@ public class Stuhl {
 		}
 	}
 	
-	/*public Tisch[] getTische() {
+	public ArrayList<Tisch> getTische() {
 		return tische;
-	}*/
+	}
 	
 	public void addTisch(Tisch tisch) {
 		this.tische.add(tisch);
@@ -78,7 +91,7 @@ public class Stuhl {
 			}
 		}
 		if(korr == false) {
-			for(Tisch tisch:this.tische) {
+			for(final Tisch tisch:this.tische) {
 				tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
 				Thread thread = new Thread(new Runnable() {
 					  @Override
@@ -111,7 +124,7 @@ public class Stuhl {
 			}
 			if((gasttemp.getGeschlecht().equals(Geschlecht.Mann)) && (mann > frau) || (gasttemp.getGeschlecht().equals(Geschlecht.Frau)) && (frau > mann)) {
 				korr = false;
-				for(Stuhl stuhl:tisch.getStuehle()) {
+				for(final Stuhl stuhl:tisch.getStuehle()) {
 					if(stuhl.getGast()!=null) {
 						stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
 						Thread thread = new Thread(new Runnable() {
@@ -119,7 +132,9 @@ public class Stuhl {
 							  public void run() {
 								  try {
 									  Thread.sleep(5000);
-									  stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+									  if(!stuhl.isPartnerNoetig()) {
+										  stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+									  }
 									  } catch(InterruptedException e) {}
 								  }
 							  }
@@ -133,8 +148,83 @@ public class Stuhl {
 	}
 	
 	private boolean gastPartnerKorrekt(Gastkarte gasttemp) {
-		return true; //Vorerst immer true
-		//Beachte auch, dass der Spieler im Ersten Zug auch Einzelkarten legen darf
+		boolean korr = false;
+		for(Tisch tisch:this.tische) {
+			for(Stuhl stuhl:tisch.getStuehle()) {
+				if(!stuhl.equals(this)) {
+					if(stuhl.getGast()!=null) {
+						partnerNoetig = false;
+						korr = true;
+					} else if (Variablenkammer.getZustand()==12) {
+						for(Gastkarte handtemp:Variablenkammer.getSpieler(42).getHandkarten()) {
+							if(handtemp!=null) {
+								if(!handtemp.equals(gasttemp)) {
+									if(tempLandKorrekt(handtemp,stuhl) == true && tempGeschlechtKorrekt(gasttemp,handtemp,stuhl)) {
+										partnerNoetig = true;
+										korr = true;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return korr;
+		//Beachte auch, dass der Spieler im Ersten Zug auch Einzelkarten legen darf bzw. dass immer zwei Zusammenpassen
+	}
+	
+	private boolean tempLandKorrekt(Gastkarte handtemp,Stuhl stuhltemp) {
+		boolean korr = false;
+		for(Tisch tisch:stuhltemp.getTische()) {
+			if(tisch.getLaenderkarte().getLand().equals(handtemp.getLand()) || handtemp.getLand().equals(Land.JOKER)) {
+				korr = true;
+			}
+		}
+		return korr;
+	}
+	
+	private boolean tempGeschlechtKorrekt(Gastkarte gasttemp, Gastkarte handtemp,Stuhl stuhltemp) {
+		boolean korr = true;
+		for(Tisch tisch:stuhltemp.getTische()) {
+			int mann=0, frau=0;
+			for(Stuhl stuhl:tisch.getStuehle()) {
+				if(stuhl.getGast()!=null) {
+					if(stuhl.getGast().getGeschlecht().equals(Geschlecht.Mann)) {
+						mann++;
+					} else {
+						frau++;
+					}
+				}
+			}
+			if(gasttemp.getGeschlecht().equals(Geschlecht.Mann)) {
+				mann++;
+			} else {
+				frau++;
+			}
+			if(handtemp.getGeschlecht().equals(Geschlecht.Mann)) {
+				mann++;
+			} else {
+				frau++;
+			}
+			System.out.println(mann);
+			System.out.println(frau);
+			if((gasttemp.getGeschlecht().equals(Geschlecht.Mann)) && (mann > frau) || (gasttemp.getGeschlecht().equals(Geschlecht.Frau)) && (frau > mann)) {
+				korr = false;
+			}
+		}
+		return korr;
+	}
+	
+	public void gruenfaerben() {
+		this.getSpielzelle().setBorder(BorderFactory.createLineBorder(new Color(0x3ADF00), 3));
 	}
 
+	public boolean isPartnerNoetig() {
+		return partnerNoetig;
+	}
+
+	public void setPartnerNoetig(boolean partnerNoetig) {
+		this.partnerNoetig = partnerNoetig;
+	}
 }

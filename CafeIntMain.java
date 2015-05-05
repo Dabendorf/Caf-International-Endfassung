@@ -1,5 +1,11 @@
 package cafeint;
 
+/**
+ * @bugs
+ * @3 Fehler gefunden: Neues Spiel startet wieder bei Spieler 2
+ * @4 Versuch Einzelsitzer zu verhindern
+ */
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
