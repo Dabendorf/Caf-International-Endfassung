@@ -2,7 +2,7 @@ package cafeint;
 
 public class Tisch {
 	
-	private Laenderkarte laenderkarte; //Tisch leeren -> Erst feststellen, dann leeren, für Fehlervermeidung und PktBerechnung bei mehreren Tischen
+	private Laenderkarte laenderkarte;
     private Stuhl[] stuehle;
 	private Spielzelle sz;
 	private boolean zuleeren = false;

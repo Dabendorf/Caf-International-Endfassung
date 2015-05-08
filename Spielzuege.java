@@ -18,7 +18,6 @@ public class Spielzuege {
 	public void legetischkarte(Tisch tisch) {
 		tisch.setLand(Variablenkammer.getLaenderkarten().get(0));
 		Variablenkammer.getLaenderkarten().remove(0);
-		tisch.getSpielzelle().repaint();
 		Spielkartenecke.landkstzahlLaden();
 		//Laenderkartenüberprüfung bei Spielende einrichten
 	}
@@ -43,7 +42,9 @@ public class Spielzuege {
 			  }
 		);
 		thread.start();
-		Variablenkammer.setZustand(21);
+		if(!new Spielende().barvoll()) {
+			Variablenkammer.setZustand(21);
+		}
 	}
 	
 	public void gastkarteziehen(final int handkartennum) {
@@ -67,9 +68,7 @@ public class Spielzuege {
 		thread.start();
 		handkartendemarkieren();
 		Spielkartenecke.gastkstzahlLaden();
-		if(!new Spielende().spielvorbei()) {
-			Variablenkammer.setZustand(12);
-		}
+		Variablenkammer.setZustand(12);
 	}
 	
 	public void punktzahl(int addition) {

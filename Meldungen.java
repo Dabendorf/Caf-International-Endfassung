@@ -2,19 +2,20 @@ package cafeint;
 
 public class Meldungen {
 	
+	public String umbruch = System.getProperty("line.separator");
 	public String programmname = "Café International";
 	public String nameerlaubtezeichen = "[a-zA-Z0-9ÄÖÜäöüß]*";
 	public String falschessystem = "System veraltet";
-	public String windows = "Dieses Computerspiel wurde für OS X und Linux entwickelt.\nEs ist nicht primär mit Windows kompatibel.\nSollte es zu Problemen bei der Ausführung kommen,\ndann öffne das Spiel bitte auf einem PC\nmit Mac OS X oder Linux!";
+	public String windows = "Dieses Computerspiel wurde für OS X und Linux entwickelt."+umbruch+"Es ist nicht primär mit Windows kompatibel."+umbruch+"Sollte es zu Problemen bei der Ausführung kommen,"+umbruch+"dann öffne das Spiel bitte auf einem PC"+umbruch+"mit Mac OS X oder Linux!";
 	public String fragespielername = "Wie heißen die Spieler?";
 	public String spielername = "Name von Spieler ";
 	public String spielernamevergessen = "Bitte gib beide Spielernamen ein!";
 	public String titelunvollstaendig = "Unvollständige Eingabe";
 	public String spielernamengleich = "Bitte benenne die Spieler unterschiedlich!";
 	public String titelnamensgleichheit = "Namensgleichheit";
-	public String endegastkarten = "Der letzte Gast hat das Café betreten.\n";
-	public String endelaenderkarten = "Alle Nationenkarten sind aufgebraucht.\n";
-	public String endebar = "Alle Barplätze sind besetzt.\n";
+	public String endegastkarten = "Der letzte Gast hat das Café betreten."+umbruch;
+	public String endelaenderkarten = "Alle Nationenkarten sind aufgebraucht."+umbruch;
+	public String endebar = "Alle Barplätze sind besetzt."+umbruch;
 	public String spielende = "Das Spiel ist vorbei";
 	public String[] endoptionen = {"Neues Spiel", "Beenden"};
 	public String endetitel = "Möchtest Du eine neue Partie starten?";
@@ -32,15 +33,15 @@ public class Meldungen {
 	
 	public String siegermeldung(int ergebnis) {
 		if(ergebnis == 0) {
-			return Variablenkammer.getSpieler(0).getName()+" gewinnt die Partie hochverdient!\nEr gewinnt mit "+Variablenkammer.getSpieler(0).getPunkte()+" zu "+Variablenkammer.getSpieler(1).getPunkte()+" Punkten.\nHerzlichen Glückwunsch.";
+			return Variablenkammer.getSpieler(0).getName()+" gewinnt die Partie hochverdient!"+umbruch+"Er gewinnt mit "+Variablenkammer.getSpieler(0).getPunkte()+" zu "+Variablenkammer.getSpieler(1).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
 		} else if(ergebnis == 1) {
-			return Variablenkammer.getSpieler(0).getName()+" gewinnt die Partie mit knappem Vorsprung!\nEr gewinnt mit "+Variablenkammer.getSpieler(0).getPunkte()+" zu "+Variablenkammer.getSpieler(1).getPunkte()+" Punkten.\nHerzlichen Glückwunsch.";
+			return Variablenkammer.getSpieler(0).getName()+" gewinnt die Partie mit knappem Vorsprung!"+umbruch+"Er gewinnt mit "+Variablenkammer.getSpieler(0).getPunkte()+" zu "+Variablenkammer.getSpieler(1).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
 		} else if(ergebnis == 2) {
-			return "Diese Partie endet Unentschieden.\nBeide Spieler erreichten eine Punktzahl von "+Variablenkammer.getSpieler(0).getPunkte()+" Punkten.";
+			return "Diese Partie endet Unentschieden."+umbruch+"Beide Spieler erreichten eine Punktzahl von "+Variablenkammer.getSpieler(0).getPunkte()+" Punkten.";
 		} else if(ergebnis == 3) {
-			return Variablenkammer.getSpieler(1).getName()+" gewinnt die Partie mit knappem Vorsprung!\nEr gewinnt mit "+Variablenkammer.getSpieler(1).getPunkte()+" zu "+Variablenkammer.getSpieler(0).getPunkte()+" Punkten.\nHerzlichen Glückwunsch.";
+			return Variablenkammer.getSpieler(1).getName()+" gewinnt die Partie mit knappem Vorsprung!"+umbruch+"Er gewinnt mit "+Variablenkammer.getSpieler(1).getPunkte()+" zu "+Variablenkammer.getSpieler(0).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
 		} else {
-			return Variablenkammer.getSpieler(1).getName()+" gewinnt die Partie hochverdient!\nEr gewinnt mit "+Variablenkammer.getSpieler(1).getPunkte()+" zu "+Variablenkammer.getSpieler(0).getPunkte()+" Punkten.\nHerzlichen Glückwunsch.";
+			return Variablenkammer.getSpieler(1).getName()+" gewinnt die Partie hochverdient!"+umbruch+"Er gewinnt mit "+Variablenkammer.getSpieler(1).getPunkte()+" zu "+Variablenkammer.getSpieler(0).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
 		}
 	}
 

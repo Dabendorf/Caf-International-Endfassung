@@ -3,42 +3,31 @@ package cafeint;
 import javax.swing.JOptionPane;
 
 public class Spielende {
-	public boolean spielvorbei() {
-		if(keinegastkarten()) {
-			siegmeldung(0);
-			return true;
-		} else if(keinelaenderkarten()) {
-			siegmeldung(1);
-			return true;
-		} else if(barvoll()) {
-			siegmeldung(2);
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
-	private boolean keinegastkarten() {
+	public boolean keinegastkarten() {
 		if(Variablenkammer.getGastkarten().size() == 0) {
 			Variablenkammer.setZustand(31);
+			siegmeldung(0);
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	private boolean keinelaenderkarten() {
+	public boolean keinelaenderkarten() {
 		if(Variablenkammer.getLaenderkarten().size() == 0) {
 			Variablenkammer.setZustand(32);
+			siegmeldung(1);
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	private boolean barvoll() {
+	public boolean barvoll() {
 		if(Variablenkammer.getBarkarten().size() == 21) {
 			Variablenkammer.setZustand(33);
+			siegmeldung(2);
 			return true;
 		}
 		else {

@@ -105,19 +105,28 @@ public class Spielkartenecke extends JPanel {
 		for(int i=0;i<5;i++) {
 			if(handkarten[i].getImage()==null && Variablenkammer.getGastkarten().size() > 0) {
 				new Spielzuege().gastkarteziehen(i);
+				if(Variablenkammer.getGastkarten().size() == 0) {
+					new Spielende().keinegastkarten();
+				}
 			}
 		}
 	}
 	
 	private void klicktisch() {
 		for(Tisch tisch:Variablenkammer.getTische()) {
-			if(tisch.getLaenderkarte()==null) {
+			if(tisch.getLaenderkarte()==null && Variablenkammer.getLaenderkarten().size() > 0) {
 				new Spielzuege().legetischkarte(tisch);
+				if(Variablenkammer.getLaenderkarten().size() == 0) {
+					new Spielende().keinelaenderkarten();
+				}
 			}
 		}
 		int zustand = Variablenkammer.getZustand();
-		if(zustand >= 220) {
-			Variablenkammer.setZustand(zustand-210);
+		Variablenkammer.setZustand(zustand-210);
+		for(Gastkarte gstk:Variablenkammer.getSpieler(42).getHandkarten()) {
+			if(gstk == null) {
+				Variablenkammer.setZustand(21);
+			}
 		}
 	}
 	

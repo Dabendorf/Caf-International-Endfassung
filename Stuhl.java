@@ -53,16 +53,15 @@ public class Stuhl {
 					Variablenkammer.setZustand(11);
 					spz.stuehledemarkieren(true);
 				}
-				tischVollPruefen();
+				tischVollPruefen(false);
 				return true;
 			} else if(Variablenkammer.getZustand() == 10 || Variablenkammer.getZustand() == 11) {
 				this.gast = gasttemp;
 				this.sz.repaint();
-				Variablenkammer.setZustand(21);
 				spz.tischedemarkieren();
 				spz.warnungsboxreseten();
 				spz.stuehledemarkieren(true);
-				tischVollPruefen();
+				tischVollPruefen(true);
 				return true;
 			} else {
 				return false;
@@ -169,13 +168,13 @@ public class Stuhl {
 	
 	private boolean gastPartnerKorrekt(Gastkarte gasttemp) {
 		boolean korr = false;
-		for(Tisch tisch:this.tische) {
+		tischschleife:for(Tisch tisch:this.tische) {
 			for(Stuhl stuhl:tisch.getStuehle()) {
 				if(!stuhl.equals(this)) {
 					if(stuhl.getGast()!=null) {
 						partnerNoetig = false;
 						korr = true;
-						break;
+						break tischschleife;
 					} else if (Variablenkammer.getZustand()==12) {
 						for(Gastkarte handtemp:Variablenkammer.getSpieler(42).getHandkarten()) {
 							if(handtemp!=null) {
@@ -235,7 +234,8 @@ public class Stuhl {
 		return korr;
 	}
 	
-	private void tischVollPruefen() {
+	private void tischVollPruefen(boolean letzteKarte) {
+		boolean leeren = false;
 		for(Tisch tisch:this.getTische()) {
 			int i=0;
 			for(Stuhl stuhl:tisch.getStuehle()) {
@@ -249,6 +249,7 @@ public class Stuhl {
 		}
 		for(Tisch tisch:this.getTische()) {
 			if(tisch.isZuleeren()) {
+				leeren = true;
 				tisch.setLand(null);
 				for(Stuhl stuhl:tisch.getStuehle()) {
 					stuhl.gastNachHause();
@@ -258,8 +259,13 @@ public class Stuhl {
 				} else if(Variablenkammer.getZustand() == 10) {
 					Variablenkammer.setZustand(220);
 				}
+				tisch.setZuleeren(false);
 			}
 		}
+		if(letzteKarte && !leeren) {
+			Variablenkammer.setZustand(21);
+		}
+		leeren = false;
 	}
 	
 }

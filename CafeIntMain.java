@@ -5,7 +5,8 @@ package cafeint;
  * @3 Fehler gefunden: Neues Spiel startet wieder bei Spieler 2
  * @8 WessnerTipp mit den Regeln für Zeilenumbrüche beachten
  * @9 Punktzahlen berechnen
- * @10 Spielabschlussbedingungen integrieren
+ * @10 Spielabschlussbedingungen integrieren, Verhinderte NPE bei Kartenziehen
+ * @11 Tischaufnahme nach einer Karte führt zu Zugende -> Zustand auf 10/11 anpassen
  */
 
 import java.awt.Container;
