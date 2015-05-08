@@ -33,7 +33,9 @@ public class Spielkartenecke extends JPanel {
 	            	public void mouseClicked(MouseEvent e) {
 	            		if((Variablenkammer.getZustand()==10 || Variablenkammer.getZustand()==11 || Variablenkammer.getZustand()==12) && handkarten[index].getImage()!=null) {
 	            			klickhand(index);
-	            		} else {
+	            		} else if(Variablenkammer.getZustand() >=220) {
+	            			new Spielzuege().warnungsboxtext(new Meldungen().tischkarteziehen);
+	            		} else if(handkarten[index].getImage()!=null) {
 	            			new Spielzuege().warnungsboxtext(new Meldungen().gastkarteziehen);
 	            		}
 	            	}
@@ -49,6 +51,8 @@ public class Spielkartenecke extends JPanel {
 	            		if(Variablenkammer.getZustand()==21 || Variablenkammer.getZustand()==11) {
 	            			klickgast();
 		            		new Spielzuege().spielerwechsel();
+	    				} else if(Variablenkammer.getZustand() >= 220) {
+	    					new Spielzuege().warnungsboxtext(new Meldungen().tischkarteziehen);
 	    				} else {
 	    					new Spielzuege().warnungsboxtext(new Meldungen().gastkartelegen);
 	    				}
@@ -59,6 +63,16 @@ public class Spielkartenecke extends JPanel {
 				landkst = new Kartenstapel(Typ.Laenderkartenstapel);
 				landkst.setOpaque(true);
 				landkst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+				landkst.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						if(Variablenkammer.getZustand() >= 220) {
+							klicktisch();
+						} else if(Variablenkammer.getZustand() > 9 && Variablenkammer.getZustand() < 13) {
+							new Spielzuege().warnungsboxtext(new Meldungen().gastkartelegen);
+						}
+					}
+				});
 				add(landkst);
 			} else {
 				Kartenstapel kst = new Kartenstapel(Typ.Leer);
@@ -92,6 +106,18 @@ public class Spielkartenecke extends JPanel {
 			if(handkarten[i].getImage()==null && Variablenkammer.getGastkarten().size() > 0) {
 				new Spielzuege().gastkarteziehen(i);
 			}
+		}
+	}
+	
+	private void klicktisch() {
+		for(Tisch tisch:Variablenkammer.getTische()) {
+			if(tisch.getLaenderkarte()==null) {
+				new Spielzuege().legetischkarte(tisch);
+			}
+		}
+		int zustand = Variablenkammer.getZustand();
+		if(zustand >= 220) {
+			Variablenkammer.setZustand(zustand-210);
 		}
 	}
 	

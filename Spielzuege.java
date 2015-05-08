@@ -15,9 +15,11 @@ public class Spielzuege {
 		//Punktzahl bestimmen
 	}
 	
-	public void legetischkarte(int tischnr) {
-		Variablenkammer.getTische().get(tischnr).setLand(Variablenkammer.getLaenderkarten().get(0));
+	public void legetischkarte(Tisch tisch) {
+		tisch.setLand(Variablenkammer.getLaenderkarten().get(0));
 		Variablenkammer.getLaenderkarten().remove(0);
+		tisch.getSpielzelle().repaint();
+		Spielkartenecke.landkstzahlLaden();
 		//Laenderkartenüberprüfung bei Spielende einrichten
 	}
 	

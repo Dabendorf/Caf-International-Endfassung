@@ -3,7 +3,9 @@ package cafeint;
 /**
  * @bugs
  * @3 Fehler gefunden: Neues Spiel startet wieder bei Spieler 2
- * @4 Versuch Einzelsitzer zu verhindern
+ * @8 WessnerTipp mit den Regeln für Zeilenumbrüche beachten
+ * @9 Punktzahlen berechnen
+ * @10 Spielabschlussbedingungen integrieren
  */
 
 import java.awt.Container;
@@ -49,12 +51,10 @@ public class CafeIntMain {
     
     private void ablauf() {
     	Programmstart progst = new Programmstart();
-    	if(progst.SysWin()) {
-            new Meldungen().windows();
-        }
+    	progst.sysWin();
         //progst.namensfrage();
-    	Variablenkammer.getSpieler(0).setName("Lukas");
-    	Variablenkammer.getSpieler(1).setName("Malte");
+    	Variablenkammer.getSpieler(0).setName("Lukas"); //Entfernen
+    	Variablenkammer.getSpieler(1).setName("Malte"); //Entfernen
         progst.grafikladen();
         spielframe.setVisible(true);
     }

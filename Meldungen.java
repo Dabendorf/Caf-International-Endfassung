@@ -1,12 +1,13 @@
 package cafeint;
 
-import javax.swing.JOptionPane;
-
 public class Meldungen {
 	
 	public String programmname = "Café International";
 	public String nameerlaubtezeichen = "[a-zA-Z0-9ÄÖÜäöüß]*";
+	public String falschessystem = "System veraltet";
+	public String windows = "Dieses Computerspiel wurde für OS X und Linux entwickelt.\nEs ist nicht primär mit Windows kompatibel.\nSollte es zu Problemen bei der Ausführung kommen,\ndann öffne das Spiel bitte auf einem PC\nmit Mac OS X oder Linux!";
 	public String fragespielername = "Wie heißen die Spieler?";
+	public String spielername = "Name von Spieler ";
 	public String spielernamevergessen = "Bitte gib beide Spielernamen ein!";
 	public String titelunvollstaendig = "Unvollständige Eingabe";
 	public String spielernamengleich = "Bitte benenne die Spieler unterschiedlich!";
@@ -25,16 +26,9 @@ public class Meldungen {
 	public String barjoker = "Es ist verboten, Joker in die Bar abzuwerfen. Bitte setze den Gast an einen Tisch!";
 	public String gastkarteziehen = "Du hast die Maximalzahl an Karten gelegt. Bitte ziehe nun neue Gastkarten vom Stapel!";
 	public String gastkartelegen = "Bitte lege erst eine Gastkarte, bevor Du neue Karten ziehst!";
+	public String tischkarteziehen = "Bitte ziehe nun für die leeren Tische neue Tischkarten.";
 	public String barzuspaet = "Du kannst nur zu Anfang Deines Zuges Karten in die Bar abwerfen! Lege eine Gastkarte oder beende Deinen Spielzug.";
 	public String stuhlbesetzt = "Dieser Stuhl ist bereits besetzt. Setze diesen Gast woanders hin.";
-	
-	public void windows() {
-		JOptionPane.showMessageDialog(null, "Dein System ist hoffnungslos veraltet!\nWindoof ist nicht kompatibel mit diesem Spiel.\nSollte es zu Problemen bei der Ausführung kommen,\ndann öffne das Spiel bitte auf einem PC\nmit Mac OS oder Linux!", "System veraltet", JOptionPane.WARNING_MESSAGE);
-	}
-	
-	public String spielernameint(int n) {
-		return "Name von Spieler "+n;
-	}
 	
 	public String siegermeldung(int ergebnis) {
 		if(ergebnis == 0) {

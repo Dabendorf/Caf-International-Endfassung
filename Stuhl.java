@@ -21,50 +21,58 @@ public class Stuhl {
 	
 	public boolean setGast(Gastkarte gasttemp) {
 		Meldungen msgbox = new Meldungen();
+		Spielzuege spz = new Spielzuege();
 		if(!gastLandKorrekt(gasttemp)) {
-			new Spielzuege().warnungsboxtext(msgbox.gastlandfalsch);
+			spz.warnungsboxtext(msgbox.gastlandfalsch);
 			partnerNoetig = false;
-			new Spielzuege().stuehledemarkieren(false);
+			spz.stuehledemarkieren(false);
 			return false;
 		} else if(!gastGeschlechtKorrekt(gasttemp)) {
 			if(gasttemp.getGeschlecht().equals(Geschlecht.Mann)) {
-				new Spielzuege().warnungsboxtext(msgbox.gastzuvielemaenner);
+				spz.warnungsboxtext(msgbox.gastzuvielemaenner);
 			} else {
-				new Spielzuege().warnungsboxtext(msgbox.gastzuvielefrauen);
+				spz.warnungsboxtext(msgbox.gastzuvielefrauen);
 			}
 			partnerNoetig = false;
-			new Spielzuege().stuehledemarkieren(false);
+			spz.stuehledemarkieren(false);
 			return false;
 		} else if(!gastPartnerKorrekt(gasttemp)) {
-			new Spielzuege().warnungsboxtext(msgbox.gastpartnerfalsch);
+			spz.warnungsboxtext(msgbox.gastpartnerfalsch);
 			return false;
 		} else {
 			if(Variablenkammer.getZustand() == 12) {
 				this.gast = gasttemp;
 				this.sz.repaint();
-				new Spielzuege().tischedemarkieren();
-				new Spielzuege().warnungsboxreseten();
+				spz.tischedemarkieren();
+				spz.warnungsboxreseten();
 				if(partnerNoetig) {
 					Variablenkammer.setZustand(10);
-					new Spielzuege().stuehledemarkieren(false);
+					spz.stuehledemarkieren(false);
 					gruenfaerben();
 				} else {
 					Variablenkammer.setZustand(11);
-					new Spielzuege().stuehledemarkieren(true);
+					spz.stuehledemarkieren(true);
 				}
+				tischVollPruefen();
 				return true;
 			} else if(Variablenkammer.getZustand() == 10 || Variablenkammer.getZustand() == 11) {
 				this.gast = gasttemp;
 				this.sz.repaint();
 				Variablenkammer.setZustand(21);
-				new Spielzuege().tischedemarkieren();
-				new Spielzuege().warnungsboxreseten();
-				new Spielzuege().stuehledemarkieren(true);
+				spz.tischedemarkieren();
+				spz.warnungsboxreseten();
+				spz.stuehledemarkieren(true);
+				tischVollPruefen();
 				return true;
 			} else {
 				return false;
 			}
 		}
+	}
+	
+	public void gastNachHause() {
+		this.gast = null;
+		this.sz.repaint();
 	}
 	
 	public ArrayList<Tisch> getTische() {
@@ -81,6 +89,18 @@ public class Stuhl {
 	
 	public void setSpielzelle(Spielzelle sz) {
 		this.sz = sz;
+	}
+
+	public boolean isPartnerNoetig() {
+		return partnerNoetig;
+	}
+
+	public void setPartnerNoetig(boolean partnerNoetig) {
+		this.partnerNoetig = partnerNoetig;
+	}
+	
+	public void gruenfaerben() {
+		this.getSpielzelle().setBorder(BorderFactory.createLineBorder(new Color(0x3ADF00), 3));
 	}
 	
 	private boolean gastLandKorrekt(Gastkarte gasttemp) {
@@ -155,6 +175,7 @@ public class Stuhl {
 					if(stuhl.getGast()!=null) {
 						partnerNoetig = false;
 						korr = true;
+						break;
 					} else if (Variablenkammer.getZustand()==12) {
 						for(Gastkarte handtemp:Variablenkammer.getSpieler(42).getHandkarten()) {
 							if(handtemp!=null) {
@@ -207,8 +228,6 @@ public class Stuhl {
 			} else {
 				frau++;
 			}
-			System.out.println(mann);
-			System.out.println(frau);
 			if((gasttemp.getGeschlecht().equals(Geschlecht.Mann)) && (mann > frau) || (gasttemp.getGeschlecht().equals(Geschlecht.Frau)) && (frau > mann)) {
 				korr = false;
 			}
@@ -216,15 +235,31 @@ public class Stuhl {
 		return korr;
 	}
 	
-	public void gruenfaerben() {
-		this.getSpielzelle().setBorder(BorderFactory.createLineBorder(new Color(0x3ADF00), 3));
+	private void tischVollPruefen() {
+		for(Tisch tisch:this.getTische()) {
+			int i=0;
+			for(Stuhl stuhl:tisch.getStuehle()) {
+				if(stuhl.getGast()!=null) {
+					i++;
+				}
+			}
+			if(i==4) {
+				tisch.setZuleeren(true);
+			}
+		}
+		for(Tisch tisch:this.getTische()) {
+			if(tisch.isZuleeren()) {
+				tisch.setLand(null);
+				for(Stuhl stuhl:tisch.getStuehle()) {
+					stuhl.gastNachHause();
+				}
+				if(Variablenkammer.getZustand() == 11) {
+					Variablenkammer.setZustand(221);
+				} else if(Variablenkammer.getZustand() == 10) {
+					Variablenkammer.setZustand(220);
+				}
+			}
+		}
 	}
-
-	public boolean isPartnerNoetig() {
-		return partnerNoetig;
-	}
-
-	public void setPartnerNoetig(boolean partnerNoetig) {
-		this.partnerNoetig = partnerNoetig;
-	}
+	
 }

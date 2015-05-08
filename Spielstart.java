@@ -23,12 +23,12 @@ public class Spielstart {
 		gastkartenmischen();
 		laenderkartenmischen();
 		for(int i=0;i<12;i++) {
-			new Spielzuege().legetischkarte(i);
+			new Spielzuege().legetischkarte(Variablenkammer.getTische().get(i));
 		}
 		
-		Variablenkammer.setAktSpieler(0);
+		Variablenkammer.setAktSpieler(0); //muss man noch Ändern
 		new Spielzuege().handkartendemarkieren();
-		Spielkartenecke.gastkstzahlLaden(); //89, weil Eigenklick, usw., siehe Zustände
+		Spielkartenecke.gastkstzahlLaden();
 		Spielkartenecke.landkstzahlLaden();
 		Variablenkammer.setZustand(12);
 		

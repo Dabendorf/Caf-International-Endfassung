@@ -22,8 +22,11 @@ public class Programmstart {
 		new Spielstart().neuesspiel();
 	}
 	
-	public boolean SysWin() {
-        return (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0);
+	public void sysWin() {
+		if(System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
+			Meldungen msgbox = new Meldungen();
+			JOptionPane.showMessageDialog(null, msgbox.windows, msgbox.falschessystem, JOptionPane.WARNING_MESSAGE);
+		}
     }
 	
 	public void namensfrage() {
@@ -32,7 +35,7 @@ public class Programmstart {
 		JTextField spielername00 = new JTextField(new Feldbegrenzung(12), "", 0);
 		JTextField spielername01 = new JTextField(new Feldbegrenzung(12), "", 0);
 		
-		Object[] namensfrage = {msgbox.spielernameint(1), spielername00, msgbox.spielernameint(2), spielername01};
+		Object[] namensfrage = {msgbox.spielername+"1", spielername00, msgbox.spielername+"2", spielername01};
 	    JOptionPane pane = new JOptionPane(namensfrage, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);
 	    pane.createDialog(null, msgbox.fragespielername).setVisible(true);
 	    
