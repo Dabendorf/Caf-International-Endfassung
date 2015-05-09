@@ -101,17 +101,3 @@ public class Kartenstapel extends JPanel {
 	}
 
 }
-
-/*
-public Typ getTyp() {
-	return t;
-}
-
-public void setTyp(Typ t) {
-	this.t = t;
-}
-
-public int getHandkartnum() {
-	return handkartnum;
-}
-*/

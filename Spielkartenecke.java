@@ -125,10 +125,14 @@ public class Spielkartenecke extends JPanel {
 		}
 		int zustand = Variablen.getZustand();
 		Variablen.setZustand(zustand-210);
+		int anzahl = 0;
 		for(Gastkarte gstk:Variablen.getSpieler(42).getHandkarten()) {
 			if(gstk == null) {
-				Variablen.setZustand(21);
+				anzahl++;
 			}
+		}
+		if(anzahl>1) {
+			Variablen.setZustand(21);
 		}
 	}
 	
