@@ -9,28 +9,28 @@ public class Spielstart {
 	
 	public void neuesspiel() {
 		for(int i=0;i<2;i++) {
-			Variablenkammer.getSpieler(i).setPunkte(0);
-			Variablenkammer.getSpieler(i).getHandkarten().clear();
+			Variablen.getSpieler(i).setPunkte(0);
+			Variablen.getSpieler(i).getHandkarten().clear();
 		}
 		for(int i=0;i<21;i++) {
 			Barkartenecke.getBarzelle(i).setGast(null);
 			Barkartenecke.getBarzelle(i).repaint();
 		}
 		
-		Variablenkammer.getGastkarten().clear();
-		Variablenkammer.getLaenderkarten().clear();
-		Variablenkammer.getBarkarten().clear();
+		Variablen.getGastkarten().clear();
+		Variablen.getLaenderkarten().clear();
+		Variablen.getBarkarten().clear();
 		gastkartenmischen();
 		laenderkartenmischen();
 		for(int i=0;i<12;i++) {
-			new Spielzuege().legetischkarte(Variablenkammer.getTische().get(i));
+			new Spielzuege().legetischkarte(Variablen.getTische().get(i));
 		}
 		
-		Variablenkammer.setAktSpieler(0); //muss man noch Ändern
+		Variablen.setAktSpieler(0); //muss man noch Ändern
 		new Spielzuege().handkartendemarkieren();
 		Spielkartenecke.gastkstzahlLaden();
 		Spielkartenecke.landkstzahlLaden();
-		Variablenkammer.setZustand(12);
+		Variablen.setZustand(12);
 		
 		for(int i=0;i<2;i++) {
 			Statistikecke.getInfz(i).punktzahlschreiben();
@@ -50,18 +50,18 @@ public class Spielstart {
 	            }
 	            for(int g=0;g<anzahl;g++) {
 	                for(Geschlecht geschlecht : Geschlecht.values()) {
-	                    Variablenkammer.getGastkarten().add(new Gastkarte(land, geschlecht));
+	                    Variablen.getGastkarten().add(new Gastkarte(land, geschlecht));
 	                }    
 	            }
 	        }
 	    }
-		Collections.shuffle(Variablenkammer.getGastkarten());
+		Collections.shuffle(Variablen.getGastkarten());
 		
 		for(int p=0;p<5;p++) {
-			Variablenkammer.getSpieler(0).getHandkarten().add(Variablenkammer.getGastkarten().get(0));
-			Variablenkammer.getSpieler(1).getHandkarten().add(Variablenkammer.getGastkarten().get(1));
-			Variablenkammer.getGastkarten().remove(0);
-			Variablenkammer.getGastkarten().remove(0);
+			Variablen.getSpieler(0).getHandkarten().add(Variablen.getGastkarten().get(0));
+			Variablen.getSpieler(1).getHandkarten().add(Variablen.getGastkarten().get(1));
+			Variablen.getGastkarten().remove(0);
+			Variablen.getGastkarten().remove(0);
 	    }
 	}
 	
@@ -69,11 +69,11 @@ public class Spielstart {
 		for(int l=0;l<2;l++) {
 			 for(Land land : Land.values()) {
 				 if(land != Land.JOKER) {
-					 Variablenkammer.getLaenderkarten().add(new Laenderkarte(land));
+					 Variablen.getLaenderkarten().add(new Laenderkarte(land));
 				 }
 			 }
 		}
-		Collections.shuffle(Variablenkammer.getLaenderkarten());
+		Collections.shuffle(Variablen.getLaenderkarten());
 	}
 
 }

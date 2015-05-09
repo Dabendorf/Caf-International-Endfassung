@@ -26,8 +26,8 @@ public class Informationszelle extends JPanel {
 	}
 	
 	public void punktzahlschreiben() {
-		String spnm = Variablenkammer.getSpieler(spieler).getName();
-		String pkt = Integer.toString(Variablenkammer.getSpieler(spieler).getPunkte());
+		String spnm = Variablen.getSpieler(spieler).getName();
+		String pkt = Integer.toString(Variablen.getSpieler(spieler).getPunkte());
 		labelname.setText(spnm);
 		labelpunkte.setText(pkt);
 	}

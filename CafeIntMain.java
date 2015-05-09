@@ -3,7 +3,6 @@ package cafeint;
 /**
  * @bugs
  * @3 Fehler gefunden: Neues Spiel startet wieder bei Spieler 2
- * @8 WessnerTipp mit den Regeln für Zeilenumbrüche beachten
  * @9 Punktzahlen berechnen
  * @10 Spielabschlussbedingungen integrieren, Verhinderte NPE bei Kartenziehen
  * @11 Tischaufnahme nach einer Karte führt zu Zugende -> Zustand auf 10/11 anpassen
@@ -20,7 +19,7 @@ import javax.swing.JFrame;
 
 public class CafeIntMain {
 	
-	private JFrame spielframe = new JFrame(Variablenkammer.getMsgbox().programmname);
+	private JFrame spielframe = new JFrame(Variablen.getMsgbox().programmname);
     
     public CafeIntMain() {
     	oberflaeche();
@@ -54,8 +53,8 @@ public class CafeIntMain {
     	Programmstart progst = new Programmstart();
     	progst.sysWin();
         //progst.namensfrage();
-    	Variablenkammer.getSpieler(0).setName("Lukas"); //Entfernen
-    	Variablenkammer.getSpieler(1).setName("Malte"); //Entfernen
+    	Variablen.getSpieler(0).setName("Lukas"); //Entfernen
+    	Variablen.getSpieler(1).setName("Malte"); //Entfernen
         progst.grafikladen();
         spielframe.setVisible(true);
     }

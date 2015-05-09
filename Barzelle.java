@@ -43,7 +43,7 @@ public class Barzelle extends JPanel {
 	private void bildLaden() {
 		if(gast!=null) {
 			key = "./gast_"+this.gast.getLand()+"_"+this.gast.getGeschlecht()+".png";
-			bi = Variablenkammer.getStuhlcache().get(key);
+			bi = Variablen.getStuhlcache().get(key);
 		}
 	}
 	

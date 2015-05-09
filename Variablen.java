@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Variablenkammer {
+public class Variablen {
 	
 	//System
 	private static Meldungen msgbox = new Meldungen();
@@ -48,12 +48,12 @@ public class Variablenkammer {
 	}
 
 	public static void setAktSpieler(int aktspieler) {
-		Variablenkammer.aktspieler = aktspieler;
+		Variablen.aktspieler = aktspieler;
 	}
 
 	public static Spieler getSpieler(int num) {
 		if(num == 42) {
-			return spieler[Variablenkammer.getAktSpieler()];
+			return spieler[Variablen.getAktSpieler()];
 		} else {
 			return spieler[num];
 		}
@@ -84,7 +84,7 @@ public class Variablenkammer {
 	}
 
 	public static void setZustand(int zustand) {
-		Variablenkammer.zustand = zustand;
+		Variablen.zustand = zustand;
 	}
 
 }

@@ -20,7 +20,7 @@ public final class Bildecke extends JPanel {
 	private void bildLaden() {
 		if(bi==null) {
 			String key = "./icon.png";
-			bi = Variablenkammer.getTischcache().get(key);
+			bi = Variablen.getTischcache().get(key);
 		}
 	}
 }

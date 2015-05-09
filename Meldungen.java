@@ -33,15 +33,15 @@ public class Meldungen {
 	
 	public String siegermeldung(int ergebnis) {
 		if(ergebnis == 0) {
-			return Variablenkammer.getSpieler(0).getName()+" gewinnt die Partie hochverdient!"+umbruch+"Er gewinnt mit "+Variablenkammer.getSpieler(0).getPunkte()+" zu "+Variablenkammer.getSpieler(1).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
+			return Variablen.getSpieler(0).getName()+" gewinnt die Partie hochverdient!"+umbruch+"Er gewinnt mit "+Variablen.getSpieler(0).getPunkte()+" zu "+Variablen.getSpieler(1).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
 		} else if(ergebnis == 1) {
-			return Variablenkammer.getSpieler(0).getName()+" gewinnt die Partie mit knappem Vorsprung!"+umbruch+"Er gewinnt mit "+Variablenkammer.getSpieler(0).getPunkte()+" zu "+Variablenkammer.getSpieler(1).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
+			return Variablen.getSpieler(0).getName()+" gewinnt die Partie mit knappem Vorsprung!"+umbruch+"Er gewinnt mit "+Variablen.getSpieler(0).getPunkte()+" zu "+Variablen.getSpieler(1).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
 		} else if(ergebnis == 2) {
-			return "Diese Partie endet Unentschieden."+umbruch+"Beide Spieler erreichten eine Punktzahl von "+Variablenkammer.getSpieler(0).getPunkte()+" Punkten.";
+			return "Diese Partie endet Unentschieden."+umbruch+"Beide Spieler erreichten eine Punktzahl von "+Variablen.getSpieler(0).getPunkte()+" Punkten.";
 		} else if(ergebnis == 3) {
-			return Variablenkammer.getSpieler(1).getName()+" gewinnt die Partie mit knappem Vorsprung!"+umbruch+"Er gewinnt mit "+Variablenkammer.getSpieler(1).getPunkte()+" zu "+Variablenkammer.getSpieler(0).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
+			return Variablen.getSpieler(1).getName()+" gewinnt die Partie mit knappem Vorsprung!"+umbruch+"Er gewinnt mit "+Variablen.getSpieler(1).getPunkte()+" zu "+Variablen.getSpieler(0).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
 		} else {
-			return Variablenkammer.getSpieler(1).getName()+" gewinnt die Partie hochverdient!"+umbruch+"Er gewinnt mit "+Variablenkammer.getSpieler(1).getPunkte()+" zu "+Variablenkammer.getSpieler(0).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
+			return Variablen.getSpieler(1).getName()+" gewinnt die Partie hochverdient!"+umbruch+"Er gewinnt mit "+Variablen.getSpieler(1).getPunkte()+" zu "+Variablen.getSpieler(0).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
 		}
 	}
 

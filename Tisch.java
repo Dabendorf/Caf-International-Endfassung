@@ -26,10 +26,10 @@ public class Tisch {
 		Stuhl[] stuehletemp = new Stuhl[stuehleNr.length];
 		int i=0;
 		for(int stuhlNr : stuehleNr) {
-			stuehletemp[i] = Variablenkammer.getStuehle().get(stuhlNr);
-			int num = Variablenkammer.getStuehle().indexOf(stuehletemp[i]);
+			stuehletemp[i] = Variablen.getStuehle().get(stuhlNr);
+			int num = Variablen.getStuehle().indexOf(stuehletemp[i]);
 			i++;
-			Variablenkammer.getStuehle().get(num).addTisch(this);
+			Variablen.getStuehle().get(num).addTisch(this);
 		}
 		this.stuehle = stuehletemp;
 	}

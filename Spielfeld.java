@@ -87,10 +87,10 @@ public class Spielfeld extends JPanel {
             	@Override
 				public void mouseClicked(MouseEvent e) {
             		if(Spielkartenecke.getAkthandkartnum()!=-1) {
-            			if(Variablenkammer.getStuehle().get(j).getGast()==null) {
+            			if(Variablen.getStuehle().get(j).getGast()==null) {
             				new Spielzuege().legegastkarte(Spielkartenecke.getAkthandkartnum(),j);
             			} else {
-            				new Spielzuege().warnungsboxtext(Variablenkammer.getMsgbox().stuhlbesetzt);
+            				new Spielzuege().warnungsboxtext(Variablen.getMsgbox().stuhlbesetzt);
             				new Spielzuege().handkartendemarkieren();
             			}
             		}

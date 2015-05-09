@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.SwingUtilities;
 
 import cafeint.Gastkarte.Geschlecht;
 import cafeint.Gastkarte.Land;
@@ -40,22 +41,22 @@ public class Stuhl {
 			spz.warnungsboxtext(msgbox.gastpartnerfalsch);
 			return false;
 		} else {
-			if(Variablenkammer.getZustand() == 12) {
+			if(Variablen.getZustand() == 12) {
 				this.gast = gasttemp;
 				this.sz.repaint();
 				spz.tischedemarkieren();
 				spz.warnungsboxreseten();
 				if(partnerNoetig) {
-					Variablenkammer.setZustand(10);
+					Variablen.setZustand(10);
 					spz.stuehledemarkieren(false);
 					gruenfaerben();
 				} else {
-					Variablenkammer.setZustand(11);
+					Variablen.setZustand(11);
 					spz.stuehledemarkieren(true);
 				}
 				tischVollPruefen(false);
 				return true;
-			} else if(Variablenkammer.getZustand() == 10 || Variablenkammer.getZustand() == 11) {
+			} else if(Variablen.getZustand() == 10 || Variablen.getZustand() == 11) {
 				this.gast = gasttemp;
 				this.sz.repaint();
 				spz.tischedemarkieren();
@@ -113,15 +114,20 @@ public class Stuhl {
 			for(final Tisch tisch:this.tische) {
 				tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
 				Thread thread = new Thread(new Runnable() {
-					  @Override
-					  public void run() {
-						  try {
-							  Thread.sleep(5000);
-							  tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
-							  } catch(InterruptedException e) {}
-						  }
-					  }
-				);
+					@Override
+					public void run() {
+						try {
+							Thread.sleep(5000);
+						} catch(InterruptedException e) {}
+						SwingUtilities.invokeLater(new Runnable() {
+							@Override
+							public void run() {
+								tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+							}
+						});
+					}
+				});
+				thread.setDaemon(true);
 				thread.start();
 			}
 		}
@@ -147,17 +153,22 @@ public class Stuhl {
 					if(stuhl.getGast()!=null) {
 						stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
 						Thread thread = new Thread(new Runnable() {
-							  @Override
-							  public void run() {
-								  try {
-									  Thread.sleep(5000);
-									  if(!stuhl.isPartnerNoetig()) {
-										  stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
-									  }
-									  } catch(InterruptedException e) {}
-								  }
-							  }
-						);
+							@Override
+							public void run() {
+								try {
+									Thread.sleep(5000);
+								} catch(InterruptedException e) {}
+								SwingUtilities.invokeLater(new Runnable() {
+									@Override
+									public void run() {
+										if(!stuhl.isPartnerNoetig()) {
+											  stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+										}
+									}
+								});
+							}
+						});
+						thread.setDaemon(true);
 						thread.start();
 					}
 				}
@@ -175,8 +186,8 @@ public class Stuhl {
 						partnerNoetig = false;
 						korr = true;
 						break tischschleife;
-					} else if (Variablenkammer.getZustand()==12) {
-						for(Gastkarte handtemp:Variablenkammer.getSpieler(42).getHandkarten()) {
+					} else if (Variablen.getZustand()==12) {
+						for(Gastkarte handtemp:Variablen.getSpieler(42).getHandkarten()) {
 							if(handtemp!=null) {
 								if(!handtemp.equals(gasttemp)) {
 									if(tempLandKorrekt(handtemp,stuhl) == true && tempGeschlechtKorrekt(gasttemp,handtemp,stuhl)) {
@@ -254,16 +265,16 @@ public class Stuhl {
 				for(Stuhl stuhl:tisch.getStuehle()) {
 					stuhl.gastNachHause();
 				}
-				if(Variablenkammer.getZustand() == 11) {
-					Variablenkammer.setZustand(221);
-				} else if(Variablenkammer.getZustand() == 10) {
-					Variablenkammer.setZustand(220);
+				if(Variablen.getZustand() == 11) {
+					Variablen.setZustand(221);
+				} else if(Variablen.getZustand() == 10) {
+					Variablen.setZustand(220);
 				}
 				tisch.setZuleeren(false);
 			}
 		}
 		if(letzteKarte && !leeren) {
-			Variablenkammer.setZustand(21);
+			Variablen.setZustand(21);
 		}
 		leeren = false;
 	}

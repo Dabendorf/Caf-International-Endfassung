@@ -5,8 +5,8 @@ import javax.swing.JOptionPane;
 public class Spielende {
 	
 	public boolean keinegastkarten() {
-		if(Variablenkammer.getGastkarten().size() == 0) {
-			Variablenkammer.setZustand(31);
+		if(Variablen.getGastkarten().size() == 0) {
+			Variablen.setZustand(31);
 			siegmeldung(0);
 			return true;
 		} else {
@@ -15,8 +15,8 @@ public class Spielende {
 	}
 	
 	public boolean keinelaenderkarten() {
-		if(Variablenkammer.getLaenderkarten().size() == 0) {
-			Variablenkammer.setZustand(32);
+		if(Variablen.getLaenderkarten().size() == 0) {
+			Variablen.setZustand(32);
 			siegmeldung(1);
 			return true;
 		} else {
@@ -25,8 +25,8 @@ public class Spielende {
 	}
 	
 	public boolean barvoll() {
-		if(Variablenkammer.getBarkarten().size() == 21) {
-			Variablenkammer.setZustand(33);
+		if(Variablen.getBarkarten().size() == 21) {
+			Variablen.setZustand(33);
 			siegmeldung(2);
 			return true;
 		}
@@ -53,8 +53,8 @@ public class Spielende {
 			break;
 		}
 		
-		int pkt0 = Variablenkammer.getSpieler(0).getPunkte();
-		int pkt1 = Variablenkammer.getSpieler(1).getPunkte();
+		int pkt0 = Variablen.getSpieler(0).getPunkte();
+		int pkt1 = Variablen.getSpieler(1).getPunkte();
 		
 		if(pkt0 > pkt1+20) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(0), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);

@@ -43,9 +43,9 @@ public class Spielzelle extends JPanel {
 		
 		if(!typ.equals(Typ.Leer)) {
 			if(typ.equals(Typ.Stuhl)) {
-				bi = Variablenkammer.getStuhlcache().get(key);
+				bi = Variablen.getStuhlcache().get(key);
 			} else {
-				bi = Variablenkammer.getTischcache().get(key);
+				bi = Variablen.getTischcache().get(key);
 			}
 		}
 	}

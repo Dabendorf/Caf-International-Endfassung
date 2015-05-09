@@ -51,12 +51,12 @@ public class Kartenstapel extends JPanel {
 		} else if(typ.equals(Typ.Handkarte) || typ.equals(Typ.HandkarteInfo)) {
 			int spielertemp;
 			if(typ.equals(Typ.Handkarte)) {
-				spielertemp = Variablenkammer.getAktSpieler();
+				spielertemp = Variablen.getAktSpieler();
 			} else {
 				spielertemp = this.spieler;
 			}
-			if(Variablenkammer.getSpieler(spielertemp).getHandkarten().get(handkartnum)!=null) {
-				key = "./gast_"+Variablenkammer.getSpieler(spielertemp).getHandkarten().get(handkartnum).getLand()+"_"+Variablenkammer.getSpieler(spielertemp).getHandkarten().get(handkartnum).getGeschlecht()+".png";
+			if(Variablen.getSpieler(spielertemp).getHandkarten().get(handkartnum)!=null) {
+				key = "./gast_"+Variablen.getSpieler(spielertemp).getHandkarten().get(handkartnum).getLand()+"_"+Variablen.getSpieler(spielertemp).getHandkarten().get(handkartnum).getGeschlecht()+".png";
 			} else {
 				bi = null;
 				key = null;
@@ -65,18 +65,18 @@ public class Kartenstapel extends JPanel {
 		
 		if(!typ.equals(Typ.Leer) && key!=null) {
 			if(typ.equals(Typ.Handkarte) || typ.equals(Typ.HandkarteInfo) || typ.equals(Typ.Gastkartenstapel)) {
-				bi = Variablenkammer.getStuhlcache().get(key);
+				bi = Variablen.getStuhlcache().get(key);
 			} else if (typ.equals(Typ.Laenderkartenstapel)){
-				bi = Variablenkammer.getTischcache().get(key);
+				bi = Variablen.getTischcache().get(key);
 			}
 		}
 	}
 	
 	private void restkartenzahl() {
 		if(typ.equals(Typ.Gastkartenstapel)) {
-			num = Integer.toString(Variablenkammer.getGastkarten().size());
+			num = Integer.toString(Variablen.getGastkarten().size());
 		} else if(typ.equals(Typ.Laenderkartenstapel)) {
-			num = Integer.toString(Variablenkammer.getLaenderkarten().size());
+			num = Integer.toString(Variablen.getLaenderkarten().size());
 		}
 	}
 	

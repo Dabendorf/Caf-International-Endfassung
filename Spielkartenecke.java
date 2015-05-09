@@ -31,9 +31,9 @@ public class Spielkartenecke extends JPanel {
 				handkarten[i/2].addMouseListener(new MouseAdapter() {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
-	            		if((Variablenkammer.getZustand()==10 || Variablenkammer.getZustand()==11 || Variablenkammer.getZustand()==12) && handkarten[index].getImage()!=null) {
+	            		if((Variablen.getZustand()==10 || Variablen.getZustand()==11 || Variablen.getZustand()==12) && handkarten[index].getImage()!=null) {
 	            			klickhand(index);
-	            		} else if(Variablenkammer.getZustand() >=220) {
+	            		} else if(Variablen.getZustand() >=220) {
 	            			new Spielzuege().warnungsboxtext(new Meldungen().tischkarteziehen);
 	            		} else if(handkarten[index].getImage()!=null) {
 	            			new Spielzuege().warnungsboxtext(new Meldungen().gastkarteziehen);
@@ -48,10 +48,11 @@ public class Spielkartenecke extends JPanel {
 				gastkst.addMouseListener(new MouseAdapter() {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
-	            		if(Variablenkammer.getZustand()==21 || Variablenkammer.getZustand()==11) {
+	            		if(Variablen.getZustand()==21 || Variablen.getZustand()==11) {
 	            			klickgast();
+	            			new Spielzuege().warnungsboxreseten();
 		            		new Spielzuege().spielerwechsel();
-	    				} else if(Variablenkammer.getZustand() >= 220) {
+	    				} else if(Variablen.getZustand() >= 220) {
 	    					new Spielzuege().warnungsboxtext(new Meldungen().tischkarteziehen);
 	    				} else {
 	    					new Spielzuege().warnungsboxtext(new Meldungen().gastkartelegen);
@@ -66,9 +67,10 @@ public class Spielkartenecke extends JPanel {
 				landkst.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						if(Variablenkammer.getZustand() >= 220) {
+						if(Variablen.getZustand() >= 220) {
 							klicktisch();
-						} else if(Variablenkammer.getZustand() > 9 && Variablenkammer.getZustand() < 13) {
+							new Spielzuege().warnungsboxreseten();
+						} else if(Variablen.getZustand() > 9 && Variablen.getZustand() < 13) {
 							new Spielzuege().warnungsboxtext(new Meldungen().gastkartelegen);
 						}
 					}
@@ -103,9 +105,9 @@ public class Spielkartenecke extends JPanel {
 	
 	private void klickgast() {
 		for(int i=0;i<5;i++) {
-			if(handkarten[i].getImage()==null && Variablenkammer.getGastkarten().size() > 0) {
+			if(handkarten[i].getImage()==null && Variablen.getGastkarten().size() > 0) {
 				new Spielzuege().gastkarteziehen(i);
-				if(Variablenkammer.getGastkarten().size() == 0) {
+				if(Variablen.getGastkarten().size() == 0) {
 					new Spielende().keinegastkarten();
 				}
 			}
@@ -113,19 +115,19 @@ public class Spielkartenecke extends JPanel {
 	}
 	
 	private void klicktisch() {
-		for(Tisch tisch:Variablenkammer.getTische()) {
-			if(tisch.getLaenderkarte()==null && Variablenkammer.getLaenderkarten().size() > 0) {
+		for(Tisch tisch:Variablen.getTische()) {
+			if(tisch.getLaenderkarte()==null && Variablen.getLaenderkarten().size() > 0) {
 				new Spielzuege().legetischkarte(tisch);
-				if(Variablenkammer.getLaenderkarten().size() == 0) {
+				if(Variablen.getLaenderkarten().size() == 0) {
 					new Spielende().keinelaenderkarten();
 				}
 			}
 		}
-		int zustand = Variablenkammer.getZustand();
-		Variablenkammer.setZustand(zustand-210);
-		for(Gastkarte gstk:Variablenkammer.getSpieler(42).getHandkarten()) {
+		int zustand = Variablen.getZustand();
+		Variablen.setZustand(zustand-210);
+		for(Gastkarte gstk:Variablen.getSpieler(42).getHandkarten()) {
 			if(gstk == null) {
-				Variablenkammer.setZustand(21);
+				Variablen.setZustand(21);
 			}
 		}
 	}

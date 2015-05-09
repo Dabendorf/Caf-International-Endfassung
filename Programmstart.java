@@ -39,13 +39,13 @@ public class Programmstart {
 	    JOptionPane pane = new JOptionPane(namensfrage, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);
 	    pane.createDialog(null, msgbox.fragespielername).setVisible(true);
 	    
-	    Variablenkammer.getSpieler(0).setName(spielername00.getText());
-	    Variablenkammer.getSpieler(1).setName(spielername01.getText());
+	    Variablen.getSpieler(0).setName(spielername00.getText());
+	    Variablen.getSpieler(1).setName(spielername01.getText());
 	    
-	    if(Variablenkammer.getSpieler(0).getName().equals("") || Variablenkammer.getSpieler(1).getName().equals("")) {
+	    if(Variablen.getSpieler(0).getName().equals("") || Variablen.getSpieler(1).getName().equals("")) {
 	    	JOptionPane.showMessageDialog(null, msgbox.spielernamevergessen, msgbox.titelunvollstaendig, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
-	    } else if(Variablenkammer.getSpieler(0).getName().equalsIgnoreCase(Variablenkammer.getSpieler(1).getName())) {
+	    } else if(Variablen.getSpieler(0).getName().equalsIgnoreCase(Variablen.getSpieler(1).getName())) {
 	    	JOptionPane.showMessageDialog(null, msgbox.spielernamengleich, msgbox.titelnamensgleichheit, JOptionPane.ERROR_MESSAGE);
 	    	namensfrage();
 	    }
@@ -56,72 +56,52 @@ public class Programmstart {
     	BufferedImage bitisch = null;
 		BufferedImage bistuhl = null;
 		
-		//12 Laender + 2 Platzhalter
         for(Land land : Land.values()) {
         	try {
         		key = "./tisch_"+land+".png";
                 URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
                 bitisch = ImageIO.read(url);
-                Variablenkammer.getTischcache().put(key, bitisch);
+                Variablen.getTischcache().put(key, bitisch);
             } catch (MalformedURLException e) {} catch (IOException e) {}
-        }
-        
-    	try {
-    		key = "./tisch_leer.png";
-            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
-            bitisch = ImageIO.read(url);
-            Variablenkammer.getTischcache().put(key, bitisch); 
-        } catch (MalformedURLException e) {} catch (IOException e) {}
-    	
-    	try {
-			key = "./stapel_tische.png";
-            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
-            bitisch = ImageIO.read(url);
-            Variablenkammer.getTischcache().put(key, bitisch);
-        } catch (MalformedURLException e) {} catch (IOException e) {}
-    	
-    	//13*2 = 26 Gaeste + 2 Platzhalter
-    	for(Land land : Land.values()) {
-    		for(Geschlecht geschlecht : Geschlecht.values()) {
+        	
+        	for(Geschlecht geschlecht : Geschlecht.values()) {
     			try {
     				key = "./gast_"+land+"_"+geschlecht+".png";
 	                URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
 	                bistuhl = ImageIO.read(url);
-	                Variablenkammer.getStuhlcache().put(key, bistuhl);
+	                Variablen.getStuhlcache().put(key, bistuhl);
 	            } catch (MalformedURLException e) {} catch (IOException e) {}
     		}
-    	}
-    	
-    	try {
-    		key = "./stuhl_leer.png";
-            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
-            bistuhl = ImageIO.read(url);
-            Variablenkammer.getStuhlcache().put(key, bistuhl);
-        } catch (MalformedURLException e) {} catch (IOException e) {}
+        }
         
-        try {
-        	key = "./stapel_gaeste.png";
-            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
-            bistuhl = ImageIO.read(url);
-            Variablenkammer.getStuhlcache().put(key, bistuhl);
-        } catch (MalformedURLException e) {} catch (IOException e) {}
+        String[] tischbilder = {"./tisch_leer.png", "./stapel_tische.png", "./icon.png"};
+        String[] stuhlbilder = {"./stuhl_leer.png", "./stapel_gaeste.png"};
         
-        //Bild unten Rechts in Tischcache
-        try {
-        	key = "./icon.png";
-            URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
-            bitisch = ImageIO.read(url);
-            Variablenkammer.getTischcache().put(key, bitisch);
-        } catch (MalformedURLException e) {} catch (IOException e) {}
+        for(String str:tischbilder) {
+        	try {
+        		key = str;
+                URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
+                bitisch = ImageIO.read(url);
+                Variablen.getTischcache().put(key, bitisch); 
+            } catch (MalformedURLException e) {} catch (IOException e) {}
+        }
+        
+        for(String str:stuhlbilder) {
+        	try {
+        		key = str;
+                URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
+                bistuhl = ImageIO.read(url);
+                Variablen.getStuhlcache().put(key, bistuhl);
+            } catch (MalformedURLException e) {} catch (IOException e) {}
+        }
     }
 	
 	private void spielfeldgenerieren() {
 		for(int n=0;n<12;n++) {
-			Variablenkammer.getTische().add(new Tisch());
-			//new Spielzuege().legetischkarte(n); //hier muss dann noch eine Karte abgelegt werden
+			Variablen.getTische().add(new Tisch());
 		}
 		for(int n=0;n<24;n++) {
-			Variablenkammer.getStuehle().add(new Stuhl());
+			Variablen.getStuehle().add(new Stuhl());
 		}
 	}
 	
@@ -131,18 +111,18 @@ public class Programmstart {
 		int[] stuhl3 = {13,12,13, 5,15,16,17,19,20,21,22,11};
 		int[] stuhl4 = { 0,13,14,14,16,17,18,20,21,22,23, 0};
 		for(int i=0;i<12;i++) {
-			Variablenkammer.getTische().get(i).setStuehle(stuhl1[i],stuhl2[i],stuhl3[i],stuhl4[i]);
+			Variablen.getTische().get(i).setStuehle(stuhl1[i],stuhl2[i],stuhl3[i],stuhl4[i]);
 		}
 	}
 	
 	private void zellelementzuordnung() {
 		for(int n=0;n<Spielfeld.getSpielfeldtisch().size();n++) {
-			Spielfeld.getSpielfeldtisch().get(n).setTisch(Variablenkammer.getTische().get(n));
-			Variablenkammer.getTische().get(n).setSpielzelle(Spielfeld.getSpielfeldtisch().get(n));
+			Spielfeld.getSpielfeldtisch().get(n).setTisch(Variablen.getTische().get(n));
+			Variablen.getTische().get(n).setSpielzelle(Spielfeld.getSpielfeldtisch().get(n));
 		}
 		for(int n=0;n<Spielfeld.getSpielfeldstuhl().size();n++) {
-			Spielfeld.getSpielfeldstuhl().get(n).setStuhl(Variablenkammer.getStuehle().get(n));
-			Variablenkammer.getStuehle().get(n).setSpielzelle(Spielfeld.getSpielfeldstuhl().get(n));
+			Spielfeld.getSpielfeldstuhl().get(n).setStuhl(Variablen.getStuehle().get(n));
+			Variablen.getStuehle().get(n).setSpielzelle(Spielfeld.getSpielfeldstuhl().get(n));
 		}
 	}
 
