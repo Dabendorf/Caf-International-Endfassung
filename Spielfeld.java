@@ -90,7 +90,7 @@ public class Spielfeld extends JPanel {
             			if(Variablen.getStuehle().get(j).getGast()==null) {
             				new Spielzuege().legegastkarte(Spielkartenecke.getAkthandkartnum(),j);
             			} else {
-            				new Spielzuege().warnungsboxtext(Variablen.getMsgbox().stuhlbesetzt);
+            				new Spielzuege().warnungsboxtext(new Meldungen().stuhlbesetzt);
             				new Spielzuege().handkartendemarkieren();
             			}
             		}

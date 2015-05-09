@@ -8,9 +8,6 @@ import java.util.TreeMap;
 
 public class Variablen {
 	
-	//System
-	private static Meldungen msgbox = new Meldungen();
-	
 	//Spieler
 	private static int aktspieler = 0;
 	private static Spieler[] spieler = {new Spieler(), new Spieler()};
@@ -31,10 +28,6 @@ public class Variablen {
     //(0:Spielstart),(10:1Karte muss!),(11:1Karte legbar),(12:2Karten legbar),(21:Gastkarte ziehen),(220,221:Tischkarte ziehen),(31:SpielendeGast),(32:SpielendeTisch),(33:SpielendeBar)
     
     //Getter und Setter
-	public static Meldungen getMsgbox() {
-		return msgbox;
-	}
-	
 	public static List<Gastkarte> getGastkarten() {
 		return gastkarten;
 	}

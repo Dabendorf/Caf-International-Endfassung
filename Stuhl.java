@@ -54,6 +54,7 @@ public class Stuhl {
 					Variablen.setZustand(11);
 					spz.stuehledemarkieren(true);
 				}
+				punkteBerechnen(gasttemp);
 				tischVollPruefen(false);
 				return true;
 			} else if(Variablen.getZustand() == 10 || Variablen.getZustand() == 11) {
@@ -62,6 +63,7 @@ public class Stuhl {
 				spz.tischedemarkieren();
 				spz.warnungsboxreseten();
 				spz.stuehledemarkieren(true);
+				punkteBerechnen(gasttemp);
 				tischVollPruefen(true);
 				return true;
 			} else {
@@ -277,6 +279,42 @@ public class Stuhl {
 			Variablen.setZustand(21);
 		}
 		leeren = false;
+	}
+	
+	private void punkteBerechnen(Gastkarte gasttemp) {
+		int summe = 0;
+		if(!gasttemp.getLand().equals(Land.JOKER)) {
+			for(Tisch tisch:this.getTische()) {
+				int anzGleich = 0;
+				int anzUngleich = 0;
+				for(Stuhl stuhl:tisch.getStuehle()) {
+					if(stuhl.getGast()!=null) {
+						if(stuhl.getGast()!=gasttemp) {
+							if(stuhl.getGast().getLand().equals(gasttemp.getLand()) || stuhl.getGast().getLand().equals(Land.JOKER)) {
+								anzGleich++;
+							} else {
+								anzUngleich++;
+							}
+						}
+					}
+				}
+				summe += (anzGleich * 2);
+				summe += anzUngleich;
+			}
+		} else {
+			for(Tisch tisch:this.getTische()) {
+				int anzGleich = 0;
+				for(Stuhl stuhl:tisch.getStuehle()) {
+					if(stuhl.getGast()!=null) {
+						if(stuhl.getGast()!=gasttemp) {
+							anzGleich++;
+						}
+					}
+				}
+				summe += (anzGleich * 2);
+			}
+		}
+		new Spielzuege().punktzahl(summe);
 	}
 	
 }

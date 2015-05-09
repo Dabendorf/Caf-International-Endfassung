@@ -3,7 +3,6 @@ package cafeint;
 /**
  * @bugs
  * @3 Fehler gefunden: Neues Spiel startet wieder bei Spieler 2
- * @9 Punktzahlen berechnen
  * @10 Spielabschlussbedingungen integrieren, Verhinderte NPE bei Kartenziehen
  */
 
@@ -18,7 +17,7 @@ import javax.swing.JFrame;
 
 public class CafeIntMain {
 	
-	private JFrame spielframe = new JFrame(Variablen.getMsgbox().programmname);
+	private JFrame spielframe = new JFrame(new Meldungen().programmname);
     
     public CafeIntMain() {
     	oberflaeche();
