@@ -13,14 +13,12 @@ public class Spielzuege {
 			Statistikecke.getKartsp(Variablen.getAktSpieler(), handkartennum).repaint();
 		}
 		handkartendemarkieren();
-		//Punktzahl bestimmen
 	}
 	
 	public void legetischkarte(Tisch tisch) {
 		tisch.setLand(Variablen.getLaenderkarten().get(0));
 		Variablen.getLaenderkarten().remove(0);
 		Spielkartenecke.landkstzahlLaden();
-		//Laenderkartenüberprüfung bei Spielende einrichten
 	}
 	
 	public void legebarkarte(int handkartennum) {
@@ -92,8 +90,12 @@ public class Spielzuege {
 	public void spielerwechsel() {
 		if(Variablen.getAktSpieler() == 0) {
 			Variablen.setAktSpieler(1);
+			Statistikecke.getInfz(1).faerben(true);
+			Statistikecke.getInfz(0).faerben(false);
 		} else {
 			Variablen.setAktSpieler(0);
+			Statistikecke.getInfz(0).faerben(true);
+			Statistikecke.getInfz(1).faerben(false);
 		}
 		handkartendemarkieren();
 	}

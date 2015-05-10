@@ -1,11 +1,5 @@
 package cafeint;
 
-/**
- * @bugs
- * @3 Fehler gefunden: Neues Spiel startet wieder bei Spieler 2
- * @10 Spielabschlussbedingungen integrieren, Verhinderte NPE bei Kartenziehen
- */
-
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;

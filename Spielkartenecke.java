@@ -51,7 +51,6 @@ public class Spielkartenecke extends JPanel {
 	            		if(Variablen.getZustand()==21 || Variablen.getZustand()==11) {
 	            			klickgast();
 	            			new Spielzuege().warnungsboxreseten();
-		            		new Spielzuege().spielerwechsel();
 	    				} else if(Variablen.getZustand() >= 220) {
 	    					new Spielzuege().warnungsboxtext(new Meldungen().tischkarteziehen);
 	    				} else {
@@ -104,35 +103,46 @@ public class Spielkartenecke extends JPanel {
 	}
 	
 	private void klickgast() {
+		boolean rundenwechsel = true;
 		for(int i=0;i<5;i++) {
 			if(handkarten[i].getImage()==null && Variablen.getGastkarten().size() > 0) {
 				new Spielzuege().gastkarteziehen(i);
 				if(Variablen.getGastkarten().size() == 0) {
+					rundenwechsel = false;
 					new Spielende().keinegastkarten();
+					break;
 				}
 			}
+		}
+		if(rundenwechsel) {
+			new Spielzuege().spielerwechsel();
 		}
 	}
 	
 	private void klicktisch() {
+		boolean spielende = false;
 		for(Tisch tisch:Variablen.getTische()) {
 			if(tisch.getLaenderkarte()==null && Variablen.getLaenderkarten().size() > 0) {
 				new Spielzuege().legetischkarte(tisch);
 				if(Variablen.getLaenderkarten().size() == 0) {
+					spielende = true;
 					new Spielende().keinelaenderkarten();
+					break;
 				}
 			}
 		}
-		int zustand = Variablen.getZustand();
-		Variablen.setZustand(zustand-210);
-		int anzahl = 0;
-		for(Gastkarte gstk:Variablen.getSpieler(42).getHandkarten()) {
-			if(gstk == null) {
-				anzahl++;
+		if(!spielende) {
+			int zustand = Variablen.getZustand();
+			Variablen.setZustand(zustand-210);
+			int anzahl = 0;
+			for(Gastkarte gstk:Variablen.getSpieler(42).getHandkarten()) {
+				if(gstk == null) {
+					anzahl++;
+				}
 			}
-		}
-		if(anzahl>1) {
-			Variablen.setZustand(21);
+			if(anzahl>1) {
+				Variablen.setZustand(21);
+			}
 		}
 	}
 	

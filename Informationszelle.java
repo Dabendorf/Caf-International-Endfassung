@@ -1,5 +1,6 @@
 package cafeint;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
@@ -30,6 +31,16 @@ public class Informationszelle extends JPanel {
 		String pkt = Integer.toString(Variablen.getSpieler(spieler).getPunkte());
 		labelname.setText(spnm);
 		labelpunkte.setText(pkt);
+	}
+	
+	public void faerben(boolean farbig) {
+		if(farbig) {
+			labelname.setBackground(Color.orange);
+			labelpunkte.setBackground(Color.orange);
+		} else {
+			labelname.setBackground(new Color(0xEEEEEE));
+			labelpunkte.setBackground(new Color(0xEEEEEE));
+		}
 	}
 
 }

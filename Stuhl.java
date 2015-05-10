@@ -110,6 +110,7 @@ public class Stuhl {
 		for(Tisch tisch:this.tische) {
 			if(tisch.getLaenderkarte().getLand().equals(gasttemp.getLand()) || gasttemp.getLand().equals(Land.JOKER)) {
 				korr = true;
+				break;
 			}
 		}
 		if(korr == false) {
@@ -164,7 +165,7 @@ public class Stuhl {
 									@Override
 									public void run() {
 										if(!stuhl.isPartnerNoetig()) {
-											  stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+											stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
 										}
 									}
 								});
@@ -204,7 +205,6 @@ public class Stuhl {
 			}
 		}
 		return korr;
-		//Beachte auch, dass der Spieler im Ersten Zug auch Einzelkarten legen darf bzw. dass immer zwei Zusammenpassen
 	}
 	
 	private boolean tempLandKorrekt(Gastkarte handtemp,Stuhl stuhltemp) {
@@ -212,6 +212,7 @@ public class Stuhl {
 		for(Tisch tisch:stuhltemp.getTische()) {
 			if(tisch.getLaenderkarte().getLand().equals(handtemp.getLand()) || handtemp.getLand().equals(Land.JOKER)) {
 				korr = true;
+				break;
 			}
 		}
 		return korr;

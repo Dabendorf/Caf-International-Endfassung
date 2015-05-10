@@ -22,11 +22,14 @@ public class Spielstart {
 		Variablen.getBarkarten().clear();
 		gastkartenmischen();
 		laenderkartenmischen();
-		for(int i=0;i<12;i++) {
-			new Spielzuege().legetischkarte(Variablen.getTische().get(i));
+		for(Tisch tisch:Variablen.getTische()) {
+			new Spielzuege().legetischkarte(tisch);
+		}
+		for(Stuhl stuhl:Variablen.getStuehle()) {
+			stuhl.gastNachHause();
 		}
 		
-		Variablen.setAktSpieler(0); //muss man noch Ändern
+		Variablen.setAktSpieler(0);
 		new Spielzuege().handkartendemarkieren();
 		Spielkartenecke.gastkstzahlLaden();
 		Spielkartenecke.landkstzahlLaden();
@@ -39,6 +42,8 @@ public class Spielstart {
 				Spielkartenecke.getHandkarte(n).repaint();
 			}
 		}
+		Statistikecke.getInfz(0).faerben(true);
+		Statistikecke.getInfz(1).faerben(false);
 	}
 	
 	private void gastkartenmischen() {
