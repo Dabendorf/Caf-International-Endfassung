@@ -4,10 +4,14 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 public class CafeIntMain {
 	
@@ -19,7 +23,12 @@ public class CafeIntMain {
     }
     
     private void oberflaeche() {
-    	spielframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	spielframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+    	spielframe.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+            	schliessen();
+            }
+        });
         spielframe.setPreferredSize(new Dimension(1400,800)); //Nachsehen, was kommmt
         spielframe.setMinimumSize(new Dimension(1050,600)); //Nachsehen, was kommmt
         spielframe.setResizable(true);
@@ -43,12 +52,25 @@ public class CafeIntMain {
     
     private void ablauf() {
     	Programmstart progst = new Programmstart();
+    	Spielstand spstand = new Spielstand();
     	progst.sysWin();
-        //progst.namensfrage();
+    	spstand.laden();
+        /*//progst.namensfrage();
     	Variablen.getSpieler(0).setName("Lukas"); //Entfernen
-    	Variablen.getSpieler(1).setName("Malte"); //Entfernen
-        progst.grafikladen();
+    	Variablen.getSpieler(1).setName("Malte"); //Entfernen*/
+        //progst.grafikladen();
         spielframe.setVisible(true);
+    }
+    
+    private void schliessen() {
+    	Meldungen msgbox = new Meldungen();
+    	int menue = JOptionPane.showOptionDialog(null,msgbox.schliessfrage,msgbox.schliesstitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.schliessoptionen, msgbox.schliessoptionen[0]);
+        if(menue == 0) {
+        	new Spielstand().speichern();
+        } else {
+        	new Spielstand().loescheSpielstand();
+        }
+        System.exit(0);
     }
 
 	public static void main(String[] args) {

@@ -17,5 +17,15 @@ public class Laenderkarte {
 	public Land getLand() {
 		return land;
 	}
+	
+	public static Laenderkarte parseLaenderkarte(String landkstring) {
+		if(!landkstring.startsWith("null")) {
+			Land land = Land.valueOf(landkstring);
+			Laenderkarte laenderkarte = new Laenderkarte(land);
+			return laenderkarte;
+		} else {
+			return null;
+		}
+	}
 
 }

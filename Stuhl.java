@@ -1,6 +1,7 @@
 package cafeint;
 
 import java.awt.Color;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -154,25 +155,29 @@ public class Stuhl {
 				korr = false;
 				for(final Stuhl stuhl:tisch.getStuehle()) {
 					if(stuhl.getGast()!=null) {
-						stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
-						Thread thread = new Thread(new Runnable() {
-							@Override
-							public void run() {
-								try {
-									Thread.sleep(5000);
-								} catch(InterruptedException e) {}
-								SwingUtilities.invokeLater(new Runnable() {
-									@Override
-									public void run() {
-										if(!stuhl.isPartnerNoetig()) {
-											stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
-										}
-									}
-								});
-							}
-						});
-						thread.setDaemon(true);
-						thread.start();
+						new Thread(new Runnable() {
+					        public void run() {
+					            try {
+									SwingUtilities.invokeAndWait(new Runnable() {
+									    public void run() {
+									    	stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
+									    }
+									});
+								} catch (InvocationTargetException | InterruptedException e) {
+									e.printStackTrace();
+								}
+					            try { Thread.sleep(5000); } catch(Exception e) { e.printStackTrace(); }
+					            try {
+									SwingUtilities.invokeAndWait(new Runnable() {
+									    public void run() {
+									    	stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+									    }
+									});
+								} catch (InvocationTargetException | InterruptedException e) {
+									e.printStackTrace();
+								}
+					        }
+					    }).start();
 					}
 				}
 			}

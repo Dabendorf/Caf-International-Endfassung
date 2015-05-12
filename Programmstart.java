@@ -19,7 +19,6 @@ public class Programmstart {
 		spielfeldgenerieren();
 		tischstuhlzuordnung();
 		zellelementzuordnung();
-		new Spielstart().neuesspiel();
 	}
 	
 	public void sysWin() {

@@ -68,7 +68,7 @@ public class Spielende {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(4), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
 		}
 		
-        int menue = JOptionPane.showOptionDialog(null,msgbox.endetitel,msgbox.endefrage, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.endoptionen, msgbox.endoptionen[0]);
+        int menue = JOptionPane.showOptionDialog(null,msgbox.endefrage,msgbox.endetitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.endoptionen, msgbox.endoptionen[0]);
         if(menue == 0) {
         	Spielstart spst = new Spielstart();
         	spst.neuesspiel();
