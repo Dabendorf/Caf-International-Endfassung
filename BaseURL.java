@@ -3,8 +3,11 @@ package cafeint;
 import java.io.File;
 
 /**
+ * Diese Klasse ist aus dem Internet uebernommen und gibt die relative URL einzelner Dateien des Javaverzeichnisses wieder.
  * @author Landei
- * @quelle http://forum.byte-welt.net/members/spacerat/2-von-arbeits-installations-und-resourcepfaden.html
+ * @version 1.0
+ * @source http://forum.byte-welt.net/members/spacerat/2-von-arbeits-installations-und-resourcepfaden.html
+ * 
  */
 
 import java.io.IOException;

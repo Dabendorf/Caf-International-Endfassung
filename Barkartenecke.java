@@ -4,15 +4,27 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import cafeint.Gastkarte.Land;
 
+/**
+ * Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.
+ * Es stellt die Spielflaeche oben links dar, in welcher Gastkarten abgelegt werden, die der Spieler nicht sinnvoll verwenden konnte und abwerfen musste.
+ * Das Anklicken einer Barzelle legt eine markierte Gastkarte in selbiger ab.
+ * 
+ * @param barzellen Stellt die 21 Zellen der Bar in einem Array dar.
+ * @param barpunkte Kongruent zum barzellen[] ist dies die Zuordnung der Punkte beim Ablegen einer Karte.
+ * @param hintgrdfarb Die Farbe die als Hintergrund der Klasse dient.
+ * 
+ * @author Lukas
+ * @version 1.0
+ *
+ */
 public class Barkartenecke extends JPanel {
 	
-	private static ArrayList<Barzelle> barzellen = new ArrayList<Barzelle>(21);
+	private static Barzelle[] barzellen = new Barzelle[21];
 	private static int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
 	private Color hintgrdfarb = new Color(0x000000);
 	
@@ -20,10 +32,9 @@ public class Barkartenecke extends JPanel {
 		this.setBackground(hintgrdfarb);
 		setLayout(new GridLayout(7,3));
 		for(int i=0;i<21;i++) {
-			Barzelle bz = new Barzelle(barpunkte[i]);
-			bz.setOpaque(true);
-			bz.zelltext();
-			bz.addMouseListener(new MouseAdapter() {
+			barzellen[i] = new Barzelle(barpunkte[i]);
+			barzellen[i].setOpaque(true);
+			barzellen[i].addMouseListener(new MouseAdapter() {
             	@Override
 				public void mouseClicked(MouseEvent e) {
             		if(Spielkartenecke.getAkthandkartnum()!=-1) {
@@ -39,13 +50,16 @@ public class Barkartenecke extends JPanel {
             		}
             	}
             });
-			barzellen.add(bz);
-			add(bz);
+			add(barzellen[i]);
 		}
 	}
 
+	/**
+	 * @param num Stellt die Nummer der Barzelle (0 bis 22) dar, welche zurückgegeben wird.
+	 * @return Gibt eine Barzelle abhängig von der Nummer zurück, welche in anderen Klassen verwendet wird.
+	 */
 	public static Barzelle getBarzelle(int num) {
-		return barzellen.get(num);
+		return barzellen[num];
 	}
 
 }

@@ -13,6 +13,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
+/**
+ * Das ist die Hauptklasse des ganzen Spiels, welche die Mainmethode enthaelt. Sie generiert die gesamte graphische Oberflaeche und laedt den Spielablauf, der das Spiel startet.
+ * 
+ * @param spielframe Dies ist der JFrame, der die gesamte graphische Oberflaeche enthaelt.
+ * 
+ * @author Lukas
+ * @version 1.0
+ *
+ */
+
 public class CafeIntMain {
 	
 	private JFrame spielframe = new JFrame(new Meldungen().programmname);
@@ -22,6 +32,9 @@ public class CafeIntMain {
         ablauf();
     }
     
+    /**
+     * Diese Methode laedt die graphische Oberflaeche. Sie ist in einem GridBagLayout angeordnet und enthaelt fuenf verschiedene Spielelemente.
+     */
     private void oberflaeche() {
     	spielframe.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
     	spielframe.addWindowListener(new WindowAdapter() {
@@ -50,12 +63,21 @@ public class CafeIntMain {
         spielframe.setLocationRelativeTo(null);
     }
     
+    /**
+     * Diese Methode leitet den erstmaligen Spielablauf beim Start. Es wird die Spielablaufroutine aus der Klasse Spielstand geladen und der spielframe sichtbar gemacht.
+     */
     private void ablauf() {
     	new Programmstart().sysWin();
     	new Spielstand().laden();
         spielframe.setVisible(true);
     }
     
+    /**
+     * Diese Methode wird automatisch aufgerufen, wenn der Spieler das Programm beendet. Er wird gefragt, ob er das aktuelle Spiel abspeichern moechte.
+     * Sollte er dies bejahen, werden alle aktuellen Informationen in einer Textdatei abgelegt und bei Spielstart geladen.
+     * Sollte er dies verneinen, wird die Textdatei geleert und der Spielstand geht unwiderruflich verloren.
+     * Abschließend werden das Programm und die Javaengine geschlossen.
+     */
     private void schliessen() {
     	Meldungen msgbox = new Meldungen();
     	int menue = JOptionPane.showOptionDialog(null,msgbox.schliessfrage,msgbox.schliesstitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.schliessoptionen, msgbox.schliessoptionen[0]);
@@ -67,6 +89,9 @@ public class CafeIntMain {
         System.exit(0);
     }
 
+    /**
+     * Die main-Methode startet das gesamte Programm.
+     */
 	public static void main(String[] args) {
 		new CafeIntMain();
 	}
