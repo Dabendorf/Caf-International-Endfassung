@@ -55,10 +55,6 @@ public class CafeIntMain {
     	Spielstand spstand = new Spielstand();
     	progst.sysWin();
     	spstand.laden();
-        /*//progst.namensfrage();
-    	Variablen.getSpieler(0).setName("Lukas"); //Entfernen
-    	Variablen.getSpieler(1).setName("Malte"); //Entfernen*/
-        //progst.grafikladen();
         spielframe.setVisible(true);
     }
     

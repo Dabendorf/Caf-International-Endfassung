@@ -26,7 +26,7 @@ public class Gastkarte {
 	}
 	
 	public static Gastkarte parseGastkarte(String gstkstring) {
-		if(!gstkstring.startsWith("null")) {
+		if(!gstkstring.equals("null")) {
 			String[] attribut = gstkstring.split(":");
 			Land land = Land.valueOf(attribut[0]);
 			Geschlecht geschlecht = Geschlecht.valueOf(attribut[1]);

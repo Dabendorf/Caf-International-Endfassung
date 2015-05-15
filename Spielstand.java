@@ -12,8 +12,11 @@ import javax.swing.JOptionPane;
 
 public class Spielstand {
 	
+	private String dateiname = "spielstand.txt";
+	private String schluessel = "Heizoelrueckstossabdaempfung";
+	
 	public void speichern() {
-		Properties spielstand = ladeProperties("spielstand.txt");
+		Properties spielstand = ladeProperties(dateiname);
 		spielstand.setProperty("spielangefangen",String.valueOf(true));
 		spielstand.setProperty("amZug",String.valueOf(Variablen.getAktSpieler()));
 		spielstand.setProperty("zustand",String.valueOf(Variablen.getZustand()));
@@ -45,14 +48,14 @@ public class Spielstand {
 		}
 		
 		try {
-			spielstand.store(new FileWriter("spielstand.txt"),"Spielstand gespeichert");
+			spielstand.store(new FileWriter("dateien/"+dateiname),"Spielstand gespeichert");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void laden() {
-		Properties spielstand = ladeProperties("spielstand.txt");
+		Properties spielstand = ladeProperties(dateiname);
 		boolean spielgespeichert = Boolean.valueOf(spielstand.getProperty("spielangefangen","false"));
 		if(spielgespeichert) {
 			Meldungen msgbox = new Meldungen();
@@ -67,6 +70,11 @@ public class Spielstand {
     					Variablen.getSpieler(i).getHandkarten().add(Gastkarte.parseGastkarte(spielstand.getProperty("handkarte"+i+"-"+h)));
     				}
     			}
+    			Programmstart progst = new Programmstart();
+    			progst.grafikladen();
+    			Statistikecke.getInfz(0).punktzahlschreiben();
+    			Statistikecke.getInfz(1).punktzahlschreiben();
+    			Statistikecke.getInfz(Variablen.getAktSpieler()).faerben(true);
     			int anzahlGastkarten = Integer.valueOf(spielstand.getProperty("anzahlGastkarten"));
     			int anzahlLaenderkarten = Integer.valueOf(spielstand.getProperty("anzahlLaenderkarten"));
     			int anzahlBarkarten = Integer.valueOf(spielstand.getProperty("anzahlBarkarten"));
@@ -79,19 +87,13 @@ public class Spielstand {
     			for(int i=0;i<anzahlBarkarten;i++) {
     				Variablen.getBarkarten().add(Gastkarte.parseGastkarte(spielstand.getProperty("barkarte"+i)));
     				Barkartenecke.getBarzelle(i).setGast(Variablen.getBarkarten().get(i));
-    				Barkartenecke.getBarzelle(i).repaint(); //Mal gucken????
     			}
     			for(int i=0;i<Variablen.getStuehle().size();i++) {
-    				Variablen.getStuehle().get(i).setGast(Gastkarte.parseGastkarte(spielstand.getProperty("stuhl"+i)));
-    				Variablen.getStuehle().get(i).getSpielzelle().repaint();
+    				Variablen.getStuehle().get(i).setStartGast(Gastkarte.parseGastkarte(spielstand.getProperty("stuhl"+i)));
     			}
     			for(int i=0;i<Variablen.getTische().size();i++) {
     				Variablen.getTische().get(i).setLand(Laenderkarte.parseLaenderkarte(spielstand.getProperty("tisch"+i)));
-    				Variablen.getTische().get(i).getSpielzelle().repaint();
     			}
-    			
-    			Programmstart progst = new Programmstart();
-    			progst.grafikladen();
             } else {
             	neuesspiel();
             }
@@ -104,18 +106,17 @@ public class Spielstand {
 		Programmstart progst = new Programmstart();
 		Spielstart spstart = new Spielstart();
 		progst.namensfrage();
-    	//Variablen.getSpieler(0).setName("Lukas"); //Entfernen
-    	//Variablen.getSpieler(1).setName("Malte"); //Entfernen
         progst.grafikladen();
         spstart.neuesspiel();
 	}
 	
 	public void loescheSpielstand() {
-		Properties spielstand = ladeProperties("spielstand.txt");
+		Properties spielstand = ladeProperties(dateiname);
+		spielstand.clear();
 		spielstand.setProperty("spielangefangen",String.valueOf(false));
 		
 		try {
-			spielstand.store(new FileWriter("spielstand.txt"),"Spielstand gespeichert");
+			spielstand.store(new FileWriter("dateien/"+dateiname),"Spielstand gespeichert");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -125,12 +126,12 @@ public class Spielstand {
 		Reader reader = null;
 		Properties prop = null;
 		try {
-			reader = new BufferedReader(new FileReader(filename));
+			reader = new BufferedReader(new FileReader("dateien/"+filename));
 			prop = new Properties();
 			prop.load(reader);
 			reader.close();
 		} catch (FileNotFoundException e) {
-			
+			e.printStackTrace();
 		} catch (IOException e) {
 			
 		}

@@ -21,6 +21,11 @@ public class Stuhl {
 		return gast;
 	}
 	
+	public void setStartGast(Gastkarte gasttemp) {
+		this.gast = gasttemp;
+		this.sz.repaint();
+	}
+	
 	public boolean setGast(Gastkarte gasttemp) {
 		Meldungen msgbox = new Meldungen();
 		Spielzuege spz = new Spielzuege();

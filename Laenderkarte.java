@@ -19,7 +19,7 @@ public class Laenderkarte {
 	}
 	
 	public static Laenderkarte parseLaenderkarte(String landkstring) {
-		if(!landkstring.startsWith("null")) {
+		if(!landkstring.equals("null")) {
 			Land land = Land.valueOf(landkstring);
 			Laenderkarte laenderkarte = new Laenderkarte(land);
 			return laenderkarte;
