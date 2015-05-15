@@ -14,11 +14,11 @@ import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 /**
- * Das ist die Hauptklasse des ganzen Spiels, welche die Mainmethode enthaelt. Sie generiert die gesamte graphische Oberflaeche und laedt den Spielablauf, der das Spiel startet.
+ * Das ist die Hauptklasse des ganzen Spiels, welche die Mainmethode enthaelt. Sie generiert die gesamte graphische Oberflaeche und laedt den Spielablauf, der das Spiel startet.<br>
+ * <br>
+ * <b>spielframe</b> Dies ist der JFrame, der die gesamte graphische Oberflaeche enthaelt.
  * 
- * @param spielframe Dies ist der JFrame, der die gesamte graphische Oberflaeche enthaelt.
- * 
- * @author Lukas
+ * @author Lukas Schramm
  * @version 1.0
  *
  */
@@ -73,9 +73,9 @@ public class CafeIntMain {
     }
     
     /**
-     * Diese Methode wird automatisch aufgerufen, wenn der Spieler das Programm beendet. Er wird gefragt, ob er das aktuelle Spiel abspeichern moechte.
-     * Sollte er dies bejahen, werden alle aktuellen Informationen in einer Textdatei abgelegt und bei Spielstart geladen.
-     * Sollte er dies verneinen, wird die Textdatei geleert und der Spielstand geht unwiderruflich verloren.
+     * Diese Methode wird automatisch aufgerufen, wenn der Spieler das Programm beendet. Er wird gefragt, ob er das aktuelle Spiel abspeichern moechte.<br/>
+     * Sollte er dies bejahen, werden alle aktuellen Informationen in einer Textdatei abgelegt und bei Spielstart geladen.<br/>
+     * Sollte er dies verneinen, wird die Textdatei geleert und der Spielstand geht unwiderruflich verloren.<br/>
      * Abschließend werden das Programm und die Javaengine geschlossen.
      */
     private void schliessen() {
@@ -91,6 +91,7 @@ public class CafeIntMain {
 
     /**
      * Die main-Methode startet das gesamte Programm.
+     * @param args Der Standardparameter der Main-Methode.
      */
 	public static void main(String[] args) {
 		new CafeIntMain();

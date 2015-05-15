@@ -10,15 +10,15 @@ import javax.swing.JPanel;
 import cafeint.Gastkarte.Land;
 
 /**
- * Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.
- * Es stellt die Spielflaeche oben links dar, in welcher Gastkarten abgelegt werden, die der Spieler nicht sinnvoll verwenden konnte und abwerfen musste.
- * Das Anklicken einer Barzelle legt eine markierte Gastkarte in selbiger ab.
+ * Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.<br>
+ * Es stellt die Spielflaeche oben links dar, in welcher Gastkarten abgelegt werden, die der Spieler nicht sinnvoll verwenden konnte und abwerfen musste.<br>
+ * Das Anklicken einer Barzelle legt eine markierte Gastkarte in selbiger ab.<br>
+ * <br>
+ * <b>barzellen</b> Stellt die 21 Zellen der Bar in einem Array dar.<br>
+ * <b>barpunkte</b> Kongruent zum barzellen[] ist dies die Zuordnung der Punkte beim Ablegen einer Karte.<br>
+ * <b>hintgrdfarb</b> Die Farbe die als Hintergrund der Klasse dient.<br>
  * 
- * @param barzellen Stellt die 21 Zellen der Bar in einem Array dar.
- * @param barpunkte Kongruent zum barzellen[] ist dies die Zuordnung der Punkte beim Ablegen einer Karte.
- * @param hintgrdfarb Die Farbe die als Hintergrund der Klasse dient.
- * 
- * @author Lukas
+ * @author Lukas Schramm
  * @version 1.0
  *
  */

@@ -7,6 +7,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * Diese Klasse zeigt den Namen des Spielers und seine Punktzahl an. Ausserdem faerbt sie sich um, wenn der Spieler an der Reihe ist.<br>
+ * <br>
+ * <b>spieler</b> Ordnet der Zelle ihre Spielernummer zu.<br>
+ * <b>labelname</b> Das ist das JLabel, welches den Namen des Spielers anzeigt.<br>
+ * <b>labelpunkte</b> Das ist das JLabel, welches die Punktzahl des Spielers anzeigt.
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ */
 public class Informationszelle extends JPanel {
 	
 	private int spieler;
@@ -26,6 +36,9 @@ public class Informationszelle extends JPanel {
 		add(labelpunkte);
 	}
 	
+	/**
+	 * Diese Methode aktualisiert die Punktzahl des Spielers.
+	 */
 	public void punktzahlschreiben() {
 		String spnm = Variablen.getSpieler(spieler).getName();
 		String pkt = Integer.toString(Variablen.getSpieler(spieler).getPunkte());
@@ -33,6 +46,10 @@ public class Informationszelle extends JPanel {
 		labelpunkte.setText(pkt);
 	}
 	
+	/**
+	 * Diese Methode faerbt die Zelle um und zeigt auf, ob der Spieler am Zug ist.
+	 * @param farbig boolean der aufzeigt, ob der Spieler am Zug ist und ob die Zelle umgefaerbt werden muss.
+	 */
 	public void faerben(boolean farbig) {
 		if(farbig) {
 			labelname.setBackground(Color.orange);

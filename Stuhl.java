@@ -1,6 +1,7 @@
 package cafeint;
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
@@ -33,6 +34,7 @@ public class Stuhl {
 			spz.warnungsboxtext(msgbox.gastlandfalsch);
 			partnerNoetig = false;
 			spz.stuehledemarkieren(false);
+			Toolkit.getDefaultToolkit().beep();
 			return false;
 		} else if(!gastGeschlechtKorrekt(gasttemp)) {
 			if(gasttemp.getGeschlecht().equals(Geschlecht.Mann)) {
@@ -42,9 +44,11 @@ public class Stuhl {
 			}
 			partnerNoetig = false;
 			spz.stuehledemarkieren(false);
+			Toolkit.getDefaultToolkit().beep();
 			return false;
 		} else if(!gastPartnerKorrekt(gasttemp)) {
 			spz.warnungsboxtext(msgbox.gastpartnerfalsch);
+			Toolkit.getDefaultToolkit().beep();
 			return false;
 		} else {
 			if(Variablen.getZustand() == 12) {
@@ -73,6 +77,7 @@ public class Stuhl {
 				tischVollPruefen(true);
 				return true;
 			} else {
+				Toolkit.getDefaultToolkit().beep();
 				return false;
 			}
 		}
@@ -112,6 +117,7 @@ public class Stuhl {
 	}
 	
 	private boolean gastLandKorrekt(Gastkarte gasttemp) {
+		new Spielzuege().tischedemarkieren();
 		boolean korr = false;
 		for(Tisch tisch:this.tische) {
 			if(tisch.getLaenderkarte().getLand().equals(gasttemp.getLand()) || gasttemp.getLand().equals(Land.JOKER)) {

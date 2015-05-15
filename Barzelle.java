@@ -10,16 +10,16 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 /**
- * Diese Klasse ist die einzelne Zelle, die 21 mal in die Barkartenecke integriert wird.
- * Sie zeigt wenn sie leer ist die Punktzahl (positiv oder negativ an), die ihr zugeordnet wurde. Alternativ zeigt sie, wenn sie belegt wurde die zugehoerige abgeworfende Gastkarte an.
+ * Diese Klasse ist die einzelne Zelle, die 21 mal in die Barkartenecke integriert wird.<br>
+ * Sie zeigt wenn sie leer ist die Punktzahl (positiv oder negativ an), die ihr zugeordnet wurde. Alternativ zeigt sie, wenn sie belegt wurde die zugehoerige abgeworfende Gastkarte an.<br>
+ * <br>
+ * <b>gast</b> Hier wird die Gastkarte gespeichert, die der Zelle zugeordnet wurde. Ist standardmaessig leer.<br>
+ * <b>bi</b> Dies ist die bildliche Darstellung der zugeordneten Gastkarte.<br>
+ * <b>punkte</b> Dies ist die zugeordnete Punktzahl der Barzelle.<br>
+ * <b>font</b> Dies ist die Schriftart, in welcher die Punktzahl dargestellt wird.<br>
+ * <b>fm</b> Dies sind die FontMetrics, die zur Schriftart dazugehören.<br>
  * 
- * @param gast Hier wird die Gastkarte gespeichert, die der Zelle zugeordnet wurde. Ist standardmaessig leer.
- * @param bi Dies ist die bildliche Darstellung der zugeordneten Gastkarte.
- * @param punkte Dies ist die zugeordnete Punktzahl der Barzelle.
- * @param font Dies ist die Schriftart, in welcher die Punktzahl dargestellt wird.
- * @param fm Dies sind die FontMetrics, die zur Schriftart dazugehören.
- * 
- * @author Lukas
+ * @author Lukas Schramm
  * @version 1.0
  *
  */

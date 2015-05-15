@@ -3,10 +3,11 @@ package cafeint;
 import java.io.File;
 
 /**
- * Diese Klasse ist aus dem Internet uebernommen und gibt die relative URL einzelner Dateien des Javaverzeichnisses wieder.
+ * Diese Klasse ist aus dem Internet uebernommen und gibt die relative URL einzelner Dateien des Javaverzeichnisses wieder.<br>
+ * <b>Quelle:</b> http://forum.byte-welt.net/members/spacerat/2-von-arbeits-installations-und-resourcepfaden.html<br>
+ * <br>
  * @author Landei
  * @version 1.0
- * @source http://forum.byte-welt.net/members/spacerat/2-von-arbeits-installations-und-resourcepfaden.html
  * 
  */
 
@@ -99,8 +100,8 @@ public final class BaseURL {
      * In Java werden solche Verzeichnis-Links teilweise als Verzeichnis
      * und teilweise als Datei betrachtet, was haeufig zu Problemen fuehrt.
      * Der Workaround ist noch nicht ganz perfekt.
-     * @param f
-     * @return
+     * @param f Eine Datei wird als Parameter uebernommen.
+     * @return Gibt eine Datei zurueck.
      */
     public static File getAbsoluteFile(File f) {
         try {
@@ -113,7 +114,7 @@ public final class BaseURL {
  
     /**
      * Gibt das Zielverzeichnis einer File-URL als File-Objekt zurueck.
-     * @param u
+     * @param u Eine URL als Parameter.
      * @return File Zielverzeichnis einer File-URL
      */
     public static File URLtoFile(URL u) {

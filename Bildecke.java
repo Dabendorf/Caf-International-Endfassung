@@ -6,12 +6,12 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 /**
- * Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.
- * Es stellt die Flaeche unten rechts dar. In ihr wird aus Gruenden der Aesthetik lediglich ein schickes Bild eines Eisbechers, das Symbol des Spiels angezeigt.
+ * Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.<br>
+ * Es stellt die Flaeche unten rechts dar. In ihr wird aus Gruenden der Aesthetik lediglich ein schickes Bild eines Eisbechers, das Symbol des Spiels angezeigt.<br>
+ * <br>
+ * <b>bi</b> Hier wird das angezeigte Bilder geladen.
  * 
- * @param bi Hier wird das angezeigte Bilder geladen.
- * 
- * @author Lukas
+ * @author Lukas Schramm
  * @version 1.0
  *
  */
