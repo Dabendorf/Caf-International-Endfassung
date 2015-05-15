@@ -29,8 +29,8 @@ public class CafeIntMain {
             	schliessen();
             }
         });
-        spielframe.setPreferredSize(new Dimension(1400,800)); //Nachsehen, was kommmt
-        spielframe.setMinimumSize(new Dimension(1050,600)); //Nachsehen, was kommmt
+    	spielframe.setPreferredSize(new Dimension(1608,780));
+        spielframe.setMinimumSize(new Dimension(1072,520));
         spielframe.setResizable(true);
         try {
 			spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage(new URL(BaseURL.getJarBase(Spielfeld.class), "./favicon.png")));
@@ -40,21 +40,19 @@ public class CafeIntMain {
         Container contentPane = spielframe.getContentPane();
         contentPane.setLayout(new GridBagLayout());
 
-        spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, 0.15, 0.5)); //Größen anpassen
+        spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, 0.15, 0.5));
         spielframe.add(new Statistikecke(), new GridBagFelder(0, 1, 1, 1, 0.15, 0.5));
-        spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, 0.67, 1.0));
-        spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, 0.18, 0.6));
-        spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, 0.18, 0.4));
+        spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, 0.7, 1.0));
+        spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, 0.15, 0.5));
+        spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, 0.15, 0.5));
         
         spielframe.pack();
         spielframe.setLocationRelativeTo(null);
     }
     
     private void ablauf() {
-    	Programmstart progst = new Programmstart();
-    	Spielstand spstand = new Spielstand();
-    	progst.sysWin();
-    	spstand.laden();
+    	new Programmstart().sysWin();
+    	new Spielstand().laden();
         spielframe.setVisible(true);
     }
     
