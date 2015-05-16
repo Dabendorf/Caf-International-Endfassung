@@ -1,5 +1,14 @@
 package cafeint;
 
+/**
+ * Diese Klasse ist eine Sammlung saemtlicher sprachlicher Elemente und Meldungen, die im Spiel enthalten sind.<br>
+ * Die Ansammlung von allem in einer Klasse stellt eine gute Ordnung sicher und behebt Codierungsprobleme in verschiedenen Betriebssystemen signifikant schneller.
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ *
+ */
+
 public class Meldungen {
 	
 	public String umbruch = System.getProperty("line.separator");
@@ -37,6 +46,11 @@ public class Meldungen {
 	public String barzuspaet = "Du kannst nur zu Anfang Deines Zuges Karten in die Bar abwerfen! Lege eine Gastkarte oder beende Deinen Spielzug.";
 	public String stuhlbesetzt = "Dieser Stuhl ist bereits besetzt. Setze diesen Gast woanders hin.";
 	
+	/**
+	 * Diese Methode gibt abhaengig vom Sieger und seiner Punktzahl einen String wieder, der das Spiel auswertet.
+	 * @param ergebnis Nummer des eingetretenen Siegereignisses
+	 * @return Gibt einen String wieder, wer das Spiel gewonnen hat.
+	 */
 	public String siegermeldung(int ergebnis) {
 		if(ergebnis == 0) {
 			return Variablen.getSpieler(0).getName()+" gewinnt die Partie hochverdient!"+umbruch+"Er gewinnt mit "+Variablen.getSpieler(0).getPunkte()+" zu "+Variablen.getSpieler(1).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";

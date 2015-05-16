@@ -12,15 +12,32 @@ import javax.swing.JTextField;
 import cafeint.Gastkarte.Geschlecht;
 import cafeint.Gastkarte.Land;
 
+/**
+ * Die Klasse Programmstart ist eine von zwei Klassen, die bei Aufruf des Spiels relevant sind.
+ * Sie laedt saemtliche graphischen Spielelemente und muss auch bei Neustart eines Spiels nicht neu aufgerufen werden.<br>
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ * 
+ */
+
 public class Programmstart {
 	
+	/**
+	 * Diese Methode ruft alle anderen Methoden zum Start des Programmes auf.
+	 */
 	public void grafikladen() {
+		
 		bilderladen();
 		spielfeldgenerieren();
 		tischstuhlzuordnung();
 		zellelementzuordnung();
 	}
 	
+	/**
+	 * Diese Methode ueberprueft das Betriebssystem des Nutzers und gibt eine Warnmeldung fuer alle Nutzer von Windows aus,
+	 * da das Programm expliziet auf und fuer Unix-basierende Systeme entwickelt wurde und auf Windows moeglicherweise zu Problemen fueren kann.
+	 */
 	public void sysWin() {
 		if(System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
 			Meldungen msgbox = new Meldungen();
@@ -28,6 +45,10 @@ public class Programmstart {
 		}
     }
 	
+	/**
+	 * Diese Methode fragt bei Programmstart, wenn man kein altes Spiel wiederhergestellt hat nach den Spielernamen.<br>
+	 * Es gibt auch Fehlermeldungen aus, wenn die beiden Namen gleich sind oder ein Name nicht eingegeben wurde.
+	 */
 	public void namensfrage() {
 		Meldungen msgbox = new Meldungen();
 		
@@ -50,6 +71,10 @@ public class Programmstart {
 	    }
 	}
 	
+	/**
+	 * Diese Methode laedt bei Programmstart saemtliche im Spiel benoetigten Bilder in zwei TreeMaps,
+	 * sodass sie nur durch Eingabe des Keys jederzeit von ueberall aufgerufen werden koennen.
+	 */
 	private void bilderladen() {
     	String key = null;
     	BufferedImage bitisch = null;
@@ -95,6 +120,9 @@ public class Programmstart {
         }
     }
 	
+	/**
+	 * Diese Methode erstellt die 12 Tische und 24 Stuehle, mit denen intern gearbeitet wird.
+	 */
 	private void spielfeldgenerieren() {
 		for(int n=0;n<12;n++) {
 			Variablen.getTische().add(new Tisch());
@@ -104,6 +132,10 @@ public class Programmstart {
 		}
 	}
 	
+	/**
+	 * Diese Methode ordnet jedem Tisch seine vier Stuehle zu. Ausserdem loest die aufgerufene Methode setStuehle auch die gegenteilige Aktion,
+	 * die Zuordnung aller Tische zu ihren Stuehlen vollautomatisch aus.
+	 */
 	private void tischstuhlzuordnung() {
 		int[] stuhl1 = {11, 1, 2, 3, 4, 5, 6, 7, 7, 8, 9, 9};
 		int[] stuhl2 = {12, 2, 3, 4, 5, 6, 7,18, 8, 9,10,10};
@@ -114,6 +146,10 @@ public class Programmstart {
 		}
 	}
 	
+	/**
+	 * Diese Methode dient als Verbindungselement zwischen Grafik und Internem Spielalgorithmus.
+	 * Sie ordnet jedem Tisch und jedem Stuhl seine graphische Spielzelle zu und andersherum.
+	 */
 	private void zellelementzuordnung() {
 		for(int n=0;n<Spielfeld.getSpielfeldtisch().size();n++) {
 			Spielfeld.getSpielfeldtisch().get(n).setTisch(Variablen.getTische().get(n));

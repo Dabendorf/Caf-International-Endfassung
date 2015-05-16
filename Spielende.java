@@ -2,8 +2,20 @@ package cafeint;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Diese Klasse nimmt alle Spielszenarien auf, nach welchen eine Partie beendet werden muss.<br>
+ * Ausserdem steuert sie den Ablauf der Auswertung und fragt, ob man ein weiteres Spiel spielen moechte.
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ *
+ */
 public class Spielende {
 	
+	/**
+	 * Diese Methode prueft, ob noch Gastkarten zum Nachziehen uebrig sind.
+	 * @return Gibt True zurueck, wenn das Spiel beendet werden muss.
+	 */
 	public boolean keinegastkarten() {
 		if(Variablen.getGastkarten().size() == 0) {
 			Variablen.setZustand(31);
@@ -14,6 +26,10 @@ public class Spielende {
 		}
 	}
 	
+	/**
+	 * Diese Methode prueft, ob noch Laenderkarten zum Nachziehen uebrig sind.
+	 * @return Gibt True zurueck, wenn das Spiel beendet werden muss.
+	 */
 	public boolean keinelaenderkarten() {
 		if(Variablen.getLaenderkarten().size() == 0) {
 			Variablen.setZustand(32);
@@ -24,6 +40,10 @@ public class Spielende {
 		}
 	}
 	
+	/**
+	 * Diese Methode prueft, ob noch freie Plaetze in der Bar uebrig sind.
+	 * @return Gibt True zurueck, wenn das Spiel beendet werden muss.
+	 */
 	public boolean barvoll() {
 		if(Variablen.getBarkarten().size() == 21) {
 			Variablen.setZustand(33);
@@ -35,6 +55,10 @@ public class Spielende {
 		}
 	}
 	
+	/**
+	 * Diese Methode prueft, warum das Spiel beendet wurde, gibt eine Meldung fuer die Auswertung aus und fragt anschliessend, ob man ein neues Spiel starten moechte.
+	 * @param art Hier traegt man einen der drei Gruende ein, aus dem das Spiel beendet wurde.
+	 */
 	private void siegmeldung(int art) {
 		Meldungen msgbox = new Meldungen();
 		String grund;
@@ -73,6 +97,7 @@ public class Spielende {
         	Spielstart spst = new Spielstart();
         	spst.neuesspiel();
         } else {
+        	new Spielstand().loescheSpielstand();
         	System.exit(0);
         }
 	}

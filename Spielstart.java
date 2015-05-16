@@ -5,8 +5,21 @@ import java.util.Collections;
 import cafeint.Gastkarte.Geschlecht;
 import cafeint.Gastkarte.Land;
 
+/**
+ * Die Klasse Spielstart ist eine von zwei Klassen, die bei Aufruf des Spiels relevant sind.
+ * Sie laedt saemtliche Elemente des Spielalgorithmus, die für einen reibungslosen Ablauf relevant sind.<br>
+ * Sie muss bei Start eines jeden neuen Spiels neu geladen werden.
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ * 
+ */
+
 public class Spielstart {
 	
+	/**
+	 * Diese Methode laedt ein neues Spiel. Sie loescht saemtliche Rueckstaende vergangener Partien und ruft alle Methoden einer neuen Spielgenerierung auf.
+	 */
 	public void neuesspiel() {
 		for(int i=0;i<2;i++) {
 			Variablen.getSpieler(i).setPunkte(0);
@@ -46,6 +59,9 @@ public class Spielstart {
 		Statistikecke.getInfz(1).faerben(false);
 	}
 	
+	/**
+	 * Diese Methode generiert die 100 Gastkarten, mischt diese durch und gibt jedem Spieler zum Start fuenf Handkarten.
+	 */
 	private void gastkartenmischen() {
 		for(int l=0;l<2;l++){
 	    	for(Land land : Land.values()) {
@@ -70,6 +86,9 @@ public class Spielstart {
 	    }
 	}
 	
+	/**
+	 * Diese Methode generiert die 24 Tischkarten und mischt sie.
+	 */
 	private void laenderkartenmischen() {
 		for(int l=0;l<2;l++) {
 			 for(Land land : Land.values()) {

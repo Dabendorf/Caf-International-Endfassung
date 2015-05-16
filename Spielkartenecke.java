@@ -10,6 +10,22 @@ import javax.swing.JPanel;
 
 import cafeint.Kartenstapel.Typ;
 
+/**
+ * Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.<br>
+ * Es stellt die Spielflaeche oben rechts dar, in welcher die Handkarten des aktuellen Spielers zum Legen angezeigt werden.<br>
+ * Ausserdem kann man hier Gast- und Laenderkarten nachziehen.<br>
+ * <br>
+ * <b>handkarten</b> Stellt die 5 Handkarten des aktuellen Spielers in einem Array dar.<br>
+ * <b>gastkst</b> Das ist das Element, in welchem man Gastkarten nachziehen kann.<br>
+ * <b>landkst</b> Das ist das Element, in welchem man Laenderkarten nachziehen kann.<br>
+ * <b>akthandkartnum</b> Gibt die Nummer der aktuell angeklickten Handkarte an.<br>
+ * <b>hintgrdfarb</b> Das ist die Hintergrundfarbe, in welcher die Felder dargestellt werden.
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ *
+ */
+
 public class Spielkartenecke extends JPanel {
 	
 	private static Kartenstapel handkarten[] = new Kartenstapel[5];
@@ -18,8 +34,16 @@ public class Spielkartenecke extends JPanel {
 	private static int akthandkartnum = -1;
 	private Color hintgrdfarb = new Color(0x000000);
 	
-	protected Spielkartenecke() {
+	public Spielkartenecke() {
 		this.setBackground(hintgrdfarb);
+		layoutgenerieren();
+	}
+	
+	/**
+	 * Diese Methode erstellt das GridLayout, in welchem die Spielelemente dargestellt werden.<br>
+	 * Außerdem wird hier jedem Element ein MouseListener zugeordnet, nach welchem es zu reagieren hat.
+	 */
+	private void layoutgenerieren() {
 		setLayout(new GridLayout(5,2));
 		for(int i=0;i<10;i++) {
 			if(i%2==0) {
@@ -84,6 +108,12 @@ public class Spielkartenecke extends JPanel {
 		}
 	}
 	
+	/**
+	 * Diese Methode wird ausgefuehrt, wenn eine Handkarte angeklickt wird.
+	 * Sie markiert und demarkiert sich und andere Handkarten mit einem roten Rand,
+	 * um dem Spieler zu zeigen, welche Karte er gerade ausgewaehlt hat.
+	 * @param num Dieser Parameter wird uebergeben, um die Nummer der Handkarte (0 bis 4) zu uebergeben.
+	 */
 	private void klickhand(int num) {
 		if(handkarten[num].isGeklickt()) {
 			handkarten[num].setBorder(BorderFactory.createLineBorder(Color.black, 2));
@@ -102,6 +132,10 @@ public class Spielkartenecke extends JPanel {
 		}
 	}
 	
+	/**
+	 * Diese Methode wird aufgerufen, wenn neue Gastkarten gezogen werden muessen.<br>
+	 * Sollte hierbei der Gastkartenvorrat aufgebraucht werden, springt der boolean rundenwechsel auf false und das Spiel wird beendet.
+	 */
 	private void klickgast() {
 		boolean rundenwechsel = true;
 		for(int i=0;i<5;i++) {
@@ -119,6 +153,11 @@ public class Spielkartenecke extends JPanel {
 		}
 	}
 	
+	/**
+	 * Diese Methode wird aufgerufen, wenn neue Laenderkarten gezogen werden muessen.<br>
+	 * Sollte hierbei der Laenderkartenvorrat aufgebraucht werden, springt der boolean spielende auf true und das Spiel wird beendet.<br>
+	 * Ausserdem wird hier die Variable zustand genauestens berechnet, um beim Ziehen neuer Tischkarten nicht den Spielablauf durcheinander zu bringen.
+	 */
 	private void klicktisch() {
 		boolean spielende = false;
 		for(Tisch tisch:Variablen.getTische()) {
@@ -146,10 +185,16 @@ public class Spielkartenecke extends JPanel {
 		}
 	}
 	
+	/**
+	 * Laedt die Anzahl der Gastkarten im Gastkartenstapel neu.
+	 */
 	public static void gastkstzahlLaden() {
 		gastkst.repaint();
 	}
 	
+	/**
+	 * Laedt die Anzahl der Laenderkarten im Gastkartenstapel neu.
+	 */
 	public static void landkstzahlLaden() {
 		landkst.repaint();
 	}

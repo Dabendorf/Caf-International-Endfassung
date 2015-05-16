@@ -22,6 +22,7 @@ import cafeint.Gastkarte.Land;
  * @version 1.0
  *
  */
+
 public class Barkartenecke extends JPanel {
 	
 	private static Barzelle[] barzellen = new Barzelle[21];

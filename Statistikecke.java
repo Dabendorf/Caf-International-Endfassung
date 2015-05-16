@@ -8,7 +8,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import cafeint.Kartenstapel.Typ;
-
+//Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.<br>
+//* Es stellt die Spielflaeche unten links dar, in welcher eine Uebersicht ueber die Karten der Spieler sowie deren Punktzahlen angezeigt wird.<br>
 public class Statistikecke extends JPanel {
 	
 	private static Kartenstapel handkarten[][] = new Kartenstapel[2][5];

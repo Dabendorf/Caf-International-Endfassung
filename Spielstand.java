@@ -10,11 +10,26 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Diese Klasse speichert Spielstaende von Nicht beendeten Spielen und ruft sie beim naechsten Start neu auf.<br>
+ * Um Spielstandmanipulation vorzubeugen, wird die Textdatei mit dem Spielstand mit Polyalphabetischer Substitution (Vigenere) verschluesselt.
+ * <br>
+ * <b>dateiname</b> Dieser String speichert den Dateinamen, in welchem der Spielstand gespeichert wird.<br>
+ * <b>schluessel</b> Dies ist der Schluessel, nach welchem die Spielstand-Datei verschluesselt wird.
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ *
+ */
+
 public class Spielstand {
 	
 	private String dateiname = "spielstand.txt";
 	private char[] schluessel = "Heizoelrueckstossabdaempfung".toCharArray();
 	
+	/**
+	 * Diese Methode speichert den aktuellen Spielstand verschluesselt ab.
+	 */
 	public void speichern() {
 		Properties spielstand = ladeProperties(dateiname);
 		spielstand.clear();
@@ -54,6 +69,10 @@ public class Spielstand {
 		}
 	}
 	
+	/**
+	 * Diese Methode guckt, ob ein gespeichertes Spiel vorliegt und fragt den Spieler, ob er dieses Spiel weiterspielen moechte.<br>
+	 * Wenn er dies moechte, wird der Spielstand geladen. Andererseits wird ein neues Spiel generiert.
+	 */
 	public void laden() {
 		Properties spielstand = ladeProperties(dateiname);
 		boolean spielgespeichert = Boolean.valueOf(entschluesseln(spielstand.getProperty("spielangefangen","false")));
@@ -102,6 +121,9 @@ public class Spielstand {
 		}
 	}
 	
+	/**
+	 * Diese Methode generiert ein neues Spiel fuer den fall, dass kein Spielstand vorhanden ist oder der Spieler ein neues Spiel starten moechte.
+	 */
 	private void neuesspiel() {
 		Programmstart progst = new Programmstart();
 		Spielstart spstart = new Spielstart();
@@ -110,6 +132,9 @@ public class Spielstand {
         spstart.neuesspiel();
 	}
 	
+	/**
+	 * Diese Methode loescht den Inhalt der Speicherdatei.
+	 */
 	public void loescheSpielstand() {
 		Properties spielstand = ladeProperties(dateiname);
 		spielstand.clear();
@@ -122,6 +147,11 @@ public class Spielstand {
 		}
 	}
 	
+	/**
+	 * Diese Methode laedt die Properties, in welchen die Inhalte der Textdatei gespeichert werden.
+	 * @param filename Nimmt den Namen der Datei entgegen.
+	 * @return Gibt die erstellten Properties zurueck.
+	 */
 	private Properties ladeProperties(String filename) {
 		Reader reader = null;
 		Properties prop = null;
@@ -138,6 +168,11 @@ public class Spielstand {
 		return prop;
 	}
 	
+	/**
+	 * Diese Methode verschluesselt den eingegebenen String.
+	 * @param original Nimmt den Originalstring entgegen.
+	 * @return Gibt den verschluesselten String aus.
+	 */
 	private String verschluesseln(String original) {
 		char[] temp = original.toCharArray();
 		String crypt = new String("");
@@ -148,6 +183,11 @@ public class Spielstand {
         return crypt;
     }
 	
+	/**
+	 * Diese Methode entschluesselt den eingegebenen String.
+	 * @param original Nimmt den verschluesselten String entgegen.
+	 * @return Gibt den entschluesselten String aus.
+	 */
 	private String entschluesseln(String verschluesselt) {
 		char[] temp = verschluesselt.toCharArray();
 		String decrypt = new String("");

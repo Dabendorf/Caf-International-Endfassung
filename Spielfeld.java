@@ -13,6 +13,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.<br>
+ * Es stellt die Haupt-Spielflaeche in der Mitte dar, in welcher der Aufbau des Cafes dargestellt ist.<br>
+ * Sie enthaelt alle Tische und Stuehle, an die man die Gast- und Tischkarten anlegen kann.<br>
+ * <br>
+ * <b>spielfeldzelle</b> Dies ist ein 2D-Array, der alle 11 mal 11 Zellen dieses Hauptfeldes in einem Raster anordnet.<br>
+ * <b>warnungsbox</b> Dies ist die Box ganz unten, in welcher Informationen angezeigt werden, wenn ein Spieler ungueltige Zuege setzen moechte.<br>
+ * <b>spielfeldtisch</b> Diese ArrayList speichert alle Zellelemente, die im Spiel Tische darstellen.<br>
+ * <b>spielfeldstuhl</b> Diese ArrayList speichert alle Zellelemente, die im Spiel Stuehle darstellen.<br>
+ * <b>hintgrdfarb</b> Das ist die Hintergrundfarbe, in welcher die Felder dargestellt werden.
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ *
+ */
+
 public class Spielfeld extends JPanel {
 
 	private Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
@@ -27,6 +43,9 @@ public class Spielfeld extends JPanel {
 		eigenschaften();
 	}
 	
+	/**
+	 * Diese Methode erstellt das GridBagLayout, in welchem die Spielflaeche dargestellt wird.
+	 */
 	private void layoutgenerieren() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -69,6 +88,9 @@ public class Spielfeld extends JPanel {
 		}
 	}
 	
+	/**
+	 * Diese Methode ordnet allen Zellen ihre Eigenschaft Tisch oder Stuhl zu oder belaesst sie als leere Zelle.
+	 */
 	private void eigenschaften() {
 		int[] tischkoordx = {4,5,6,7,8,7,6,5,4,3,2,3};
 		int[] tischkoordy = {3,2,3,4,5,6,7,8,7,6,5,4};
@@ -103,16 +125,8 @@ public class Spielfeld extends JPanel {
 		return spielfeldtisch;
 	}
 
-	public void setSpielfeldtisch(ArrayList<Spielzelle> spielfeldtisch) {
-		Spielfeld.spielfeldtisch = spielfeldtisch;
-	}
-
 	public static ArrayList<Spielzelle> getSpielfeldstuhl() {
 		return spielfeldstuhl;
-	}
-
-	public void setSpielfeldstuhl(ArrayList<Spielzelle> spielfeldstuhl) {
-		Spielfeld.spielfeldstuhl = spielfeldstuhl;
 	}
 
 	public static JLabel getWarnungsbox() {
