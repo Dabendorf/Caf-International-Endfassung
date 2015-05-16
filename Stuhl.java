@@ -11,6 +11,21 @@ import javax.swing.SwingUtilities;
 import cafeint.Gastkarte.Geschlecht;
 import cafeint.Gastkarte.Land;
 
+/**
+ * Diese Klasse stellt die Stuehle, neben den Tischen das wichtigste Element des Spiels dar.<br>
+ * Jeder Stuhl grenzt an 1 bis 3 Tische.
+ * Jedem Stuhl wird ein Gast nach speziellen Eigenschaften zugeordnet.<br>
+ * <br>
+ * <b>gast</b> Dies ist der Gast, der auf dem Stuhl sitzt.<br>
+ * <b>tische</b> Dies sind die Tische, an welchen der Stuhl steht.<br>
+ * <b>sz</b> Das ist die graphische Spielzelle zum Stuhl.<br>
+ * <b>partnerNoetig</b> Dieser boolean zeigt an, ob ein Gast auf diesem Stuhl allein sitzt und einen Sitzpartner benoetigt.<br>
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ *
+ */
+
 public class Stuhl {
 	
 	private Gastkarte gast;
@@ -22,11 +37,20 @@ public class Stuhl {
 		return gast;
 	}
 	
+	/**
+	 * Diese Methode legt den Gast bei Spielstart fest, der aufgrund eines wiederhergestellten Spiels wieder hier platziert wird.
+	 * @param gasttemp Hier wird der anzuzeigende Gast eingetragen.
+	 */
 	public void setStartGast(Gastkarte gasttemp) {
 		this.gast = gasttemp;
 		this.sz.repaint();
 	}
 	
+	/**
+	 * Diese Methode steuert die gesamte Spielalgorithmik, nach welcher ein Gast am Tisch Platz nehmen darf.
+	 * @param gasttemp Hier wird der Gast eingetragen, der sich auf den Stuhl setzen moechte.
+	 * @return Gibt einen Boolean zurueck, ob ein Gast sich setzen durfte oder nicht.
+	 */
 	public boolean setGast(Gastkarte gasttemp) {
 		Meldungen msgbox = new Meldungen();
 		Spielzuege spz = new Spielzuege();
@@ -83,6 +107,9 @@ public class Stuhl {
 		}
 	}
 	
+	/**
+	 * Diese Methode leert die Variable gast und schickt den Gast nach Hause.
+	 */
 	public void gastNachHause() {
 		this.gast = null;
 		this.sz.repaint();
@@ -112,10 +139,19 @@ public class Stuhl {
 		this.partnerNoetig = partnerNoetig;
 	}
 	
+	/**
+	 * Diese Methode faerbt den Rand der Spielzelle des Stuhls gruen, um darauf aufmerkam zu machen, dass der naechste Spielzug verlangt, diesem Gast einen Partner hinzusetzen.
+	 */
 	public void gruenfaerben() {
 		this.getSpielzelle().setBorder(BorderFactory.createLineBorder(new Color(0x3ADF00), 3));
 	}
 	
+	/**
+	 * Diese Methode ueberprueft, ob ein Gast sich auf einen Stuhl setzt, der an mindestens einem Tisch seiner Nationalitaet entspricht.<br>
+	 * Joker koennen alle Nationalitaeten besitzen.
+	 * @param gasttemp Hier wird der Gast eingetragen, der sich auf den Stuhl setzen moechte.
+	 * @return Gibt einen boolean zurueck, ob die Bedingung erfuellt ist.
+	 */
 	private boolean gastLandKorrekt(Gastkarte gasttemp) {
 		new Spielzuege().tischedemarkieren();
 		boolean korr = false;
@@ -149,6 +185,11 @@ public class Stuhl {
 		return korr;
 	}
 	
+	/**
+	 * Diese Methode ueberprueft, ob ein Gast, wenn er sich setzen wuerde an irgendeinem Tisch fuer geschlechtliche Ungleichheit sorgen wuerde.
+	 * @param gasttemp Hier wird der Gast eingetragen, der sich auf den Stuhl setzen moechte.
+	 * @return Gibt einen boolean zurueck, ob die Bedingung erfuellt ist.
+	 */
 	private boolean gastGeschlechtKorrekt(Gastkarte gasttemp) {
 		boolean korr = true;
 		for(Tisch tisch:this.tische) {
@@ -196,6 +237,12 @@ public class Stuhl {
 		return korr;
 	}
 	
+	/**
+	 * Diese Methode ueberprueft, ob ein Gast alleine an einem Tisch sitzt und ein adaequater Partner im Handkartenvorrat existieren wuerde.<br>
+	 * Sollte dies der Fall sein, wird die Zelle gruen gefaerbt und als naechster Spielzug verlangt, dem Gast einen Partner hinzusetzen.
+	 * @param gasttemp Hier wird der Gast eingetragen, der sich auf den Stuhl setzen moechte.
+	 * @return Gibt einen boolean zurueck, ob die Bedingung erfuellt ist.
+	 */
 	private boolean gastPartnerKorrekt(Gastkarte gasttemp) {
 		boolean korr = false;
 		tischschleife:for(Tisch tisch:this.tische) {
@@ -223,6 +270,12 @@ public class Stuhl {
 		return korr;
 	}
 	
+	/**
+	 * Ueberprueft im Zuge der Methode gastPartnerKorrekt(), ob ein Partner aus dem Handkartenvorrat die Bedingung der Nationalitaet erfuellen wuerde.
+	 * @param handtemp Dies ist eine Handkarte aus dem Handkartenvorrat, die ueberprueft wird.
+	 * @param stuhltemp Dies ist ein Stuhl, der fuer diese Bedingung getestet wird.
+	 * @return Gibt einen boolean zurueck, ob die Bedingung erfuellt ist.
+	 */
 	private boolean tempLandKorrekt(Gastkarte handtemp,Stuhl stuhltemp) {
 		boolean korr = false;
 		for(Tisch tisch:stuhltemp.getTische()) {
@@ -234,6 +287,13 @@ public class Stuhl {
 		return korr;
 	}
 	
+	/**
+	 * Ueberprueft im Zuge der Methode gastPartnerKorrekt(), ob ein Partner aus dem Handkartenvorrat mit der zu legenden Gastkarte die Bedingung des Geschlechtes erfuellen wuerde.
+	 * @param gasttemp Dies ist die Gastkarte, um die es geht, die zu legen ist.
+	 * @param @param handtemp Dies ist eine Handkarte aus dem Handkartenvorrat, die ueberprueft wird.
+	 * @param stuhltemp Dies ist ein Stuhl, der fuer diese Bedingung getestet wird.
+	 * @return Gibt einen boolean zurueck, ob die Bedingung erfuellt ist.
+	 */
 	private boolean tempGeschlechtKorrekt(Gastkarte gasttemp, Gastkarte handtemp,Stuhl stuhltemp) {
 		boolean korr = true;
 		for(Tisch tisch:stuhltemp.getTische()) {
@@ -264,6 +324,11 @@ public class Stuhl {
 		return korr;
 	}
 	
+	/**
+	 * Diese Methode ueberprueft, ob ein Tisch ueber vier Gaeste verfuegt und geleert werden muss.
+	 * @param letzteKarte Dieser Boolean ist fuer die Variable zustand relevant und ueberprueft nach Abschluss der Tischleerung,
+	 * ob der Spielzug abgeschlossen ist und der naechste Spieler am Zug sein muss.
+	 */
 	private void tischVollPruefen(boolean letzteKarte) {
 		boolean leeren = false;
 		for(Tisch tisch:this.getTische()) {
@@ -298,6 +363,13 @@ public class Stuhl {
 		leeren = false;
 	}
 	
+	/**
+	 * Diese Methode berechnet die Punktzahl, die eine Karte nach Erfuellung aller Bedingungen wert ist und dem Spieler gutgeschrieben wird.<br>
+	 * Jeder Gast, ist an jedem Tisch, an dem er gemeinsam mit dem gekommenen Gast sitzt einen Punkt wert.<br>
+	 * Sollte er die gleiche Nationalitaet besitzen, ist er zwei Punkte wert.<br>
+	 * Joker besitzen automatisch alle Nationalitaeten und bringen jeweils zwei Punkte ein.
+	 * @param gasttemp Dies ist die Gastkarte, die gelegt wurde.
+	 */
 	private void punkteBerechnen(Gastkarte gasttemp) {
 		int summe = 0;
 		if(!gasttemp.getLand().equals(Land.JOKER)) {

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Diese Klasse speichert Spielstaende von Nicht beendeten Spielen und ruft sie beim naechsten Start neu auf.<br>
- * Um Spielstandmanipulation vorzubeugen, wird die Textdatei mit dem Spielstand mit Polyalphabetischer Substitution (Vigenere) verschluesselt.
+ * Um Spielstandmanipulation vorzubeugen, wird die Textdatei mit dem Spielstand mit Polyalphabetischer Substitution (Vigenere) verschluesselt.<br>
  * <br>
  * <b>dateiname</b> Dieser String speichert den Dateinamen, in welchem der Spielstand gespeichert wird.<br>
  * <b>schluessel</b> Dies ist der Schluessel, nach welchem die Spielstand-Datei verschluesselt wird.

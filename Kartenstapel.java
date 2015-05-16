@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 /**
  * Die Klasse Kartenstapel ist dazu zustaendig die meisten Arten von Kartenanzeigen zu realisieren. Es unterteilt sich in fuenf Typen.<br>
- * Leere Zellen bleiben weiss, "Gastkartenstapel" und "Laenderkartenstapel" stellen Nachziehstapel dar,<br>
+ * Leere Zellen bleiben weiss, "Gastkartenstapel" und "Laenderkartenstapel" stellen Nachziehstapel dar.<br>
  * "Handkarte" zeigt die Anklickbaren Handkarten an, "HandkarteInfo" zeigt in der Statistikecke die Uebersicht der Spielkarten aller Spieler auf.<br>
  * <br>
  * <b>Typ</b> Dies ist der enum, welcher alle Typen dieser Klasse beinhaltet.<br>
@@ -28,6 +28,7 @@ import javax.swing.JPanel;
  * @version 1.0
  *
  */
+
 public class Kartenstapel extends JPanel {
 	
 	public enum Typ {Leer, Gastkartenstapel, Laenderkartenstapel, Handkarte, HandkarteInfo};

@@ -8,8 +8,20 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import cafeint.Kartenstapel.Typ;
-//Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.<br>
-//* Es stellt die Spielflaeche unten links dar, in welcher eine Uebersicht ueber die Karten der Spieler sowie deren Punktzahlen angezeigt wird.<br>
+
+/**
+ * Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.<br>
+ * Es stellt die Spielflaeche unten links dar, in welcher eine Uebersicht ueber die Karten der Spieler sowie deren Punktzahlen angezeigt wird.<br>
+ * <br>
+ * <b>handkarten</b> Stellt die 5 Handkarten beider Spieler in einem 2D-Array dar.<br>
+ * <b>infz</b> Das sind die zwei Elemente, die die Spielerinformationen (Name und Punktzahl) anzeigen.<br>
+ * <b>hintgrdfarb</b> Das ist die Hintergrundfarbe, in welcher die Felder dargestellt werden.
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ *
+ */
+
 public class Statistikecke extends JPanel {
 	
 	private static Kartenstapel handkarten[][] = new Kartenstapel[2][5];
@@ -18,6 +30,13 @@ public class Statistikecke extends JPanel {
 	
 	public Statistikecke() {
 		this.setBackground(hintgrdfarb);
+		layoutgenerieren();
+	}
+	
+	/**
+	 * Diese Methode erstellt das GridLayout, in welchem die Anzeigeelemente dargestellt werden.
+	 */
+	private void layoutgenerieren() {
 		setLayout(new GridLayout(6,2));
 		for(int i=0;i<2;i++) {
 			infz[i] = new Informationszelle(i);

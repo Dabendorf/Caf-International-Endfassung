@@ -1,5 +1,20 @@
 package cafeint;
 
+/**
+ * Diese Klasse stellt die Tische, neben den Stuehlen das wichtigste Element des Spiels dar.<br>
+ * Jeder Tisch grenzt an vier Stuehle.
+ * Jedem Tisch wird eine Nationalitaet zugeordnet.<br>
+ * <br>
+ * <b>laenderkarte</b> Dies ist die Nationalitaet, die dem Tisch zugeordnet wurde.<br>
+ * <b>stuehle</b> Dies sind die vier Stuehle, an welchen der Tisch steht.<br>
+ * <b>sz</b> Das ist die graphische Spielzelle zum Tisch.<br>
+ * <b>zuleeren</b> Dieser boolean zeigt an, ob ein Tisch vormarkiert wurde, um gleich geleert zu werden.<br>
+ * 
+ * @author Lukas Schramm
+ * @version 1.0
+ *
+ */
+
 public class Tisch {
 	
 	private Laenderkarte laenderkarte;
@@ -22,6 +37,12 @@ public class Tisch {
 		return stuehle;
 	}
 	
+	/**
+	 * Diese Methode ist kein einfacher Setter wie die anderen Methoden. Sie nimmt die Menge an Stuehlen entgegen, die zum Tisch gehoeren.<br>
+	 * Ausserdem fuert sie automatisch die gegenteilige Aktion durch und ordnet sich selbst als Tisch dem jeweiligen Stuhl zu.<br>
+	 * Dies beugt Fehler bei der Zuordnung vor.
+	 * @param stuehleNr Dies ist die Menge an Stuehlen, die hinzugefuegt wird.
+	 */
 	public void setStuehle(int...stuehleNr) {
 		Stuhl[] stuehletemp = new Stuhl[stuehleNr.length];
 		int i=0;
