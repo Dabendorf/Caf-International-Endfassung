@@ -47,6 +47,22 @@ public class Stuhl {
 	}
 	
 	/**
+	 * In diesem Schleifenbereich landet man nur, wenn ein neues Spiel gestartet wird.<br>
+	 * Es dient der Ueberpruefung, ob der Startspieler Handkarten legen kann.<br>
+	 * Sollte er dies nicht koennen, werden die Karten neu gemischt, bis er das kann.<br>
+	 * Dies verhindert, dass der Spieler im ersten Zug aus ungluecklicher Kartenmischung an die Bar abwerfen muss.<br>
+	 * @param gasttemp Hier wird der Gast eingetragen, der sich auf den Stuhl setzen moechte.
+	 * @return Gibt einen Boolean zurueck, ob der Gast sich auf diesen Stuhl setzen koennte.
+	 */
+	public boolean setGastMischTest(Gastkarte gasttemp) {
+		if(gastLandKorrekt(gasttemp) && gastGeschlechtKorrekt(gasttemp) && gastPartnerKorrekt(gasttemp)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
 	 * Diese Methode steuert die gesamte Spielalgorithmik, nach welcher ein Gast am Tisch Platz nehmen darf.
 	 * @param gasttemp Hier wird der Gast eingetragen, der sich auf den Stuhl setzen moechte.
 	 * @return Gibt einen Boolean zurueck, ob ein Gast sich setzen durfte oder nicht.
@@ -161,25 +177,28 @@ public class Stuhl {
 				break;
 			}
 		}
-		if(korr == false) {
-			for(final Tisch tisch:this.tische) {
-				tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
-				Thread thread = new Thread(new Runnable() {
-					@Override
-					public void run() {
-						try {
-							Thread.sleep(5000);
-						} catch(InterruptedException e) {}
-						SwingUtilities.invokeLater(new Runnable() {
-							@Override
-							public void run() {
-								tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
-							}
-						});
-					}
-				});
-				thread.setDaemon(true);
-				thread.start();
+		int zustand = Variablen.getZustand();
+		if(!(zustand == 0 || zustand == 31 || zustand == 32 || zustand == 33)) {
+			if(korr == false) {
+				for(final Tisch tisch:this.tische) {
+					tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
+					Thread thread = new Thread(new Runnable() {
+						@Override
+						public void run() {
+							try {
+								Thread.sleep(5000);
+							} catch(InterruptedException e) {}
+							SwingUtilities.invokeLater(new Runnable() {
+								@Override
+								public void run() {
+									tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
+								}
+							});
+						}
+					});
+					thread.setDaemon(true);
+					thread.start();
+				}
 			}
 		}
 		return korr;
@@ -205,31 +224,34 @@ public class Stuhl {
 			}
 			if((gasttemp.getGeschlecht().equals(Geschlecht.Mann)) && (mann > frau) || (gasttemp.getGeschlecht().equals(Geschlecht.Frau)) && (frau > mann)) {
 				korr = false;
-				for(final Stuhl stuhl:tisch.getStuehle()) {
-					if(stuhl.getGast()!=null) {
-						new Thread(new Runnable() {
-					        public void run() {
-					            try {
-									SwingUtilities.invokeAndWait(new Runnable() {
-									    public void run() {
-									    	stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
-									    }
-									});
-								} catch (InvocationTargetException | InterruptedException e) {
-									e.printStackTrace();
-								}
-					            try { Thread.sleep(5000); } catch(Exception e) { e.printStackTrace(); }
-					            try {
-									SwingUtilities.invokeAndWait(new Runnable() {
-									    public void run() {
-									    	stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
-									    }
-									});
-								} catch (InvocationTargetException | InterruptedException e) {
-									e.printStackTrace();
-								}
-					        }
-					    }).start();
+				int zustand = Variablen.getZustand();
+				if(!(zustand == 0 || zustand == 31 || zustand == 32 || zustand == 33)) {
+					for(final Stuhl stuhl:tisch.getStuehle()) {
+						if(stuhl.getGast()!=null) {
+							new Thread(new Runnable() {
+						        public void run() {
+						            try {
+										SwingUtilities.invokeAndWait(new Runnable() {
+										    public void run() {
+										    	stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
+										    }
+										});
+									} catch (InvocationTargetException | InterruptedException e) {
+										e.printStackTrace();
+									}
+						            try { Thread.sleep(5000); } catch(Exception e) { e.printStackTrace(); }
+						            try {
+										SwingUtilities.invokeAndWait(new Runnable() {
+										    public void run() {
+										    	stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
+										    }
+										});
+									} catch (InvocationTargetException | InterruptedException e) {
+										e.printStackTrace();
+									}
+						        }
+						    }).start();
+						}
 					}
 				}
 			}
@@ -245,6 +267,7 @@ public class Stuhl {
 	 */
 	private boolean gastPartnerKorrekt(Gastkarte gasttemp) {
 		boolean korr = false;
+		int zustand = Variablen.getZustand();
 		tischschleife:for(Tisch tisch:this.tische) {
 			for(Stuhl stuhl:tisch.getStuehle()) {
 				if(!stuhl.equals(this)) {
@@ -252,12 +275,14 @@ public class Stuhl {
 						partnerNoetig = false;
 						korr = true;
 						break tischschleife;
-					} else if (Variablen.getZustand()==12) {
+					} else if(zustand==12 || zustand == 0 || zustand == 31 || zustand == 32 || zustand == 33) {
 						for(Gastkarte handtemp:Variablen.getSpieler(42).getHandkarten()) {
 							if(handtemp!=null) {
 								if(!handtemp.equals(gasttemp)) {
 									if(tempLandKorrekt(handtemp,stuhl) == true && tempGeschlechtKorrekt(gasttemp,handtemp,stuhl)) {
-										partnerNoetig = true;
+										if(zustand == 12) {
+											partnerNoetig = true;
+										}
 										korr = true;
 									}
 								}

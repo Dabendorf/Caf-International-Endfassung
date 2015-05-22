@@ -21,6 +21,7 @@ public class Spielstart {
 	 * Diese Methode laedt ein neues Spiel. Sie loescht saemtliche Rueckstaende vergangener Partien und ruft alle Methoden einer neuen Spielgenerierung auf.
 	 */
 	public void neuesspiel() {
+		Variablen.setAktSpieler(0);
 		for(int i=0;i<2;i++) {
 			Variablen.getSpieler(i).setPunkte(0);
 			Variablen.getSpieler(i).getHandkarten().clear();
@@ -29,20 +30,24 @@ public class Spielstart {
 			Variablen.getBarkartenecke().getBarzelle(i).setGast(null);
 			Variablen.getBarkartenecke().getBarzelle(i).repaint();
 		}
-		
-		Variablen.getGastkarten().clear();
-		Variablen.getLaenderkarten().clear();
 		Variablen.getBarkarten().clear();
-		gastkartenmischen();
+		
 		laenderkartenmischen();
 		for(Tisch tisch:Variablen.getTische()) {
 			new Spielzuege().legetischkarte(tisch);
 		}
+		
+		boolean korrektgemischt = false;
+		do {
+			if(gastkartenmischen()) {
+				korrektgemischt = true;
+			}
+		} while (!korrektgemischt);
+		
 		for(Stuhl stuhl:Variablen.getStuehle()) {
 			stuhl.gastNachHause();
 		}
 		
-		Variablen.setAktSpieler(0);
 		new Spielzuege().handkartendemarkieren();
 		Variablen.getSpielkartenecke().gastkstzahlLaden();
 		Variablen.getSpielkartenecke().landkstzahlLaden();
@@ -60,9 +65,16 @@ public class Spielstart {
 	}
 	
 	/**
-	 * Diese Methode generiert die 100 Gastkarten, mischt diese durch und gibt jedem Spieler zum Start fuenf Handkarten.
+	 * Diese Methode generiert die 100 Gastkarten, mischt diese durch und gibt jedem Spieler zum Start fuenf Handkarten.<br>
+	 * Sie schaut ausserdem, ob der erste Spieler die Moeglichkeit besitzt zwei Karten zu legen.<br>
+	 * Sollte dies nicht der Fall sein, gibt sie false zurueck und erzwingt eine Neumischung.
+	 * @return Gibt zurueck, ob die Karten wie sie gemischt sind fuer den Spieler legbar sind.
 	 */
-	private void gastkartenmischen() {
+	private boolean gastkartenmischen() {
+		Variablen.getGastkarten().clear();
+		for(int i=0;i<2;i++) {
+			Variablen.getSpieler(i).getHandkarten().clear();
+		}
 		for(int l=0;l<2;l++){
 	    	for(Land land : Land.values()) {
 	            int anzahl = 2;
@@ -84,12 +96,24 @@ public class Spielstart {
 			Variablen.getGastkarten().remove(0);
 			Variablen.getGastkarten().remove(0);
 	    }
+		
+		boolean korrektgemischt = false;
+		stuhlschl:for(Stuhl stuhl:Variablen.getStuehle()) {
+			for(Gastkarte gstk:Variablen.getSpieler(0).getHandkarten()) {
+				if(stuhl.setGastMischTest(gstk)) {
+					korrektgemischt = true;
+					break stuhlschl;
+				}
+			}
+		}
+		return korrektgemischt;
 	}
 	
 	/**
 	 * Diese Methode generiert die 24 Tischkarten und mischt sie.
 	 */
 	private void laenderkartenmischen() {
+		Variablen.getLaenderkarten().clear();
 		for(int l=0;l<2;l++) {
 			 for(Land land : Land.values()) {
 				 if(land != Land.JOKER) {

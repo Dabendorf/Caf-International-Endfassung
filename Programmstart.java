@@ -27,7 +27,6 @@ public class Programmstart {
 	 * Diese Methode ruft alle anderen Methoden zum Start des Programmes auf.
 	 */
 	public void grafikladen() {
-		
 		bilderladen();
 		spielfeldgenerieren();
 		tischstuhlzuordnung();
