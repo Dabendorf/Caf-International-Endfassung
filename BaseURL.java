@@ -1,6 +1,9 @@
 package cafeint;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Diese Klasse ist aus dem Internet uebernommen und gibt die relative URL einzelner Dateien des Javaverzeichnisses wieder.<br>
@@ -10,10 +13,6 @@ import java.io.File;
  * @version 1.0
  * 
  */
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
  
 public final class BaseURL {
     private static final String JAR_SIG = ".jar!/";
