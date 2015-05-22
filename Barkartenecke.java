@@ -25,8 +25,8 @@ import cafeint.Gastkarte.Land;
 
 public class Barkartenecke extends JPanel {
 	
-	private static Barzelle[] barzellen = new Barzelle[21];
-	private static int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
+	private Barzelle[] barzellen = new Barzelle[21];
+	private int barpunkte[] = {1,2,3,4,5,-2,-4,-6,-8,-10,-4,-6,-8,-10,-12,-6,-8,-10,-12,-14,-16};
 	private Color hintgrdfarb = new Color(0x000000);
 	
 	public Barkartenecke() {
@@ -38,15 +38,15 @@ public class Barkartenecke extends JPanel {
 			barzellen[i].addMouseListener(new MouseAdapter() {
             	@Override
 				public void mouseClicked(MouseEvent e) {
-            		if(Spielkartenecke.getAkthandkartnum()!=-1) {
-            			if(Variablen.getSpieler(42).getHandkarten().get(Spielkartenecke.getAkthandkartnum()).getLand().equals(Land.JOKER)) {
+            		if(Variablen.getSpielkartenecke().getAkthandkartnum()!=-1) {
+            			if(Variablen.getSpieler(42).getHandkarten().get(Variablen.getSpielkartenecke().getAkthandkartnum()).getLand().equals(Land.JOKER)) {
             				new Spielzuege().warnungsboxtext(new Meldungen().barjoker);
             				new Spielzuege().handkartendemarkieren();
             			} else if(Variablen.getZustand() == 10 || Variablen.getZustand() == 11) {
             				new Spielzuege().warnungsboxtext(new Meldungen().barzuspaet);
             				new Spielzuege().handkartendemarkieren();
             			} else {
-            				new Spielzuege().legebarkarte(Spielkartenecke.getAkthandkartnum());
+            				new Spielzuege().legebarkarte(Variablen.getSpielkartenecke().getAkthandkartnum());
             			}
             		}
             	}
@@ -59,7 +59,7 @@ public class Barkartenecke extends JPanel {
 	 * @param num Stellt die Nummer der Barzelle (0 bis 22) dar, welche zurückgegeben wird.
 	 * @return Gibt eine Barzelle abhängig von der Nummer zurück, welche in anderen Klassen verwendet wird.
 	 */
-	public static Barzelle getBarzelle(int num) {
+	public Barzelle getBarzelle(int num) {
 		return barzellen[num];
 	}
 

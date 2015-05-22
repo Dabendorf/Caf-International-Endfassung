@@ -26,8 +26,8 @@ public class Spielstart {
 			Variablen.getSpieler(i).getHandkarten().clear();
 		}
 		for(int i=0;i<21;i++) {
-			Barkartenecke.getBarzelle(i).setGast(null);
-			Barkartenecke.getBarzelle(i).repaint();
+			Variablen.getBarkartenecke().getBarzelle(i).setGast(null);
+			Variablen.getBarkartenecke().getBarzelle(i).repaint();
 		}
 		
 		Variablen.getGastkarten().clear();
@@ -44,19 +44,19 @@ public class Spielstart {
 		
 		Variablen.setAktSpieler(0);
 		new Spielzuege().handkartendemarkieren();
-		Spielkartenecke.gastkstzahlLaden();
-		Spielkartenecke.landkstzahlLaden();
+		Variablen.getSpielkartenecke().gastkstzahlLaden();
+		Variablen.getSpielkartenecke().landkstzahlLaden();
 		Variablen.setZustand(12);
 		
 		for(int i=0;i<2;i++) {
-			Statistikecke.getInfz(i).punktzahlschreiben();
+			Variablen.getStatistikecke().getInfz(i).punktzahlschreiben();
 			for(int n=0;n<5;n++) {
-				Statistikecke.getKartsp(i,n).repaint();
-				Spielkartenecke.getHandkarte(n).repaint();
+				Variablen.getStatistikecke().getKartsp(i,n).repaint();
+				Variablen.getSpielkartenecke().getHandkarte(n).repaint();
 			}
 		}
-		Statistikecke.getInfz(0).faerben(true);
-		Statistikecke.getInfz(1).faerben(false);
+		Variablen.getStatistikecke().getInfz(0).faerben(true);
+		Variablen.getStatistikecke().getInfz(1).faerben(false);
 	}
 	
 	/**

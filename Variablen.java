@@ -43,6 +43,15 @@ public class Variablen {
     private static Map<String,BufferedImage> stuhlcache = new TreeMap<String,BufferedImage>();
     
     /**
+     * Dies sind vier der fuenf eingefügten Designelemente.<br>
+     * Die <b>Bildecke</b> hat keinerlei Steuerfunktionen und kann daher direkt ins Design eingegliedert werden.
+     */
+    private static Barkartenecke barkartenecke = new Barkartenecke();
+    private static Statistikecke statistikecke = new Statistikecke();
+    private static Spielfeld spielfeld = new Spielfeld();
+    private static Spielkartenecke spielkartenecke = new Spielkartenecke();
+
+	/**
      * Die Variable zustand ist eine essentielle Variable zur Steuerung des Spielablaufes. Sie stellt numerisch dar, in welcher Phase sich das Spiel gerade befindet.<br>
      * Sollte eine Methode ausgefuert werden, die der Nummer des zustandes widerspricht, wird sie nicht ausgefuehrt.<br>
      * Bei allen Zahlen, die mit <b>0</b> beginnen startet das Spiel, bei allen die mit <b>1</b> beginnen legt man Karten, bei mit <b>2</b> beginnenden zieht man Karten, bei mit <b>3</b> beginnenden endet das Spiel.<br>
@@ -114,6 +123,22 @@ public class Variablen {
 
 	public static void setZustand(int zustand) {
 		Variablen.zustand = zustand;
+	}
+	
+	public static Barkartenecke getBarkartenecke() {
+		return barkartenecke;
+	}
+
+	public static Statistikecke getStatistikecke() {
+		return statistikecke;
+	}
+
+	public static Spielfeld getSpielfeld() {
+		return spielfeld;
+	}
+
+	public static Spielkartenecke getSpielkartenecke() {
+		return spielkartenecke;
 	}
 
 }

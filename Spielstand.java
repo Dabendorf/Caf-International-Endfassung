@@ -91,9 +91,9 @@ public class Spielstand {
     			}
     			Programmstart progst = new Programmstart();
     			progst.grafikladen();
-    			Statistikecke.getInfz(0).punktzahlschreiben();
-    			Statistikecke.getInfz(1).punktzahlschreiben();
-    			Statistikecke.getInfz(Variablen.getAktSpieler()).faerben(true);
+    			Variablen.getStatistikecke().getInfz(0).punktzahlschreiben();
+    			Variablen.getStatistikecke().getInfz(1).punktzahlschreiben();
+    			Variablen.getStatistikecke().getInfz(Variablen.getAktSpieler()).faerben(true);
     			int anzahlGastkarten = Integer.valueOf(entschluesseln(spielstand.getProperty("anzahlGastkarten")));
     			int anzahlLaenderkarten = Integer.valueOf(entschluesseln(spielstand.getProperty("anzahlLaenderkarten")));
     			int anzahlBarkarten = Integer.valueOf(entschluesseln(spielstand.getProperty("anzahlBarkarten")));
@@ -105,7 +105,7 @@ public class Spielstand {
     			}
     			for(int i=0;i<anzahlBarkarten;i++) {
     				Variablen.getBarkarten().add(Gastkarte.parseGastkarte(entschluesseln(spielstand.getProperty("barkarte"+i))));
-    				Barkartenecke.getBarzelle(i).setGast(Variablen.getBarkarten().get(i));
+    				Variablen.getBarkartenecke().getBarzelle(i).setGast(Variablen.getBarkarten().get(i));
     			}
     			for(int i=0;i<Variablen.getStuehle().size();i++) {
     				Variablen.getStuehle().get(i).setStartGast(Gastkarte.parseGastkarte(entschluesseln(spielstand.getProperty("stuhl"+i))));

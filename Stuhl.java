@@ -173,7 +173,7 @@ public class Stuhl {
 						SwingUtilities.invokeLater(new Runnable() {
 							@Override
 							public void run() {
-								tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+								tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
 							}
 						});
 					}
@@ -222,7 +222,7 @@ public class Stuhl {
 					            try {
 									SwingUtilities.invokeAndWait(new Runnable() {
 									    public void run() {
-									    	stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+									    	stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
 									    }
 									});
 								} catch (InvocationTargetException | InterruptedException e) {

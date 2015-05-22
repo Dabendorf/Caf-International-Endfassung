@@ -32,10 +32,10 @@ import javax.swing.SwingConstants;
 public class Spielfeld extends JPanel {
 
 	private Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];
-	private static JLabel warnungsbox = new JLabel();
-	private static ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
-	private static ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
-	private static Color hintgrdfarb = new Color(0x538fcb);
+	private JLabel warnungsbox = new JLabel();
+	private ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
+	private ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
+	private Color hintgrdfarb = new Color(0x538fcb);
 
 	public Spielfeld() {
 		this.setBackground(hintgrdfarb);
@@ -108,9 +108,9 @@ public class Spielfeld extends JPanel {
 			spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]].addMouseListener(new MouseAdapter() {
             	@Override
 				public void mouseClicked(MouseEvent e) {
-            		if(Spielkartenecke.getAkthandkartnum()!=-1) {
+            		if(Variablen.getSpielkartenecke().getAkthandkartnum()!=-1) {
             			if(Variablen.getStuehle().get(j).getGast()==null) {
-            				new Spielzuege().legegastkarte(Spielkartenecke.getAkthandkartnum(),j);
+            				new Spielzuege().legegastkarte(Variablen.getSpielkartenecke().getAkthandkartnum(),j);
             			} else {
             				new Spielzuege().warnungsboxtext(new Meldungen().stuhlbesetzt);
             				new Spielzuege().handkartendemarkieren();
@@ -121,19 +121,19 @@ public class Spielfeld extends JPanel {
 		}
 	}
 
-	public static ArrayList<Spielzelle> getSpielfeldtisch() {
+	public ArrayList<Spielzelle> getSpielfeldtisch() {
 		return spielfeldtisch;
 	}
 
-	public static ArrayList<Spielzelle> getSpielfeldstuhl() {
+	public ArrayList<Spielzelle> getSpielfeldstuhl() {
 		return spielfeldstuhl;
 	}
 
-	public static JLabel getWarnungsbox() {
+	public JLabel getWarnungsbox() {
 		return warnungsbox;
 	}
 
-	public static Color getHintgrdfarb() {
+	public Color getHintgrdfarb() {
 		return hintgrdfarb;
 	}
 	

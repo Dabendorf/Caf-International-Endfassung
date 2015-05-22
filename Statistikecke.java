@@ -24,8 +24,8 @@ import cafeint.Kartenstapel.Typ;
 
 public class Statistikecke extends JPanel {
 	
-	private static Kartenstapel handkarten[][] = new Kartenstapel[2][5];
-	private static Informationszelle[] infz = new Informationszelle[2];
+	private Kartenstapel handkarten[][] = new Kartenstapel[2][5];
+	private Informationszelle[] infz = new Informationszelle[2];
 	private Color hintgrdfarb = new Color(0x000000);
 	
 	public Statistikecke() {
@@ -64,11 +64,11 @@ public class Statistikecke extends JPanel {
 		}
 	}
 
-	public static Informationszelle getInfz(int num) {
+	public Informationszelle getInfz(int num) {
 		return infz[num];
 	}
 	
-	public static Kartenstapel getKartsp(int x, int y) {
+	public Kartenstapel getKartsp(int x, int y) {
 		return handkarten[x][y];
 	}
 

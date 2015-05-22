@@ -23,7 +23,7 @@ public class Spielzuege {
 	public void legegastkarte(int handkartennum,int stuhlNr) {
 		if(Variablen.getStuehle().get(stuhlNr).setGast(Variablen.getSpieler(42).getHandkarten().get(handkartennum)) == true) {
 			Variablen.getSpieler(42).getHandkarten().set(handkartennum,null);
-			Statistikecke.getKartsp(Variablen.getAktSpieler(), handkartennum).repaint();
+			Variablen.getStatistikecke().getKartsp(Variablen.getAktSpieler(), handkartennum).repaint();
 		}
 		handkartendemarkieren();
 	}
@@ -35,7 +35,7 @@ public class Spielzuege {
 	public void legetischkarte(Tisch tisch) {
 		tisch.setLand(Variablen.getLaenderkarten().get(0));
 		Variablen.getLaenderkarten().remove(0);
-		Spielkartenecke.landkstzahlLaden();
+		Variablen.getSpielkartenecke().landkstzahlLaden();
 	}
 	
 	/**
@@ -45,12 +45,12 @@ public class Spielzuege {
 	public void legebarkarte(int handkartennum) {
 		final int barnum = Variablen.getBarkarten().size();
 		Variablen.getBarkarten().add(Variablen.getSpieler(42).getHandkarten().get(handkartennum));
-		Barkartenecke.getBarzelle(barnum).setGast(Variablen.getSpieler(42).getHandkarten().get(handkartennum));
+		Variablen.getBarkartenecke().getBarzelle(barnum).setGast(Variablen.getSpieler(42).getHandkarten().get(handkartennum));
 		Variablen.getSpieler(42).getHandkarten().set(handkartennum,null);
-		Statistikecke.getKartsp(Variablen.getAktSpieler(),handkartennum).repaint();
-		punktzahl(Barkartenecke.getBarzelle(barnum).getPunkte());
+		Variablen.getStatistikecke().getKartsp(Variablen.getAktSpieler(),handkartennum).repaint();
+		punktzahl(Variablen.getBarkartenecke().getBarzelle(barnum).getPunkte());
 		handkartendemarkieren();
-		Barkartenecke.getBarzelle(barnum).setBorder(BorderFactory.createLineBorder(Color.red));
+		Variablen.getBarkartenecke().getBarzelle(barnum).setBorder(BorderFactory.createLineBorder(Color.red));
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -60,7 +60,7 @@ public class Spielzuege {
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						Barkartenecke.getBarzelle(barnum).setBorder(BorderFactory.createLineBorder(Color.black));
+						Variablen.getBarkartenecke().getBarzelle(barnum).setBorder(BorderFactory.createLineBorder(Color.black));
 					}
 				});
 			}
@@ -80,8 +80,8 @@ public class Spielzuege {
 		Variablen.getSpieler(42).getHandkarten().set(handkartennum,Variablen.getGastkarten().get(0));
 		Variablen.getGastkarten().remove(0);
 		
-		Statistikecke.getKartsp(Variablen.getAktSpieler(),handkartennum).repaint();
-		Statistikecke.getKartsp(Variablen.getAktSpieler(),handkartennum).setBorder(BorderFactory.createLineBorder(Color.red, 2));
+		Variablen.getStatistikecke().getKartsp(Variablen.getAktSpieler(),handkartennum).repaint();
+		Variablen.getStatistikecke().getKartsp(Variablen.getAktSpieler(),handkartennum).setBorder(BorderFactory.createLineBorder(Color.red, 2));
 		
 		Thread thread = new Thread(new Runnable() {
 			@Override
@@ -92,8 +92,8 @@ public class Spielzuege {
 				SwingUtilities.invokeLater(new Runnable() {
 					@Override
 					public void run() {
-						Statistikecke.getKartsp(0, handkartennum).setBorder(BorderFactory.createLineBorder(Color.black, 2));
-						Statistikecke.getKartsp(1, handkartennum).setBorder(BorderFactory.createLineBorder(Color.black, 2));
+						Variablen.getStatistikecke().getKartsp(0, handkartennum).setBorder(BorderFactory.createLineBorder(Color.black, 2));
+						Variablen.getStatistikecke().getKartsp(1, handkartennum).setBorder(BorderFactory.createLineBorder(Color.black, 2));
 					}
 				});
 			}
@@ -102,7 +102,7 @@ public class Spielzuege {
 		thread.start();
 		
 		handkartendemarkieren();
-		Spielkartenecke.gastkstzahlLaden();
+		Variablen.getSpielkartenecke().gastkstzahlLaden();
 		Variablen.setZustand(12);
 	}
 	
@@ -113,7 +113,7 @@ public class Spielzuege {
 	public void punktzahl(int addition) {
 		int neupktz = Variablen.getSpieler(42).getPunkte()+addition;
 		Variablen.getSpieler(42).setPunkte(neupktz);
-		Statistikecke.getInfz(Variablen.getAktSpieler()).punktzahlschreiben();
+		Variablen.getStatistikecke().getInfz(Variablen.getAktSpieler()).punktzahlschreiben();
 	}
 	
 	/**
@@ -122,12 +122,12 @@ public class Spielzuege {
 	public void spielerwechsel() {
 		if(Variablen.getAktSpieler() == 0) {
 			Variablen.setAktSpieler(1);
-			Statistikecke.getInfz(1).faerben(true);
-			Statistikecke.getInfz(0).faerben(false);
+			Variablen.getStatistikecke().getInfz(1).faerben(true);
+			Variablen.getStatistikecke().getInfz(0).faerben(false);
 		} else {
 			Variablen.setAktSpieler(0);
-			Statistikecke.getInfz(0).faerben(true);
-			Statistikecke.getInfz(1).faerben(false);
+			Variablen.getStatistikecke().getInfz(0).faerben(true);
+			Variablen.getStatistikecke().getInfz(1).faerben(false);
 		}
 		handkartendemarkieren();
 	}
@@ -136,11 +136,11 @@ public class Spielzuege {
 	 * Diese Methode demarkiert alle Handkarten, die gerade durch einen roten Rand hervorgehoben sind.
 	 */
 	public void handkartendemarkieren() {
-		Spielkartenecke.setAkthandkartnum(-1);
+		Variablen.getSpielkartenecke().setAkthandkartnum(-1);
 		for(int i=0;i<5;i++) {
-			Spielkartenecke.getHandkarte(i).setBorder(BorderFactory.createLineBorder(Color.black, 2));
-			Spielkartenecke.getHandkarte(i).setGeklickt(false);
-			Spielkartenecke.getHandkarte(i).repaint();
+			Variablen.getSpielkartenecke().getHandkarte(i).setBorder(BorderFactory.createLineBorder(Color.black, 2));
+			Variablen.getSpielkartenecke().getHandkarte(i).setGeklickt(false);
+			Variablen.getSpielkartenecke().getHandkarte(i).repaint();
 		}
 	}
 	
@@ -149,7 +149,7 @@ public class Spielzuege {
 	 */
 	public void tischedemarkieren() {
 		for(Tisch tisch:Variablen.getTische()) {
-			tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+			tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
 		}
 	}
 	
@@ -160,7 +160,7 @@ public class Spielzuege {
 	public void stuehledemarkieren(boolean zugende) {
 		for(Stuhl stuhl:Variablen.getStuehle()) {
 			if(!stuhl.isPartnerNoetig() || zugende) {
-				stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 3));
+				stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
 				stuhl.setPartnerNoetig(false);
 			} else {
 				stuhl.gruenfaerben();
@@ -175,8 +175,8 @@ public class Spielzuege {
 	 * @param text Hier wird der anzuzeigende Text eingetragen.
 	 */
 	public void warnungsboxtext(String text) {
-		Spielfeld.getWarnungsbox().setText(text);
-		Spielfeld.getWarnungsbox().setBorder(BorderFactory.createLineBorder(Color.red, 2));
+		Variablen.getSpielfeld().getWarnungsbox().setText(text);
+		Variablen.getSpielfeld().getWarnungsbox().setBorder(BorderFactory.createLineBorder(Color.red, 2));
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -199,8 +199,8 @@ public class Spielzuege {
 	 * Diese Methode loescht saemtliche Inhalte der Warnungsbox sofort.
 	 */
 	public void warnungsboxreseten() {
-		Spielfeld.getWarnungsbox().setText("");
-		Spielfeld.getWarnungsbox().setBorder(BorderFactory.createLineBorder(Spielfeld.getHintgrdfarb(), 2));
+		Variablen.getSpielfeld().getWarnungsbox().setText("");
+		Variablen.getSpielfeld().getWarnungsbox().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 2));
 	}
 
 }

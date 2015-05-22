@@ -28,10 +28,10 @@ import cafeint.Kartenstapel.Typ;
 
 public class Spielkartenecke extends JPanel {
 	
-	private static Kartenstapel handkarten[] = new Kartenstapel[5];
-	private static Kartenstapel gastkst = new Kartenstapel(Typ.Gastkartenstapel);
-	private static Kartenstapel landkst = new Kartenstapel(Typ.Laenderkartenstapel);
-	private static int akthandkartnum = -1;
+	private Kartenstapel handkarten[] = new Kartenstapel[5];
+	private Kartenstapel gastkst = new Kartenstapel(Typ.Gastkartenstapel);
+	private Kartenstapel landkst = new Kartenstapel(Typ.Laenderkartenstapel);
+	private int akthandkartnum = -1;
 	private Color hintgrdfarb = new Color(0x000000);
 	
 	public Spielkartenecke() {
@@ -188,27 +188,27 @@ public class Spielkartenecke extends JPanel {
 	/**
 	 * Laedt die Anzahl der Gastkarten im Gastkartenstapel neu.
 	 */
-	public static void gastkstzahlLaden() {
+	public void gastkstzahlLaden() {
 		gastkst.repaint();
 	}
 	
 	/**
 	 * Laedt die Anzahl der Laenderkarten im Gastkartenstapel neu.
 	 */
-	public static void landkstzahlLaden() {
+	public void landkstzahlLaden() {
 		landkst.repaint();
 	}
 	
-	public static Kartenstapel getHandkarte(int n) {
+	public Kartenstapel getHandkarte(int n) {
 		return handkarten[n];
 	}
 
-	public static int getAkthandkartnum() {
+	public int getAkthandkartnum() {
 		return akthandkartnum;
 	}
 
-	public static void setAkthandkartnum(int akthandkartnum) {
-		Spielkartenecke.akthandkartnum = akthandkartnum;
+	public void setAkthandkartnum(int akthandkartnum) {
+		this.akthandkartnum = akthandkartnum;
 	}
 
 }

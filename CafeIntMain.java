@@ -53,10 +53,10 @@ public class CafeIntMain {
         Container contentPane = spielframe.getContentPane();
         contentPane.setLayout(new GridBagLayout());
 
-        spielframe.add(new Barkartenecke(), new GridBagFelder(0, 0, 1, 1, 0.15, 0.5));
-        spielframe.add(new Statistikecke(), new GridBagFelder(0, 1, 1, 1, 0.15, 0.5));
-        spielframe.add(new Spielfeld(), new GridBagFelder(1, 0, 1, 2, 0.7, 1.0));
-        spielframe.add(new Spielkartenecke(), new GridBagFelder(2, 0, 1, 1, 0.15, 0.5));
+        spielframe.add(Variablen.getBarkartenecke(), new GridBagFelder(0, 0, 1, 1, 0.15, 0.5));
+        spielframe.add(Variablen.getStatistikecke(), new GridBagFelder(0, 1, 1, 1, 0.15, 0.5));
+        spielframe.add(Variablen.getSpielfeld(), new GridBagFelder(1, 0, 1, 2, 0.7, 1.0));
+        spielframe.add(Variablen.getSpielkartenecke(), new GridBagFelder(2, 0, 1, 1, 0.15, 0.5));
         spielframe.add(new Bildecke(), new GridBagFelder(2, 1, 1, 1, 0.15, 0.5));
         
         spielframe.pack();

@@ -151,13 +151,13 @@ public class Programmstart {
 	 * Sie ordnet jedem Tisch und jedem Stuhl seine graphische Spielzelle zu und andersherum.
 	 */
 	private void zellelementzuordnung() {
-		for(int n=0;n<Spielfeld.getSpielfeldtisch().size();n++) {
-			Spielfeld.getSpielfeldtisch().get(n).setTisch(Variablen.getTische().get(n));
-			Variablen.getTische().get(n).setSpielzelle(Spielfeld.getSpielfeldtisch().get(n));
+		for(int n=0;n<Variablen.getSpielfeld().getSpielfeldtisch().size();n++) {
+			Variablen.getSpielfeld().getSpielfeldtisch().get(n).setTisch(Variablen.getTische().get(n));
+			Variablen.getTische().get(n).setSpielzelle(Variablen.getSpielfeld().getSpielfeldtisch().get(n));
 		}
-		for(int n=0;n<Spielfeld.getSpielfeldstuhl().size();n++) {
-			Spielfeld.getSpielfeldstuhl().get(n).setStuhl(Variablen.getStuehle().get(n));
-			Variablen.getStuehle().get(n).setSpielzelle(Spielfeld.getSpielfeldstuhl().get(n));
+		for(int n=0;n<Variablen.getSpielfeld().getSpielfeldstuhl().size();n++) {
+			Variablen.getSpielfeld().getSpielfeldstuhl().get(n).setStuhl(Variablen.getStuehle().get(n));
+			Variablen.getStuehle().get(n).setSpielzelle(Variablen.getSpielfeld().getSpielfeldstuhl().get(n));
 		}
 	}
 
