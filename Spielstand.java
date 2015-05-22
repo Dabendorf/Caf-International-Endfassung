@@ -57,6 +57,10 @@ public class Spielstand {
 		}
 		for(int i=0;i<Variablen.getStuehle().size();i++) {
 			spielstand.setProperty("stuhl"+i,verschluesseln(String.valueOf(Variablen.getStuehle().get(i).getGast())));
+			if(Variablen.getStuehle().get(i).isPartnerNoetig()) {
+				int stuhlindex = Variablen.getStuehle().indexOf(Variablen.getStuehle().get(i));
+				spielstand.setProperty("gastAllein",verschluesseln(String.valueOf(stuhlindex)));
+			}
 		}
 		for(int i=0;i<Variablen.getTische().size();i++) {
 			spielstand.setProperty("tisch"+i,verschluesseln(String.valueOf(Variablen.getTische().get(i).getLaenderkarte())));
@@ -112,6 +116,12 @@ public class Spielstand {
     			}
     			for(int i=0;i<Variablen.getTische().size();i++) {
     				Variablen.getTische().get(i).setLand(Laenderkarte.parseLaenderkarte(entschluesseln(spielstand.getProperty("tisch"+i))));
+    			}
+    			String temp = spielstand.getProperty("gastAllein","null");
+    			if(temp!="null") {
+    				int stuhlindex = Integer.valueOf(entschluesseln(temp));
+    				Variablen.getStuehle().get(stuhlindex).setPartnerNoetig(true);
+    				Variablen.getStuehle().get(stuhlindex).gruenfaerben();
     			}
             } else {
             	neuesspiel();

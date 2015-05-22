@@ -108,12 +108,15 @@ public class Spielfeld extends JPanel {
 			spielfeldzelle[stuhlkoordx[i]][stuhlkoordy[i]].addMouseListener(new MouseAdapter() {
             	@Override
 				public void mouseClicked(MouseEvent e) {
+            		Spielzuege spz = new Spielzuege();
             		if(Variablen.getSpielkartenecke().getAkthandkartnum()!=-1) {
             			if(Variablen.getStuehle().get(j).getGast()==null) {
-            				new Spielzuege().legegastkarte(Variablen.getSpielkartenecke().getAkthandkartnum(),j);
+            				spz.legegastkarte(Variablen.getSpielkartenecke().getAkthandkartnum(),j);
             			} else {
-            				new Spielzuege().warnungsboxtext(new Meldungen().stuhlbesetzt);
-            				new Spielzuege().handkartendemarkieren();
+            				spz.warnungsboxtext(new Meldungen().stuhlbesetzt);
+            				spz.handkartendemarkieren();
+            				spz.stuehledemarkieren(false);
+            				spz.tischedemarkieren();
             			}
             		}
             	}

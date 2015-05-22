@@ -55,12 +55,19 @@ public class Spielkartenecke extends JPanel {
 				handkarten[i/2].addMouseListener(new MouseAdapter() {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
+	            		Spielzuege spz = new Spielzuege();
 	            		if((Variablen.getZustand()==10 || Variablen.getZustand()==11 || Variablen.getZustand()==12) && handkarten[index].getImage()!=null) {
 	            			klickhand(index);
 	            		} else if(Variablen.getZustand() >=220) {
-	            			new Spielzuege().warnungsboxtext(new Meldungen().tischkarteziehen);
+	            			spz.warnungsboxtext(new Meldungen().tischkarteziehen);
+	            			spz.handkartendemarkieren();
+            				spz.stuehledemarkieren(false);
+            				spz.tischedemarkieren();
 	            		} else if(handkarten[index].getImage()!=null) {
-	            			new Spielzuege().warnungsboxtext(new Meldungen().gastkarteziehen);
+	            			spz.warnungsboxtext(new Meldungen().gastkarteziehen);
+	            			spz.handkartendemarkieren();
+            				spz.stuehledemarkieren(false);
+            				spz.tischedemarkieren();
 	            		}
 	            	}
 	            });
@@ -72,13 +79,20 @@ public class Spielkartenecke extends JPanel {
 				gastkst.addMouseListener(new MouseAdapter() {
 	            	@Override
 	            	public void mouseClicked(MouseEvent e) {
+	            		Spielzuege spz = new Spielzuege();
 	            		if(Variablen.getZustand()==21 || Variablen.getZustand()==11) {
 	            			klickgast();
-	            			new Spielzuege().warnungsboxreseten();
+	            			spz.warnungsboxreseten();
 	    				} else if(Variablen.getZustand() >= 220) {
 	    					new Spielzuege().warnungsboxtext(new Meldungen().tischkarteziehen);
+	    					spz.handkartendemarkieren();
+            				spz.stuehledemarkieren(false);
+            				spz.tischedemarkieren();
 	    				} else {
-	    					new Spielzuege().warnungsboxtext(new Meldungen().gastkartelegen);
+	    					spz.warnungsboxtext(new Meldungen().gastkartelegen);
+	    					spz.handkartendemarkieren();
+            				spz.stuehledemarkieren(false);
+            				spz.tischedemarkieren();
 	    				}
 	            	}
 	            });
@@ -90,11 +104,17 @@ public class Spielkartenecke extends JPanel {
 				landkst.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						Spielzuege spz = new Spielzuege();
 						if(Variablen.getZustand() >= 220) {
 							klicktisch();
-							new Spielzuege().warnungsboxreseten();
+							spz.warnungsboxreseten();
+							spz.handkartendemarkieren();
+							spz.tischedemarkieren();
 						} else if(Variablen.getZustand() > 9 && Variablen.getZustand() < 13) {
-							new Spielzuege().warnungsboxtext(new Meldungen().gastkartelegen);
+							spz.warnungsboxtext(new Meldungen().gastkartelegen);
+							spz.handkartendemarkieren();
+            				spz.stuehledemarkieren(false);
+            				spz.tischedemarkieren();
 						}
 					}
 				});
@@ -137,10 +157,11 @@ public class Spielkartenecke extends JPanel {
 	 * Sollte hierbei der Gastkartenvorrat aufgebraucht werden, springt der boolean rundenwechsel auf false und das Spiel wird beendet.
 	 */
 	private void klickgast() {
+		Spielzuege spz = new Spielzuege();
 		boolean rundenwechsel = true;
 		for(int i=0;i<5;i++) {
 			if(handkarten[i].getImage()==null && Variablen.getGastkarten().size() > 0) {
-				new Spielzuege().gastkarteziehen(i);
+				spz.gastkarteziehen(i);
 				if(Variablen.getGastkarten().size() == 0) {
 					rundenwechsel = false;
 					new Spielende().keinegastkarten();
@@ -149,8 +170,10 @@ public class Spielkartenecke extends JPanel {
 			}
 		}
 		if(rundenwechsel) {
-			new Spielzuege().spielerwechsel();
+			spz.spielerwechsel();
 		}
+		spz.stuehledemarkieren(false);
+		spz.tischedemarkieren();
 	}
 	
 	/**

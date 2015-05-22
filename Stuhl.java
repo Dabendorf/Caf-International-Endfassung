@@ -210,6 +210,7 @@ public class Stuhl {
 	 * @return Gibt einen boolean zurueck, ob die Bedingung erfuellt ist.
 	 */
 	private boolean gastGeschlechtKorrekt(Gastkarte gasttemp) {
+		new Spielzuege().tischedemarkieren();
 		boolean korr = true;
 		for(Tisch tisch:this.tische) {
 			int mann=0, frau=0;
@@ -227,7 +228,7 @@ public class Stuhl {
 				int zustand = Variablen.getZustand();
 				if(!(zustand == 0 || zustand == 31 || zustand == 32 || zustand == 33)) {
 					for(final Stuhl stuhl:tisch.getStuehle()) {
-						if(stuhl.getGast()!=null) {
+						if(stuhl.getGast()!=null && !stuhl.isPartnerNoetig()) {
 							new Thread(new Runnable() {
 						        public void run() {
 						            try {

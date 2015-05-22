@@ -49,7 +49,6 @@ public class Spielzuege {
 		Variablen.getSpieler(42).getHandkarten().set(handkartennum,null);
 		Variablen.getStatistikecke().getKartsp(Variablen.getAktSpieler(),handkartennum).repaint();
 		punktzahl(Variablen.getBarkartenecke().getBarzelle(barnum).getPunkte());
-		handkartendemarkieren();
 		Variablen.getBarkartenecke().getBarzelle(barnum).setBorder(BorderFactory.createLineBorder(Color.red));
 		Thread thread = new Thread(new Runnable() {
 			@Override
@@ -165,7 +164,6 @@ public class Spielzuege {
 			} else {
 				stuhl.gruenfaerben();
 			}
-			
 		}
 	}
 	
