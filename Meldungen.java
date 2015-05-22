@@ -39,6 +39,7 @@ public class Meldungen {
 	public String gastzuvielemaenner = "Es sitzen zu viele Männer an diesem Tisch!";
 	public String gastzuvielefrauen = "Es sitzen zu viele Frauen an diesem Tisch!";
 	public String gastpartnerfalsch = "Dieser Gast würde allein sitzen. Du hast keine passenden Karten auf der Hand!";
+	public String gastpartnerfehlt = "Ein Gast sitzt noch allein. Bitte setze einen Partner zu diesem Gast an einen Tisch!";
 	public String barjoker = "Es ist verboten, Joker in die Bar abzuwerfen. Bitte setze den Gast an einen Tisch!";
 	public String gastkarteziehen = "Du hast die Maximalzahl an Karten gelegt. Bitte ziehe nun neue Gastkarten vom Stapel!";
 	public String gastkartelegen = "Bitte lege erst eine Gastkarte, bevor Du neue Karten ziehst!";

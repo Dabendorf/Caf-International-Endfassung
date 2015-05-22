@@ -111,7 +111,24 @@ public class Spielfeld extends JPanel {
             		Spielzuege spz = new Spielzuege();
             		if(Variablen.getSpielkartenecke().getAkthandkartnum()!=-1) {
             			if(Variablen.getStuehle().get(j).getGast()==null) {
-            				spz.legegastkarte(Variablen.getSpielkartenecke().getAkthandkartnum(),j);
+            				boolean partnerKorrekt = false;
+            				ti:for(Tisch tisch:Variablen.getStuehle().get(j).getTische()) {
+            					for(Stuhl stuhl:tisch.getStuehle()) {
+            						if(stuhl.isPartnerNoetig()) {
+            							partnerKorrekt = true;
+            							break ti;
+            						}
+            					}
+            				}
+            				if(!(Variablen.getZustand()==10 && !partnerKorrekt)) {
+            					spz.legegastkarte(Variablen.getSpielkartenecke().getAkthandkartnum(),j);
+            				} else {
+            					spz.warnungsboxtext(new Meldungen().gastpartnerfehlt);
+            					spz.handkartendemarkieren();
+            					spz.stuehledemarkieren(false);
+            					spz.tischedemarkieren();
+            				}
+            				
             			} else {
             				spz.warnungsboxtext(new Meldungen().stuhlbesetzt);
             				spz.handkartendemarkieren();
