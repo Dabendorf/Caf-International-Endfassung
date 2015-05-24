@@ -66,7 +66,7 @@ public class Variablen {
      * Es wird anschliessend <b>210</b> subtrahiert, um auf <b>10</b> oder <b>11</b>, je nach altem Zustand zu kommen.<br>
      * <b>31 - 33</b> Dies sind alle Spielendszenarien mit Grund. Bei <b>31</b> wurde das Spiel aufgrund von fehlenden Gastkarten beendet. Bei <b>32</b> aufgrund von fehlenden Laenderkarten und bei <b>33</b> aufgrund einer vollen Bar.
      */
-    private static int zustand = 0;
+    private static int zustand = -1;
     
 	public static List<Gastkarte> getGastkarten() {
 		return gastkarten;

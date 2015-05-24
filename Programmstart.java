@@ -1,11 +1,21 @@
 package cafeint;
 
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -118,6 +128,47 @@ public class Programmstart {
             } catch (MalformedURLException e) {} catch (IOException e) {}
         }
     }
+	
+	/**
+	 * Diese Methode zeigt das Startfenster mit dem Titelbild des Spiels an.<br>
+	 * Sowie der Spieler eine Taste auf Tastatur oder Maus klickt, verschwindet das Fenster und das Spiel wird geladen.<br>
+	 * Das Fenster wird nur bei Start eines neuen Spiels angezeigt und nicht beim Laden eines alten Spieles.<br>
+	 */
+	public void startbildschirm() {
+		Variablen.setZustand(-1);
+		JFrame startframe = new JFrame(new Meldungen().programmname);
+		startframe.addWindowListener(new WindowAdapter() {
+			@Override
+            public void windowClosing(WindowEvent e) {
+            	Variablen.setZustand(0);
+            	startframe.dispose();
+            }
+        });
+		startframe.addKeyListener(new KeyAdapter() {
+			@Override
+	        public void keyPressed(KeyEvent event) {
+				Variablen.setZustand(0);
+	        	startframe.dispose();
+	        }
+		});
+	    startframe.addMouseListener(new MouseAdapter() {
+	    	@Override
+	        public void mouseClicked(MouseEvent e) {
+	    		Variablen.setZustand(0);
+	        	startframe.dispose();
+	        }
+	    });
+		startframe.setPreferredSize(new Dimension(1608,780));
+		startframe.setMinimumSize(new Dimension(1072,520));
+		startframe.setResizable(true);
+		
+		Container contentPane = startframe.getContentPane();
+        contentPane.setLayout(new GridLayout(1,1));
+        startframe.add(new Startbildschirm());
+        startframe.pack();
+        startframe.setLocationRelativeTo(null);
+        startframe.setVisible(true);
+	}
 	
 	/**
 	 * Diese Methode erstellt die 12 Tische und 24 Stuehle, mit denen intern gearbeitet wird.

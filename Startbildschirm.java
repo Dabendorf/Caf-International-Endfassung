@@ -2,21 +2,23 @@ package cafeint;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
- * Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.<br>
- * Es stellt die Flaeche unten rechts dar. In ihr wird aus Gruenden der Aesthetik lediglich ein schickes Bild eines Eisbechers, das Symbol des Spiels angezeigt.<br>
+ * Diese Klasse stellt zum Start des Spiels ein kurzes Ladefenster dar, welches das Titelbild des Spiels anzeigt.<br>
  * <br>
- * <b>bi</b> Hier wird das angezeigte Bild geladen.
+ * <b>bi</b> Hier wird das angezeigte große Bild geladen.
  * 
  * @author Lukas Schramm
  * @version 1.0
  *
  */
 
-public final class Bildecke extends JPanel {
+public final class Startbildschirm extends JPanel {
 	
 	private BufferedImage bi;
 	
@@ -33,12 +35,17 @@ public final class Bildecke extends JPanel {
 	}
 	
 	/**
-	 * Diese Methode laedt das anzuzeigende Bild aus dem Bilderspeicher.
+	 * Diese Methode laedt das anzuzeigende Bild.
 	 */
 	private void bildLaden() {
 		if(bi==null) {
-			String key = "./icon.png";
-			bi = Variablen.getTischcache().get(key);
+			String key = "./start.png";
+			try {
+				URL url = new URL(BaseURL.getJarBase(Spielfeld.class), key);
+				bi = ImageIO.read(url);
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

@@ -35,7 +35,7 @@ public class Spielfeld extends JPanel {
 	private JLabel warnungsbox = new JLabel();
 	private ArrayList<Spielzelle> spielfeldtisch = new ArrayList<Spielzelle>(12);
 	private ArrayList<Spielzelle> spielfeldstuhl = new ArrayList<Spielzelle>(24);
-	private Color hintgrdfarb = new Color(0x538fcb);
+	private Color hintgrdfarb = new Color(0x368cc8);
 
 	public Spielfeld() {
 		this.setBackground(hintgrdfarb);
