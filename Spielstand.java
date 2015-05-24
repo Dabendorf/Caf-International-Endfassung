@@ -1,11 +1,12 @@
 package cafeint;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -159,7 +160,6 @@ public class Spielstand {
 		Properties spielstand = ladeProperties(dateiname);
 		spielstand.clear();
 		spielstand.setProperty("spielangefangen",verschluesseln(String.valueOf(false)));
-		
 		try {
 			spielstand.store(new FileWriter("dateien/"+dateiname),"Spielstand gespeichert");
 		} catch (IOException e) {
@@ -173,17 +173,16 @@ public class Spielstand {
 	 * @return Gibt die erstellten Properties zurueck.
 	 */
 	private Properties ladeProperties(String filename) {
-		Reader reader = null;
 		Properties prop = null;
 		try {
-			reader = new BufferedReader(new FileReader("dateien/"+filename));
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("dateien/"+filename), Charset.forName("UTF-8")));
 			prop = new Properties();
-			prop.load(reader);
-			reader.close();
+			prop.load(br);
+			br.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			
+			e.printStackTrace();
 		}
 		return prop;
 	}
