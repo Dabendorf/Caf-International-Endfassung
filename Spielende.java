@@ -56,7 +56,7 @@ public class Spielende {
 	}
 	
 	/**
-	 * Diese Methode prueft, warum das Spiel beendet wurde, gibt eine Meldung fuer die Auswertung aus und fragt anschliessend, ob man ein neues Spiel starten moechte.
+	 * Diese Methode prueft, warum das Spiel beendet wurde, gibt eine Meldung fuer die Auswertung aus und zeigt anschliessend die Bestenliste der Punktzahlen an.
 	 * @param art Hier traegt man einen der drei Gruende ein, aus dem das Spiel beendet wurde.
 	 */
 	private void siegmeldung(int art) {
@@ -82,17 +82,39 @@ public class Spielende {
 		
 		if(pkt0 > pkt1+20) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(0), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
+			bestenlisteFuellen(0);
 		} else if(pkt0 > pkt1) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(1), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
+			bestenlisteFuellen(0);
 		} else if(pkt0 == pkt1) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(2), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
 		} else if(pkt0 < pkt1) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(3), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
+			bestenlisteFuellen(1);
 		} else if(pkt0+20 < pkt1) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(4), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
+			bestenlisteFuellen(1);
 		}
 		
-        int menue = JOptionPane.showOptionDialog(null,msgbox.endefrage,msgbox.endetitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.endoptionen, msgbox.endoptionen[0]);
+	}
+	
+	/**
+	 * Diese Methode ergaenzt abhaengig vom siegreichen Spieler die Bestenliste um seine Punktzahl.
+	 * @param spieler Dies ist der siegreiche Spieler
+	 */
+	private void bestenlisteFuellen(int spieler) {
+		Bestenliste bestenliste = new Bestenliste();
+		bestenliste.highscorehinzufuegen(System.currentTimeMillis(),Variablen.getSpieler(spieler).getPunkte(),Variablen.getSpieler(spieler).getName());
+		bestenliste.sortiere();
+    	bestenliste.anzeigen(true);
+	}
+	
+	/**
+	 * Diese Methode fragt den Spieler, ob er ein neues Spiel starten oder das Programm beenden moechte.
+	 */
+	public void abfrageNeuesspiel() {
+		Meldungen msgbox = new Meldungen();
+		int menue = JOptionPane.showOptionDialog(null,msgbox.endefrage,msgbox.endetitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.endoptionen, msgbox.endoptionen[0]);
         if(menue == 0) {
         	Spielstart spst = new Spielstart();
         	spst.neuesspiel();
@@ -101,5 +123,4 @@ public class Spielende {
         	System.exit(0);
         }
 	}
-
 }

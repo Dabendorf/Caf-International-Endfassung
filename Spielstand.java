@@ -1,11 +1,14 @@
 package cafeint;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
@@ -25,14 +28,15 @@ import javax.swing.JOptionPane;
 
 public class Spielstand {
 	
-	private String dateiname = "spielstand.txt";
+	private String spielstanddatei = "spielstand.txt";
+	private String highscoredatei = "bestenliste.txt";
 	private char[] schluessel = "Heizoelrueckstossabdaempfung".toCharArray();
 	
 	/**
 	 * Diese Methode speichert den aktuellen Spielstand verschluesselt ab.
 	 */
 	public void speichern() {
-		Properties spielstand = ladeProperties(dateiname);
+		Properties spielstand = ladeProperties(spielstanddatei);
 		spielstand.clear();
 		spielstand.setProperty("spielangefangen",verschluesseln(String.valueOf(true)));
 		spielstand.setProperty("amZug",verschluesseln(String.valueOf(Variablen.getAktSpieler())));
@@ -68,7 +72,7 @@ public class Spielstand {
 		}
 		
 		try {
-			spielstand.store(new FileWriter("dateien/"+dateiname),"Spielstand gespeichert");
+			spielstand.store(new FileWriter("dateien/"+spielstanddatei),"Spielstand gespeichert");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +83,7 @@ public class Spielstand {
 	 * Wenn er dies moechte, wird der Spielstand geladen. Andererseits wird ein neues Spiel generiert.
 	 */
 	public void laden() {
-		Properties spielstand = ladeProperties(dateiname);
+		Properties spielstand = ladeProperties(spielstanddatei);
 		boolean spielgespeichert = Boolean.valueOf(entschluesseln(spielstand.getProperty("spielangefangen","false")));
 		if(spielgespeichert) {
 			Meldungen msgbox = new Meldungen();
@@ -157,11 +161,11 @@ public class Spielstand {
 	 * Diese Methode loescht den Inhalt der Speicherdatei.
 	 */
 	public void loescheSpielstand() {
-		Properties spielstand = ladeProperties(dateiname);
+		Properties spielstand = ladeProperties(spielstanddatei);
 		spielstand.clear();
 		spielstand.setProperty("spielangefangen",verschluesseln(String.valueOf(false)));
 		try {
-			spielstand.store(new FileWriter("dateien/"+dateiname),"Spielstand gespeichert");
+			spielstand.store(new FileWriter("dateien/"+spielstanddatei),"Spielstand gespeichert");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -169,13 +173,13 @@ public class Spielstand {
 	
 	/**
 	 * Diese Methode laedt die Properties, in welchen die Inhalte der Textdatei gespeichert werden.
-	 * @param filename Nimmt den Namen der Datei entgegen.
+	 * @param dateiname Nimmt den Namen der Datei entgegen.
 	 * @return Gibt die erstellten Properties zurueck.
 	 */
-	private Properties ladeProperties(String filename) {
+	private Properties ladeProperties(String dateiname) {
 		Properties prop = null;
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("dateien/"+filename), Charset.forName("UTF-8")));
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("dateien/"+dateiname), Charset.forName("UTF-8")));
 			prop = new Properties();
 			prop.load(br);
 			br.close();
@@ -185,6 +189,61 @@ public class Spielstand {
 			e.printStackTrace();
 		}
 		return prop;
+	}
+	
+	/**
+	 * Diese Methode schreibt einen neuen Highscore und gibt ihm eine Nummer.
+	 * @param hsc Der zu uebergebende Highscore.
+	 * @param num Die Nummer des Highscores.
+	 */
+	public void highscorehinzufuegen(Highscore hsc,int num) {
+		try {
+			Properties bestenliste = ladeProperties(highscoredatei);
+			String temp = (String.valueOf(hsc.getSystemzeit())+","+hsc.getPunktzahl()+","+hsc.getName());
+			bestenliste.setProperty("highscore"+num, verschluesseln(temp));
+			bestenliste.setProperty("anzahlHighscores", verschluesseln(String.valueOf(num+1)));
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("dateien/"+highscoredatei), Charset.forName("UTF-8")));
+			bestenliste.store(bw, "Gespeicherte Highscores");
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Diese Methode laedt alle verfuegbaren Highscores aus der Datei und gibt sie in einem Array aus.
+	 * @return Gibt einen Highscore[] zurueck.
+	 */
+	public Highscore[] allesHighscoresLaden() {
+		Properties bestenliste = ladeProperties(highscoredatei);
+		int anz;
+		try {
+			anz = Integer.valueOf(entschluesseln(bestenliste.getProperty("anzahlHighscores")));
+		} catch(NullPointerException e) {
+			anz = 0;
+		}
+		
+		Highscore[] highscores = new Highscore[anz];
+		for(int i=0;i<anz;i++) {
+			highscores[i] = highscoreAufrufen("highscore"+i);
+		}
+		return highscores;
+	}
+	
+	/**
+	 * Gibt einen Highscore anhand seines Keys aus.
+	 * @param key Hier gibt man den key ein.
+	 * @return Gibt den Highscore zurueck.
+	 */
+	private Highscore highscoreAufrufen(String key) {
+		try {
+			Properties bestenliste = ladeProperties(highscoredatei);
+			String temp = entschluesseln(bestenliste.getProperty(key));
+			String[] temp2 = temp.split(",");
+			Highscore hsc = new Highscore(Long.valueOf(temp2[0]),Integer.valueOf(temp2[1]),temp2[2]);
+			return hsc;
+		} catch (NullPointerException np) { 
+			return null;
+		}
 	}
 	
 	/**

@@ -81,6 +81,7 @@ public class Spielzuege {
 	/**
 	 * Diese Methode wird aufgerufen, wenn ein Spieler neue Gastkarten vom Stapel zieht.
 	 * @param handkartennum Nimmt die Handkartennummer entgegen, welcher die neu gezogene Karte zugeordnet wird.
+	 * @param spieler Dies ist der Spieler, der die neue Gastkarte gezogen hat.
 	 */
 	public void gastkarteziehen(final int handkartennum,final int spieler) {
 		Variablen.getSpieler(42).getHandkarten().set(handkartennum,Variablen.getGastkarten().get(0));

@@ -22,7 +22,6 @@ import javax.swing.WindowConstants;
  * @version 1.0
  *
  */
-
 public class CafeIntMain {
 	
 	private JFrame spielframe = new JFrame(new Meldungen().programmname);
