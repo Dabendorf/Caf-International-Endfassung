@@ -44,6 +44,10 @@ public class CafeIntMain {
         });
     	spielframe.setPreferredSize(new Dimension(1608,780));
         spielframe.setMinimumSize(new Dimension(1072,520));
+    	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    	if(dim.getWidth()<1608) {
+    		spielframe.setPreferredSize(new Dimension((int)dim.getWidth(),(int)(dim.getWidth()/2.06)));
+    	}
         spielframe.setResizable(true);
         try {
 			spielframe.setIconImage(Toolkit.getDefaultToolkit().getImage(new URL(BaseURL.getJarBase(Spielfeld.class), "./favicon.png")));

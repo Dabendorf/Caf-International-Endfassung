@@ -3,6 +3,7 @@ package cafeint;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -160,6 +161,10 @@ public class Programmstart {
 	    });
 		startframe.setPreferredSize(new Dimension(1608,780));
 		startframe.setMinimumSize(new Dimension(1072,520));
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    	if(dim.getWidth()<1608) {
+    		startframe.setPreferredSize(new Dimension((int)dim.getWidth(),(int)(dim.getWidth()/2.06)));
+    	}
 		startframe.setResizable(true);
 		
 		Container contentPane = startframe.getContentPane();

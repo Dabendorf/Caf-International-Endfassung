@@ -1,8 +1,6 @@
 package cafeint;
 
 import java.awt.Color;
-import java.awt.Toolkit;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -74,7 +72,6 @@ public class Stuhl {
 			spz.warnungsboxtext(msgbox.gastlandfalsch);
 			partnerNoetig = false;
 			spz.stuehledemarkieren(false);
-			Toolkit.getDefaultToolkit().beep();
 			return false;
 		} else if(!gastGeschlechtKorrekt(gasttemp)) {
 			if(gasttemp.getGeschlecht().equals(Geschlecht.Mann)) {
@@ -84,11 +81,9 @@ public class Stuhl {
 			}
 			partnerNoetig = false;
 			spz.stuehledemarkieren(false);
-			Toolkit.getDefaultToolkit().beep();
 			return false;
 		} else if(!gastPartnerKorrekt(gasttemp)) {
 			spz.warnungsboxtext(msgbox.gastpartnerfalsch);
-			Toolkit.getDefaultToolkit().beep();
 			return false;
 		} else {
 			if(Variablen.getZustand() == 12) {
@@ -117,7 +112,6 @@ public class Stuhl {
 				tischVollPruefen(true);
 				return true;
 			} else {
-				Toolkit.getDefaultToolkit().beep();
 				return false;
 			}
 		}
@@ -181,21 +175,27 @@ public class Stuhl {
 		if(!(zustand == 0 || zustand == 31 || zustand == 32 || zustand == 33)) {
 			if(korr == false) {
 				for(final Tisch tisch:this.tische) {
-					tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
 					Thread thread = new Thread(new Runnable() {
-						@Override
-						public void run() {
-							try {
-								Thread.sleep(5000);
-							} catch(InterruptedException e) {}
-							SwingUtilities.invokeLater(new Runnable() {
-								@Override
-								public void run() {
-									tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
-								}
-							});
-						}
-					});
+				        public void run() {
+				            try {
+				            	SwingUtilities.invokeLater(new Runnable() {
+									@Override
+									public void run() {
+										tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
+									}
+								});
+				            	Thread.sleep(5000);
+				            	SwingUtilities.invokeLater(new Runnable() {
+									@Override
+									public void run() {
+										tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
+									}
+								});
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+				        }
+				    });
 					thread.setDaemon(true);
 					thread.start();
 				}
@@ -229,7 +229,7 @@ public class Stuhl {
 				if(!(zustand == 0 || zustand == 31 || zustand == 32 || zustand == 33)) {
 					for(final Stuhl stuhl:tisch.getStuehle()) {
 						if(stuhl.getGast()!=null && !stuhl.isPartnerNoetig()) {
-							new Thread(new Runnable() {
+							Thread thread = new Thread(new Runnable() {
 						        public void run() {
 						            try {
 										SwingUtilities.invokeAndWait(new Runnable() {
@@ -237,21 +237,19 @@ public class Stuhl {
 										    	stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
 										    }
 										});
-									} catch (InvocationTargetException | InterruptedException e) {
-										e.printStackTrace();
-									}
-						            try { Thread.sleep(5000); } catch(Exception e) { e.printStackTrace(); }
-						            try {
+										Thread.sleep(5000);
 										SwingUtilities.invokeAndWait(new Runnable() {
 										    public void run() {
 										    	stuhl.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
 										    }
 										});
-									} catch (InvocationTargetException | InterruptedException e) {
+									} catch (Exception e) {
 										e.printStackTrace();
 									}
 						        }
-						    }).start();
+						    });
+							thread.setDaemon(true);
+							thread.start();
 						}
 					}
 				}
