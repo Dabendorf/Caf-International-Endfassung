@@ -82,7 +82,7 @@ public class Spielzuege {
 	 * Diese Methode wird aufgerufen, wenn ein Spieler neue Gastkarten vom Stapel zieht.
 	 * @param handkartennum Nimmt die Handkartennummer entgegen, welcher die neu gezogene Karte zugeordnet wird.
 	 */
-	public void gastkarteziehen(final int handkartennum) {
+	public void gastkarteziehen(final int handkartennum,final int spieler) {
 		Variablen.getSpieler(42).getHandkarten().set(handkartennum,Variablen.getGastkarten().get(0));
 		Variablen.getGastkarten().remove(0);
 		
@@ -93,7 +93,7 @@ public class Spielzuege {
 	            	SwingUtilities.invokeLater(new Runnable() {
 						@Override
 						public void run() {
-							Variablen.getStatistikecke().getKartsp(Variablen.getAktSpieler(),handkartennum).setBorder(BorderFactory.createLineBorder(Color.red, 2));
+							Variablen.getStatistikecke().getKartsp(spieler,handkartennum).setBorder(BorderFactory.createLineBorder(Color.red, 2));
 						}
 					});
 	            	Thread.sleep(1500);

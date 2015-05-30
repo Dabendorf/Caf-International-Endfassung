@@ -161,7 +161,7 @@ public class Spielkartenecke extends JPanel {
 		boolean rundenwechsel = true;
 		for(int i=0;i<5;i++) {
 			if(handkarten[i].getImage()==null && Variablen.getGastkarten().size() > 0) {
-				spz.gastkarteziehen(i);
+				spz.gastkarteziehen(i,Variablen.getAktSpieler());
 				if(Variablen.getGastkarten().size() == 0) {
 					rundenwechsel = false;
 					new Spielende().keinegastkarten();
