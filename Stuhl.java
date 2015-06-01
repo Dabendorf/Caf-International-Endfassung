@@ -171,7 +171,7 @@ public class Stuhl {
 			}
 		}
 		int zustand = Variablen.getZustand();
-		if(!(zustand == 0 || zustand == 31 || zustand == 32 || zustand == 33)) {
+		if(!(zustand == 0 || zustand == 31)) {
 			if(korr == false) {
 				for(final Tisch tisch:this.tische) {
 					Thread thread = new Thread(new Runnable() {
@@ -225,7 +225,7 @@ public class Stuhl {
 			if((gasttemp.getGeschlecht().equals(Geschlecht.Mann)) && (mann > frau) || (gasttemp.getGeschlecht().equals(Geschlecht.Frau)) && (frau > mann)) {
 				korr = false;
 				int zustand = Variablen.getZustand();
-				if(!(zustand == 0 || zustand == 31 || zustand == 32 || zustand == 33)) {
+				if(!(zustand == 0 || zustand == 31)) {
 					for(final Stuhl stuhl:tisch.getStuehle()) {
 						if(stuhl.getGast()!=null && !stuhl.isPartnerNoetig()) {
 							Thread thread = new Thread(new Runnable() {
@@ -273,7 +273,7 @@ public class Stuhl {
 						partnerNoetig = false;
 						korr = true;
 						break tischschleife;
-					} else if(zustand==12 || zustand == 0 || zustand == 31 || zustand == 32 || zustand == 33) {
+					} else if(zustand==12 || zustand == 0 || zustand == 31) {
 						for(Gastkarte handtemp:Variablen.getSpieler(42).getHandkarten()) {
 							if(handtemp!=null) {
 								if(!handtemp.equals(gasttemp)) {

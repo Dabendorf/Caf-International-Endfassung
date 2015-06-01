@@ -45,7 +45,7 @@ public class Bestenliste {
 	    frame1.addWindowListener(new WindowAdapter() {
 			@Override
             public void windowClosing(WindowEvent e) {
-				if(Variablen.getZustand()==31 || Variablen.getZustand()==32 || Variablen.getZustand()==33) {
+				if(Variablen.getZustand()==31) {
 					new Spielende().abfrageNeuesspiel();
 				} else {
 					frame1.dispose();

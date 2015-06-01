@@ -32,7 +32,7 @@ public class Spielende {
 	 */
 	public boolean keinelaenderkarten() {
 		if(Variablen.getLaenderkarten().size() == 0) {
-			Variablen.setZustand(32);
+			Variablen.setZustand(31);
 			siegmeldung(1);
 			return true;
 		} else {
@@ -46,7 +46,7 @@ public class Spielende {
 	 */
 	public boolean barvoll() {
 		if(Variablen.getBarkarten().size() == 21) {
-			Variablen.setZustand(33);
+			Variablen.setZustand(31);
 			siegmeldung(2);
 			return true;
 		}

@@ -136,7 +136,7 @@ public class Programmstart {
 	 */
 	public void startbildschirm() {
 		Variablen.setZustand(-1);
-		JFrame startframe = new JFrame(new Meldungen().programmname);
+		final JFrame startframe = new JFrame(new Meldungen().programmname);
 		startframe.addWindowListener(new WindowAdapter() {
 			@Override
             public void windowClosing(WindowEvent e) {

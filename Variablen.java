@@ -63,7 +63,7 @@ public class Variablen {
      * <b>21</b> Zeigt an, dass nun Gastkarten vom Stapel gezogen werden muessen.<br>
      * <b>220 - 221</b> Zeigt an, dass nun Laenderkarte vom Stapel gezogen werden muessen. Es wird differenziert, weil nach Ziehen von Tischkarten der Zug noch nicht vorbei ist.
      * Es wird anschliessend <b>210</b> subtrahiert, um auf <b>10</b> oder <b>11</b>, je nach altem Zustand zu kommen.<br>
-     * <b>31 - 33</b> Dies sind alle Spielendszenarien mit Grund. Bei <b>31</b> wurde das Spiel aufgrund von fehlenden Gastkarten beendet. Bei <b>32</b> aufgrund von fehlenden Laenderkarten und bei <b>33</b> aufgrund einer vollen Bar.
+     * <b>31</b> Zeigt an, dass das Spiel aus einem der drei Spielbeendigungsgruende abgeschlossen wurde.
      */
     private static int zustand = -1;
     
