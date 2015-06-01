@@ -20,7 +20,6 @@ import javax.swing.JPanel;
  * @version 1.0
  *
  */
-
 public class Spielzelle extends JPanel {
 	
 	public enum Typ {Leer, Stuhl, Tisch};

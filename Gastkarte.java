@@ -13,7 +13,6 @@ package cafeint;
  * @version 1.0
  *
  */
-
 public class Gastkarte {
 	
 	public enum Land {DE, FR, GB, US, TR, IN, CN, RU, ES, CU, CF, IT, JOKER};

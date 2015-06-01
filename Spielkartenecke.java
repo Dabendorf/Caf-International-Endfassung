@@ -25,7 +25,6 @@ import cafeint.Kartenstapel.Typ;
  * @version 1.0
  *
  */
-
 public class Spielkartenecke extends JPanel {
 	
 	private Kartenstapel handkarten[] = new Kartenstapel[5];
@@ -41,7 +40,7 @@ public class Spielkartenecke extends JPanel {
 	
 	/**
 	 * Diese Methode erstellt das GridLayout, in welchem die Spielelemente dargestellt werden.<br>
-	 * Außerdem wird hier jedem Element ein MouseListener zugeordnet, nach welchem es zu reagieren hat.
+	 * Ausserdem wird hier jedem Element ein MouseListener zugeordnet, nach welchem es zu reagieren hat.
 	 */
 	private void layoutgenerieren() {
 		setLayout(new GridLayout(5,2));

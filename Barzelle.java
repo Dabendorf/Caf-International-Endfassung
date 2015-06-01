@@ -17,13 +17,12 @@ import javax.swing.JPanel;
  * <b>bi</b> Dies ist die bildliche Darstellung der zugeordneten Gastkarte.<br>
  * <b>punkte</b> Dies ist die zugeordnete Punktzahl der Barzelle.<br>
  * <b>font</b> Dies ist die Schriftart, in welcher die Punktzahl dargestellt wird.<br>
- * <b>fm</b> Dies sind die FontMetrics, die zur Schriftart dazugehören.<br>
+ * <b>fm</b> Dies sind die FontMetrics, die zur Schriftart dazugehoeren.<br>
  * 
  * @author Lukas Schramm
  * @version 1.0
  *
  */
-
 public class Barzelle extends JPanel {
 
 	private Gastkarte gast = null;

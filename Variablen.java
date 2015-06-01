@@ -14,7 +14,6 @@ import java.util.TreeMap;
  * @version 1.0
  *
  */
-
 public class Variablen {
 	
 	/**
@@ -43,7 +42,7 @@ public class Variablen {
     private static Map<String,BufferedImage> stuhlcache = new TreeMap<String,BufferedImage>();
     
     /**
-     * Dies sind vier der fuenf eingefügten Designelemente.<br>
+     * Dies sind vier der fuenf eingefuegten Designelemente.<br>
      * Die <b>Bildecke</b> hat keinerlei Steuerfunktionen und kann daher direkt ins Design eingegliedert werden.
      */
     private static Barkartenecke barkartenecke = new Barkartenecke();

@@ -14,7 +14,6 @@ package cafeint;
  * @version 1.0
  *
  */
-
 public class Tisch {
 	
 	private Laenderkarte laenderkarte;

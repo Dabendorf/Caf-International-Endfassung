@@ -22,13 +22,12 @@ import javax.swing.JPanel;
  * <b>geklickt</b> Der Boolean geklickt wird benoetig, um bei den Handkarten festzustellen, ob der Spieler sie benutzen moechte.<br>
  * <b>num</b> Die Zahl num zeigt an den Nachziehstapeln an, wie viele Karten uebrig geblieben sind.<br>
  * <b>font</b> Dies ist die Schriftart, in welcher die Punktzahl dargestellt wird.<br>
- * <b>fm</b> Dies sind die FontMetrics, die zur Schriftart dazugehören.<br>
+ * <b>fm</b> Dies sind die FontMetrics, die zur Schriftart dazugehoeren.<br>
  * 
  * @author Lukas Schramm
  * @version 1.0
  *
  */
-
 public class Kartenstapel extends JPanel {
 	
 	public enum Typ {Leer, Gastkartenstapel, Laenderkartenstapel, Handkarte, HandkarteInfo};

@@ -8,7 +8,6 @@ package cafeint;
  * @version 1.0
  *
  */
-
 public class Meldungen {
 	
 	public String umbruch = System.getProperty("line.separator");

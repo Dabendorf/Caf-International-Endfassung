@@ -22,7 +22,6 @@ import cafeint.Gastkarte.Land;
  * @version 1.0
  *
  */
-
 public class Barkartenecke extends JPanel {
 	
 	private Barzelle[] barzellen = new Barzelle[21];
@@ -64,8 +63,8 @@ public class Barkartenecke extends JPanel {
 	}
 
 	/**
-	 * @param num Stellt die Nummer der Barzelle (0 bis 22) dar, welche zurückgegeben wird.
-	 * @return Gibt eine Barzelle abhängig von der Nummer zurück, welche in anderen Klassen verwendet wird.
+	 * @param num Stellt die Nummer der Barzelle (0 bis 22) dar, welche zurueckgegeben wird.
+	 * @return Gibt eine Barzelle abhaengig von der Nummer zurueck, welche in anderen Klassen verwendet wird.
 	 */
 	public Barzelle getBarzelle(int num) {
 		return barzellen[num];

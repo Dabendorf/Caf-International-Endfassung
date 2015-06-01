@@ -23,7 +23,6 @@ import cafeint.Gastkarte.Land;
  * @version 1.0
  *
  */
-
 public class Stuhl {
 	
 	private Gastkarte gast;

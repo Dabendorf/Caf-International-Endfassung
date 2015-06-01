@@ -88,6 +88,7 @@ public class Spielende {
 			bestenlisteFuellen(0);
 		} else if(pkt0 == pkt1) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(2), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
+			bestenlisteFuellen(-1);
 		} else if(pkt0 < pkt1) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(3), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
 			bestenlisteFuellen(1);
@@ -104,7 +105,9 @@ public class Spielende {
 	 */
 	private void bestenlisteFuellen(int spieler) {
 		Bestenliste bestenliste = new Bestenliste();
-		bestenliste.highscorehinzufuegen(System.currentTimeMillis(),Variablen.getSpieler(spieler).getPunkte(),Variablen.getSpieler(spieler).getName());
+		if(spieler!=-1) {
+			bestenliste.highscorehinzufuegen(System.currentTimeMillis(),Variablen.getSpieler(spieler).getPunkte(),Variablen.getSpieler(spieler).getName());
+		}
 		bestenliste.sortiere();
     	bestenliste.anzeigen(true);
 	}

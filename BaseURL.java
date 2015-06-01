@@ -13,7 +13,6 @@ import java.net.URL;
  * @version 1.0
  * 
  */
- 
 public final class BaseURL {
     private static final String JAR_SIG = ".jar!/";
     private static final String CONCAT = ".class";
@@ -23,7 +22,7 @@ public final class BaseURL {
      * Gibt die Basis-URL des Archivs zurueck, in welchem sich die Klasse
      * "clazz" befindet. Aehnlich wie
      *   clazz.getProtectionDomain().getCodeSource().getLocation();
-     * nur um einiges zuverlässiger, weil es auch dann eine URL zurueck-
+     * nur um einiges zuverlaessiger, weil es auch dann eine URL zurueck-
      * gibt, wenn fuer die Klasse keine ProtectionDomain definiert wurde.
      *
      * @param clazz Die Klasse fuer welche die Basis-URL benoetigt wird

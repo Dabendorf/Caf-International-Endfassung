@@ -28,7 +28,6 @@ import javax.swing.SwingConstants;
  * @version 1.0
  *
  */
-
 public class Spielfeld extends JPanel {
 
 	private Spielzelle spielfeldzelle[][] = new Spielzelle[11][11];

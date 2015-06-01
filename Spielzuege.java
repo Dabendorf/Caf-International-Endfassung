@@ -12,7 +12,6 @@ import javax.swing.SwingUtilities;
  * @version 1.0
  *
  */
-
 public class Spielzuege {
 	
 	/**

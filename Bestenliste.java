@@ -36,7 +36,6 @@ public class Bestenliste {
 	private ArrayList<Highscore> highscoreliste = new ArrayList<Highscore>();
 
 	public Bestenliste() {
-		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame1.setPreferredSize(new Dimension(450,300));
         frame1.setMinimumSize(new Dimension(450,300));
 	    frame1.setResizable(true);

@@ -7,14 +7,13 @@ import cafeint.Gastkarte.Land;
 
 /**
  * Die Klasse Spielstart ist eine von zwei Klassen, die bei Aufruf des Spiels relevant sind.
- * Sie laedt saemtliche Elemente des Spielalgorithmus, die für einen reibungslosen Ablauf relevant sind.<br>
+ * Sie laedt saemtliche Elemente des Spielalgorithmus, die fuer einen reibungslosen Ablauf relevant sind.<br>
  * Sie muss bei Start eines jeden neuen Spiels neu geladen werden.
  * 
  * @author Lukas Schramm
  * @version 1.0
  * 
  */
-
 public class Spielstart {
 	
 	/**
@@ -37,16 +36,16 @@ public class Spielstart {
 			new Spielzuege().legetischkarte(tisch);
 		}
 		
+		for(Stuhl stuhl:Variablen.getStuehle()) {
+			stuhl.gastNachHause();
+		}
+		
 		boolean korrektgemischt = false;
 		do {
 			if(gastkartenmischen()) {
 				korrektgemischt = true;
 			}
 		} while (!korrektgemischt);
-		
-		for(Stuhl stuhl:Variablen.getStuehle()) {
-			stuhl.gastNachHause();
-		}
 		
 		new Spielzuege().handkartendemarkieren();
 		Variablen.getSpielkartenecke().gastkstzahlLaden();

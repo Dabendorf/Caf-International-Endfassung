@@ -12,7 +12,6 @@ import cafeint.Gastkarte.Land;
  * @version 1.0
  *
  */
-
 public class Laenderkarte {
 	
 	private final Land land;

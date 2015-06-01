@@ -16,7 +16,6 @@ import javax.swing.text.PlainDocument;
  * @version 1.0
  * 
  */
-
 public class Feldbegrenzung extends PlainDocument {
 	
 	private int maxlaenge;

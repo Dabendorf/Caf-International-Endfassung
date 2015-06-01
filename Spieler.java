@@ -10,7 +10,6 @@ import java.util.List;
  * @version 1.0
  *
  */
-
 public class Spieler {
 	
 	private String name;

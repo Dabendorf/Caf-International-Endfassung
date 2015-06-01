@@ -21,7 +21,6 @@ import cafeint.Kartenstapel.Typ;
  * @version 1.0
  *
  */
-
 public class Statistikecke extends JPanel {
 	
 	private Kartenstapel handkarten[][] = new Kartenstapel[2][5];

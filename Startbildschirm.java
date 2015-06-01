@@ -17,7 +17,6 @@ import javax.swing.JPanel;
  * @version 1.0
  *
  */
-
 public final class Startbildschirm extends JPanel {
 	
 	private BufferedImage bi;

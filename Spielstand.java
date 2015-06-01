@@ -15,7 +15,7 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 
 /**
- * Diese Klasse speichert Spielstaende von Nicht beendeten Spielen und ruft sie beim naechsten Start neu auf.<br>
+ * Diese Klasse speichert Spielstaende von nicht beendeten Spielen und ruft sie beim naechsten Start neu auf.<br>
  * Um Spielstandmanipulation vorzubeugen, wird die Textdatei mit dem Spielstand mit Polyalphabetischer Substitution (Vigenere) verschluesselt.<br>
  * <br>
  * <b>dateiname</b> Dieser String speichert den Dateinamen, in welchem der Spielstand gespeichert wird.<br>
@@ -25,7 +25,6 @@ import javax.swing.JOptionPane;
  * @version 1.0
  *
  */
-
 public class Spielstand {
 	
 	private String spielstanddatei = "spielstand.txt";
