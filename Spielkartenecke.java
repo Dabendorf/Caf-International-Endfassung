@@ -183,12 +183,13 @@ public class Spielkartenecke extends JPanel {
 	private void klicktisch() {
 		boolean spielende = false;
 		for(Tisch tisch:Variablen.getTische()) {
-			if(tisch.getLaenderkarte()==null && Variablen.getLaenderkarten().size() > 0) {
-				new Spielzuege().legetischkarte(tisch);
+			if(tisch.getLaenderkarte()==null) {
 				if(Variablen.getLaenderkarten().size() == 0) {
 					spielende = true;
 					new Spielende().keinelaenderkarten();
 					break;
+				} else {
+					new Spielzuege().legetischkarte(tisch);
 				}
 			}
 		}

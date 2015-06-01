@@ -13,31 +13,21 @@ import javax.swing.JOptionPane;
 public class Spielende {
 	
 	/**
-	 * Diese Methode prueft, ob noch Gastkarten zum Nachziehen uebrig sind.
-	 * @return Gibt True zurueck, wenn das Spiel beendet werden muss.
+	 * Diese Methode beendet das Spiel aufgrund des leeren Gastkartenstapels.<br>
+	 * Eine Ueberpruefung mit boolean-Rueckgabewert, analog zur barvoll()-Methode muss nicht existieren, weil sie bereits zum Aufruf dieser Methode impliziert wird.
 	 */
-	public boolean keinegastkarten() {
-		if(Variablen.getGastkarten().size() == 0) {
-			Variablen.setZustand(31);
-			siegmeldung(0);
-			return true;
-		} else {
-			return false;
-		}
+	public void keinegastkarten() {
+		Variablen.setZustand(31);
+		siegmeldung(0);
 	}
 	
 	/**
-	 * Diese Methode prueft, ob noch Laenderkarten zum Nachziehen uebrig sind.
-	 * @return Gibt True zurueck, wenn das Spiel beendet werden muss.
+	 * Diese Methode beendet das Spiel aufgrund des leeren Laenderkartenstapels.<br>
+	 * Eine Ueberpruefung mit boolean-Rueckgabewert, analog zur barvoll()-Methode muss nicht existieren, weil sie bereits zum Aufruf dieser Methode impliziert wird.
 	 */
-	public boolean keinelaenderkarten() {
-		if(Variablen.getLaenderkarten().size() == 0) {
-			Variablen.setZustand(31);
-			siegmeldung(1);
-			return true;
-		} else {
-			return false;
-		}
+	public void keinelaenderkarten() {
+		Variablen.setZustand(31);
+		siegmeldung(1);
 	}
 	
 	/**
