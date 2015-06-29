@@ -181,6 +181,7 @@ public class Programmstart {
 	private void startbildschirmExit() {
 		Programmstart progst = new Programmstart();
 		Spielstart spstart = new Spielstart();
+		Variablen.setZustand(0);
 		progst.namensfrage();
         progst.grafikladen();
         spstart.neuesspiel();

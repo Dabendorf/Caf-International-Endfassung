@@ -73,7 +73,7 @@ public class Spielstand {
 		try {
 			spielstand.store(new FileWriter("dateien/"+spielstanddatei),"Spielstand gespeichert");
 		} catch (IOException e) {
-			e.printStackTrace();
+			absturz("dateien/"+spielstanddatei);
 		}
 	}
 	
@@ -153,7 +153,7 @@ public class Spielstand {
 		try {
 			spielstand.store(new FileWriter("dateien/"+spielstanddatei),"Spielstand gespeichert");
 		} catch (IOException e) {
-			e.printStackTrace();
+			absturz("dateien/"+spielstanddatei);
 		}
 	}
 	
@@ -170,9 +170,9 @@ public class Spielstand {
 			prop.load(br);
 			br.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			absturz("dateien/"+spielstanddatei);
 		} catch (IOException e) {
-			e.printStackTrace();
+			absturz("dateien/"+spielstanddatei);
 		}
 		return prop;
 	}
@@ -191,7 +191,7 @@ public class Spielstand {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("dateien/"+highscoredatei), Charset.forName("UTF-8")));
 			bestenliste.store(bw, "Gespeicherte Highscores");
 		} catch(IOException e) {
-			e.printStackTrace();
+			absturz("dateien/"+highscoredatei);
 		}
 	}
 	
@@ -265,6 +265,16 @@ public class Spielstand {
             decrypt += (char) result;
 		}
 		return decrypt;
+	}
+	
+	/**
+	 * Diese Methode gibt eine Absturzmeldung zurueck, weil eine Datei fehlt und schliesst danach das Programm.
+	 * @param dateiname Nimmt den Dateinamen entgegen.
+	 */
+	private void absturz(String dateiname) {
+		Meldungen msgbox = new Meldungen();
+		JOptionPane.showMessageDialog(null, msgbox.dateiFehlt(dateiname), msgbox.dateifehltTitel, JOptionPane.WARNING_MESSAGE);
+		System.exit(0);
 	}
 
 }

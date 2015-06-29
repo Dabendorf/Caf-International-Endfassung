@@ -14,6 +14,7 @@ public class Meldungen {
 	public String programmname = "Café International";
 	public String nameerlaubtezeichen = "[a-zA-Z0-9ÄÖÜäöüß]*";
 	public String falschessystem = "System veraltet";
+	public String dateifehltTitel = "Fehlerhafte Datei";
 	public String windows = "Dieses Computerspiel wurde für OS X und Linux entwickelt."+umbruch+"Es ist nicht primär mit Windows kompatibel."+umbruch+"Sollte es zu Problemen bei der Ausführung kommen,"+umbruch+"dann öffne das Spiel bitte auf einem PC"+umbruch+"mit Mac OS X oder Linux!";
 	public String fragespielername = "Wie heißen die Spieler?";
 	public String spielername = "Name von Spieler ";
@@ -64,5 +65,13 @@ public class Meldungen {
 			return Variablen.getSpieler(1).getName()+" gewinnt die Partie hochverdient!"+umbruch+"Er gewinnt mit "+Variablen.getSpieler(1).getPunkte()+" zu "+Variablen.getSpieler(0).getPunkte()+" Punkten."+umbruch+"Herzlichen Glückwunsch.";
 		}
 	}
-
+	
+	/**
+	 * Diese Methode gibt einen WarnString zurueck, dass eine Datei zum Abspeichern von Spielstaenden nicht angelegt bzw. aus dem Ordner entfernt wurde.
+	 * @param dateiname Name der fehlenden Datei.
+	 * @return Gibt einen String wieder, um den Spieler zu informieren.
+	 */
+	public String dateiFehlt(String dateiname) {
+		return "Die Speicherdatei "+dateiname+" ist nicht vorhanden."+umbruch+"Der Spielstart wird abgebrochen."+umbruch+"Stelle die Speicherdatei wieder her und versuche es erneut.";
+	}
 }

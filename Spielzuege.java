@@ -53,12 +53,14 @@ public class Spielzuege {
 	        public void run() {
 	            try {
 	            	SwingUtilities.invokeLater(new Runnable() {
+	            		@Override
 						public void run() {
 							Variablen.getBarkartenecke().getBarzelle(barnum).setBorder(BorderFactory.createLineBorder(Color.red));
 						}
 					});
 	            	Thread.sleep(1500);
 	            	SwingUtilities.invokeLater(new Runnable() {
+	            		@Override
 						public void run() {
 							Variablen.getBarkartenecke().getBarzelle(barnum).setBorder(BorderFactory.createLineBorder(Color.black));
 						}
@@ -89,12 +91,14 @@ public class Spielzuege {
 	        public void run() {
 	            try {
 	            	SwingUtilities.invokeLater(new Runnable() {
+	            		@Override
 						public void run() {
 							Variablen.getStatistikecke().getKartsp(spieler,handkartennum).setBorder(BorderFactory.createLineBorder(Color.red, 2));
 						}
 					});
 	            	Thread.sleep(1500);
 	            	SwingUtilities.invokeLater(new Runnable() {
+	            		@Override
 						public void run() {
 							Variablen.getStatistikecke().getKartsp(0, handkartennum).setBorder(BorderFactory.createLineBorder(Color.black, 2));
 							Variablen.getStatistikecke().getKartsp(1, handkartennum).setBorder(BorderFactory.createLineBorder(Color.black, 2));
@@ -186,12 +190,14 @@ public class Spielzuege {
 	        public void run() {
 	            try {
 	            	SwingUtilities.invokeLater(new Runnable() {
+	            		@Override
 						public void run() {
 							Variablen.getSpielfeld().getWarnungsbox().setBorder(BorderFactory.createLineBorder(Color.red, 2));
 						}
 					});
 	            	Thread.sleep(5000);
 	            	SwingUtilities.invokeLater(new Runnable() {
+	            		@Override
 						public void run() {
 							warnungsboxreseten();
 						}

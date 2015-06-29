@@ -178,12 +178,14 @@ public class Stuhl {
 				        public void run() {
 				            try {
 				            	SwingUtilities.invokeLater(new Runnable() {
+				            		@Override
 									public void run() {
 										tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Color.red, 3));
 									}
 								});
 				            	Thread.sleep(5000);
 				            	SwingUtilities.invokeLater(new Runnable() {
+				            		@Override
 									public void run() {
 										tisch.getSpielzelle().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 3));
 									}
