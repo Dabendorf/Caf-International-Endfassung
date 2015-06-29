@@ -140,22 +140,22 @@ public class Programmstart {
 		startframe.addWindowListener(new WindowAdapter() {
 			@Override
             public void windowClosing(WindowEvent e) {
-            	Variablen.setZustand(0);
-            	startframe.dispose();
+				startframe.dispose();
+				startbildschirmExit();
             }
         });
 		startframe.addKeyListener(new KeyAdapter() {
 			@Override
 	        public void keyPressed(KeyEvent event) {
-				Variablen.setZustand(0);
-	        	startframe.dispose();
+				startframe.dispose();
+				startbildschirmExit();
 	        }
 		});
 	    startframe.addMouseListener(new MouseAdapter() {
 	    	@Override
 	        public void mouseClicked(MouseEvent e) {
-	    		Variablen.setZustand(0);
-	        	startframe.dispose();
+	    		startframe.dispose();
+	    		startbildschirmExit();
 	        }
 	    });
 		startframe.setPreferredSize(new Dimension(1608,780));
@@ -172,6 +172,19 @@ public class Programmstart {
         startframe.pack();
         startframe.setLocationRelativeTo(null);
         startframe.setVisible(true);
+	}
+	
+	/**
+	 * Diese Methode umfasst alles, was beim Schliessen des Willkommensbildschirms passiert.<br>
+	 * Die Frage nach dem Namen, das Laden der Grafik sowie das Starten eines neuen Spiels mit Einblendung des Spielfeldes wird hier behandelt.
+	 */
+	private void startbildschirmExit() {
+		Programmstart progst = new Programmstart();
+		Spielstart spstart = new Spielstart();
+		progst.namensfrage();
+        progst.grafikladen();
+        spstart.neuesspiel();
+    	CafeIntMain.getSpielframe().setVisible(true);
 	}
 	
 	/**

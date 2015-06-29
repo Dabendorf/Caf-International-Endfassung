@@ -24,7 +24,7 @@ import javax.swing.WindowConstants;
  */
 public class CafeIntMain {
 	
-	private JFrame spielframe = new JFrame(new Meldungen().programmname);
+	private static JFrame spielframe = new JFrame(new Meldungen().programmname);
     
     public CafeIntMain() {
     	oberflaeche();
@@ -65,14 +65,13 @@ public class CafeIntMain {
         spielframe.pack();
         spielframe.setLocationRelativeTo(null);
     }
-    
-    /**
+
+	/**
      * Diese Methode leitet den erstmaligen Spielablauf beim Start. Es wird die Spielablaufroutine aus der Klasse Spielstand geladen und der spielframe sichtbar gemacht.
      */
     private void ablauf() {
     	new Programmstart().sysWin();
     	new Spielstand().laden();
-        spielframe.setVisible(true);
     }
     
     /**
@@ -98,6 +97,10 @@ public class CafeIntMain {
      */
 	public static void main(String[] args) {
 		new CafeIntMain();
+	}
+	
+	public static JFrame getSpielframe() {
+		return spielframe;
 	}
 
 }

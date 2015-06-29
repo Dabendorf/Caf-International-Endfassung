@@ -140,20 +140,7 @@ public class Spielstand {
 	 */
 	private void neuesspiel() {
 		Programmstart progst = new Programmstart();
-		Spielstart spstart = new Spielstart();
 		progst.startbildschirm();
-		/**
-		 * Diese while-Schleife blockiert solange den weiteren Ablauf, bis der Spieler eine Taste drueckt.
-		 * Da die Schleife nicht leer bleiben darf, enthaelt sie eine sinnfreie if-Bedingung, da der Zustand niemals auf 720 oder 2000 gesetzt werden wird.
-		 */
-		while(Variablen.getZustand()==-1) {
-			if(Variablen.getZustand()==720) {
-				Variablen.setZustand(2000);
-			}
-		}
-		progst.namensfrage();
-        progst.grafikladen();
-        spstart.neuesspiel();
 	}
 	
 	/**
