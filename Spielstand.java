@@ -127,6 +127,7 @@ public class Spielstand {
     				Variablen.getStuehle().get(stuhlindex).setPartnerNoetig(true);
     				Variablen.getStuehle().get(stuhlindex).gruenfaerben();
     			}
+    			CafeIntMain.getSpielframe().setVisible(true);
             } else {
             	neuesspiel();
             }
