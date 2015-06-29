@@ -273,7 +273,7 @@ public class Spielstand {
 	 */
 	private void absturz(String dateiname) {
 		Meldungen msgbox = new Meldungen();
-		JOptionPane.showMessageDialog(null, msgbox.dateiFehlt(dateiname), msgbox.dateifehltTitel, JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(null, msgbox.dateiFehlt(dateiname), msgbox.dateifehltTitel, JOptionPane.ERROR_MESSAGE);
 		System.exit(0);
 	}
 
