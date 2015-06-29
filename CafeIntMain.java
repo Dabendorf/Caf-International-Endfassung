@@ -75,9 +75,9 @@ public class CafeIntMain {
     }
     
     /**
-     * Diese Methode wird automatisch aufgerufen, wenn der Spieler das Programm beendet. Er wird gefragt, ob er das aktuelle Spiel abspeichern moechte.<br/>
-     * Sollte er dies bejahen, werden alle aktuellen Informationen in einer Textdatei abgelegt und bei Spielstart geladen.<br/>
-     * Sollte er dies verneinen, wird die Textdatei geleert und der Spielstand geht unwiderruflich verloren.<br/>
+     * Diese Methode wird automatisch aufgerufen, wenn der Spieler das Programm beendet. Er wird gefragt, ob er das aktuelle Spiel abspeichern moechte.<br>
+     * Sollte er dies bejahen, werden alle aktuellen Informationen in einer Textdatei abgelegt und bei Spielstart geladen.<br>
+     * Sollte er dies verneinen, wird die Textdatei geleert und der Spielstand geht unwiderruflich verloren.<br>
      * Abschliessend werden das Programm und die Javaengine geschlossen.
      */
     private void schliessen() {

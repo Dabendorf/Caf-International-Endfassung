@@ -313,7 +313,7 @@ public class Stuhl {
 	/**
 	 * Ueberprueft im Zuge der Methode gastPartnerKorrekt(), ob ein Partner aus dem Handkartenvorrat mit der zu legenden Gastkarte die Bedingung des Geschlechtes erfuellen wuerde.
 	 * @param gasttemp Dies ist die Gastkarte, um die es geht, die zu legen ist.
-	 * @param @param handtemp Dies ist eine Handkarte aus dem Handkartenvorrat, die ueberprueft wird.
+	 * @param handtemp Dies ist eine Handkarte aus dem Handkartenvorrat, die ueberprueft wird.
 	 * @param stuhltemp Dies ist ein Stuhl, der fuer diese Bedingung getestet wird.
 	 * @return Gibt einen boolean zurueck, ob die Bedingung erfuellt ist.
 	 */

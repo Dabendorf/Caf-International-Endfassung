@@ -249,7 +249,7 @@ public class Spielstand {
 	
 	/**
 	 * Diese Methode entschluesselt den eingegebenen String.
-	 * @param original Nimmt den verschluesselten String entgegen.
+	 * @param verschluesselt Nimmt den verschluesselten String entgegen.
 	 * @return Gibt den entschluesselten String aus.
 	 */
 	private String entschluesseln(String verschluesselt) {
