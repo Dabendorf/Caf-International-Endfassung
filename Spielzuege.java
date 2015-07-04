@@ -207,9 +207,7 @@ public class Spielzuege {
 	            			warnungsboxreseten();
 						}
 					});
-				} catch (InterruptedException e) {
-					warnungsboxreseten();
-				}
+				} catch (InterruptedException e) {}
 	        }
 	    }));
 		Variablen.getWarnungsthread().setDaemon(true);
