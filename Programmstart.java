@@ -107,7 +107,7 @@ public class Programmstart {
     		}
         }
         
-        String[] tischbilder = {"./tisch_leer.png", "./stapel_tische.png", "./icon.png"};
+        String[] tischbilder = {"./tisch_leer.png", "./stapel_tische.png", "./icon.png", "./anleitung.png"};
         String[] stuhlbilder = {"./stuhl_leer.png", "./stapel_gaeste.png"};
         
         for(String str:tischbilder) {

@@ -12,6 +12,7 @@ import javax.swing.JPanel;
  * Die Klasse Kartenstapel ist dazu zustaendig die meisten Arten von Kartenanzeigen zu realisieren. Es unterteilt sich in fuenf Typen.<br>
  * Leere Zellen bleiben weiss, "Gastkartenstapel" und "Laenderkartenstapel" stellen Nachziehstapel dar.<br>
  * "Handkarte" zeigt die Anklickbaren Handkarten an, "HandkarteInfo" zeigt in der Statistikecke die Uebersicht der Spielkarten aller Spieler auf.<br>
+ * Ausserdem ist der Punkt Anleitung der Menuepunkt, wo der Spieler sich ueber die Spielregeln belesen kann.<br>
  * <br>
  * <b>Typ</b> Dies ist der enum, welcher alle Typen dieser Klasse beinhaltet.<br>
  * <b>typ</b> Dies ist ein Feld des enums Typ, der jeder Zelle ihren Typ zuordnet.<br>
@@ -30,7 +31,7 @@ import javax.swing.JPanel;
  */
 public class Kartenstapel extends JPanel {
 	
-	public enum Typ {Leer, Gastkartenstapel, Laenderkartenstapel, Handkarte, HandkarteInfo};
+	public enum Typ {Leer, Gastkartenstapel, Laenderkartenstapel, Handkarte, HandkarteInfo, Anleitung};
 	
 	private Typ typ;
 	private BufferedImage bi;
@@ -87,12 +88,14 @@ public class Kartenstapel extends JPanel {
 				bi = null;
 				key = null;
 			}
+		} else if(typ.equals(Typ.Anleitung)) {
+			key = "./anleitung.png";
 		}
 		
 		if(!typ.equals(Typ.Leer) && key!=null) {
 			if(typ.equals(Typ.Handkarte) || typ.equals(Typ.HandkarteInfo) || typ.equals(Typ.Gastkartenstapel)) {
 				bi = Variablen.getStuhlcache().get(key);
-			} else if (typ.equals(Typ.Laenderkartenstapel)){
+			} else if (typ.equals(Typ.Laenderkartenstapel) || typ.equals(Typ.Anleitung)){
 				bi = Variablen.getTischcache().get(key);
 			}
 		}

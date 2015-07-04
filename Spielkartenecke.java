@@ -1,9 +1,12 @@
 package cafeint;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -13,7 +16,7 @@ import cafeint.Kartenstapel.Typ;
 /**
  * Diese Klasse ist eine von 5 Klassen, aus denen sich die graphische Oberflaeche zusammensetzt.<br>
  * Es stellt die Spielflaeche oben rechts dar, in welcher die Handkarten des aktuellen Spielers zum Legen angezeigt werden.<br>
- * Ausserdem kann man hier Gast- und Laenderkarten nachziehen.<br>
+ * Ausserdem kann man hier Gast- und Laenderkarten nachziehen und die Anleitung oeffnen.<br>
  * <br>
  * <b>handkarten</b> Stellt die 5 Handkarten des aktuellen Spielers in einem Array dar.<br>
  * <b>gastkst</b> Das ist das Element, in welchem man Gastkarten nachziehen kann.<br>
@@ -30,6 +33,7 @@ public class Spielkartenecke extends JPanel {
 	private Kartenstapel handkarten[] = new Kartenstapel[5];
 	private Kartenstapel gastkst = new Kartenstapel(Typ.Gastkartenstapel);
 	private Kartenstapel landkst = new Kartenstapel(Typ.Laenderkartenstapel);
+	private Kartenstapel anl = new Kartenstapel(Typ.Anleitung);
 	private int akthandkartnum = -1;
 	private Color hintgrdfarb = new Color(0x000000);
 	
@@ -71,7 +75,22 @@ public class Spielkartenecke extends JPanel {
 	            	}
 	            });
 				add(handkarten[i/2]);
-			} else if(i==3) {
+			} else if(i==1) {
+				anl = new Kartenstapel(Typ.Anleitung);
+				anl.setOpaque(true);
+				anl.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+				anl.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						try {
+							Desktop.getDesktop().open(new File("./pictures/anleitung.pdf"));
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+					}
+				});
+				add(anl);
+			} else if(i==5) {
 				gastkst = new Kartenstapel(Typ.Gastkartenstapel);
 				gastkst.setOpaque(true);
 				gastkst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
@@ -96,7 +115,7 @@ public class Spielkartenecke extends JPanel {
 	            	}
 	            });
 				add(gastkst);
-			} else if(i==7) {
+			} else if(i==9) {
 				landkst = new Kartenstapel(Typ.Laenderkartenstapel);
 				landkst.setOpaque(true);
 				landkst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
