@@ -83,7 +83,7 @@ public class Spielkartenecke extends JPanel {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						try {
-							Desktop.getDesktop().open(new File("./pictures/anleitung.pdf"));
+							Desktop.getDesktop().open(new File("dateien/anleitung.pdf"));
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						}
