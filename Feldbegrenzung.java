@@ -41,7 +41,7 @@ public class Feldbegrenzung extends PlainDocument {
 	 * @return Gibt einen Boolean zurueck, der aufzeigt, ob die Zusammensetzung korrekt oder falsch ist.
 	 */
 	private boolean laengeokay(final String text) {
-		Meldungen msgbox = new Meldungen();
+		Sprache msgbox = new Sprache();
 		if((getLength() + text.length() <= maxlaenge) && text.matches(msgbox.nameerlaubtezeichen)) {
 			return true;
 		} else { 

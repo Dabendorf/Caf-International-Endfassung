@@ -58,12 +58,12 @@ public class Spielkartenecke extends JPanel {
 	            		if((Variablen.getZustand()==10 || Variablen.getZustand()==11 || Variablen.getZustand()==12) && handkarten[index].getImage()!=null) {
 	            			klickhand(index);
 	            		} else if(Variablen.getZustand() >=220) {
-	            			spz.warnungsboxtext(new Meldungen().tischkarteziehen);
+	            			spz.warnungsboxtext(new Sprache().tischkarteziehen);
 	            			spz.handkartendemarkieren();
             				spz.stuehledemarkieren(false);
             				spz.tischedemarkieren();
 	            		} else if(handkarten[index].getImage()!=null) {
-	            			spz.warnungsboxtext(new Meldungen().gastkarteziehen);
+	            			spz.warnungsboxtext(new Sprache().gastkarteziehen);
 	            			spz.handkartendemarkieren();
             				spz.stuehledemarkieren(false);
             				spz.tischedemarkieren();
@@ -83,12 +83,12 @@ public class Spielkartenecke extends JPanel {
 	            			klickgast();
 	            			spz.warnungsboxreseten();
 	    				} else if(Variablen.getZustand() >= 220) {
-	    					new Spielzuege().warnungsboxtext(new Meldungen().tischkarteziehen);
+	    					new Spielzuege().warnungsboxtext(new Sprache().tischkarteziehen);
 	    					spz.handkartendemarkieren();
             				spz.stuehledemarkieren(false);
             				spz.tischedemarkieren();
 	    				} else {
-	    					spz.warnungsboxtext(new Meldungen().gastkartelegen);
+	    					spz.warnungsboxtext(new Sprache().gastkartelegen);
 	    					spz.handkartendemarkieren();
             				spz.stuehledemarkieren(false);
             				spz.tischedemarkieren();
@@ -110,7 +110,7 @@ public class Spielkartenecke extends JPanel {
 							spz.handkartendemarkieren();
 							spz.tischedemarkieren();
 						} else if(Variablen.getZustand() > 9 && Variablen.getZustand() < 13) {
-							spz.warnungsboxtext(new Meldungen().gastkartelegen);
+							spz.warnungsboxtext(new Sprache().gastkartelegen);
 							spz.handkartendemarkieren();
             				spz.stuehledemarkieren(false);
             				spz.tischedemarkieren();

@@ -8,7 +8,7 @@ package cafeint;
  * @version 1.0
  *
  */
-public class Meldungen {
+public class Sprache {
 	
 	public String umbruch = System.getProperty("line.separator");
 	public String programmname = "Café International";

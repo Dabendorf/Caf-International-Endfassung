@@ -65,7 +65,7 @@ public class Stuhl {
 	 * @return Gibt einen Boolean zurueck, ob ein Gast sich setzen durfte oder nicht.
 	 */
 	public boolean setGast(Gastkarte gasttemp) {
-		Meldungen msgbox = new Meldungen();
+		Sprache msgbox = new Sprache();
 		Spielzuege spz = new Spielzuege();
 		if(!gastLandKorrekt(gasttemp)) {
 			spz.warnungsboxtext(msgbox.gastlandfalsch);
@@ -277,7 +277,7 @@ public class Stuhl {
 						for(Gastkarte handtemp:Variablen.getSpieler(42).getHandkarten()) {
 							if(handtemp!=null) {
 								if(!handtemp.equals(gasttemp)) {
-									if(tempLandKorrekt(handtemp,stuhl) == true && tempGeschlechtKorrekt(gasttemp,handtemp,stuhl)) {
+									if(tempLandKorrekt(handtemp,stuhl) && tempGeschlechtKorrekt(gasttemp,handtemp,stuhl)) {
 										if(zustand == 12) {
 											partnerNoetig = true;
 										}
@@ -340,7 +340,7 @@ public class Stuhl {
 			} else {
 				frau++;
 			}
-			if((gasttemp.getGeschlecht().equals(Geschlecht.Mann)) && (mann > frau) || (gasttemp.getGeschlecht().equals(Geschlecht.Frau)) && (frau > mann)) {
+			if(((handtemp.getGeschlecht().equals(Geschlecht.Mann)) && (mann > frau)) || ((handtemp.getGeschlecht().equals(Geschlecht.Frau)) && (frau > mann))) {
 				korr = false;
 			}
 		}

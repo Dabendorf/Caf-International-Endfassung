@@ -24,7 +24,7 @@ import javax.swing.WindowConstants;
  */
 public class CafeIntMain {
 	
-	private static JFrame spielframe = new JFrame(new Meldungen().programmname);
+	private static JFrame spielframe = new JFrame(new Sprache().programmname);
     
     public CafeIntMain() {
     	oberflaeche();
@@ -81,7 +81,7 @@ public class CafeIntMain {
      * Abschliessend werden das Programm und die Javaengine geschlossen.
      */
     private void schliessen() {
-    	Meldungen msgbox = new Meldungen();
+    	Sprache msgbox = new Sprache();
     	int menue = JOptionPane.showOptionDialog(null,msgbox.schliessfrage,msgbox.schliesstitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.schliessoptionen, msgbox.schliessoptionen[0]);
         if(menue == 0) {
         	new Spielstand().speichern();

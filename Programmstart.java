@@ -49,7 +49,7 @@ public class Programmstart {
 	 */
 	public void sysWin() {
 		if(System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
-			Meldungen msgbox = new Meldungen();
+			Sprache msgbox = new Sprache();
 			JOptionPane.showMessageDialog(null, msgbox.windows, msgbox.falschessystem, JOptionPane.WARNING_MESSAGE);
 		}
     }
@@ -59,7 +59,7 @@ public class Programmstart {
 	 * Es gibt auch Fehlermeldungen aus, wenn die beiden Namen gleich sind oder ein Name nicht eingegeben wurde.
 	 */
 	public void namensfrage() {
-		Meldungen msgbox = new Meldungen();
+		Sprache msgbox = new Sprache();
 		
 		JTextField spielername00 = new JTextField(new Feldbegrenzung(12), "", 0);
 		JTextField spielername01 = new JTextField(new Feldbegrenzung(12), "", 0);
@@ -136,7 +136,7 @@ public class Programmstart {
 	 */
 	public void startbildschirm() {
 		Variablen.setZustand(-1);
-		final JFrame startframe = new JFrame(new Meldungen().programmname);
+		final JFrame startframe = new JFrame(new Sprache().programmname);
 		startframe.addWindowListener(new WindowAdapter() {
 			@Override
             public void windowClosing(WindowEvent e) {

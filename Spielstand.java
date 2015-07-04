@@ -85,7 +85,7 @@ public class Spielstand {
 		Properties spielstand = ladeProperties(spielstanddatei);
 		boolean spielgespeichert = Boolean.valueOf(entschluesseln(spielstand.getProperty("spielangefangen","false")));
 		if(spielgespeichert) {
-			Meldungen msgbox = new Meldungen();
+			Sprache msgbox = new Sprache();
 			int menue = JOptionPane.showOptionDialog(null,msgbox.altesspielfrage,msgbox.altesspieltitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.altesspieloptionen, msgbox.altesspieloptionen[0]);
             if(menue == 0) {
             	Variablen.setAktSpieler(Integer.valueOf(entschluesseln(spielstand.getProperty("amZug"))));
@@ -273,7 +273,7 @@ public class Spielstand {
 	 * @param dateiname Nimmt den Dateinamen entgegen.
 	 */
 	private void absturz(String dateiname) {
-		Meldungen msgbox = new Meldungen();
+		Sprache msgbox = new Sprache();
 		JOptionPane.showMessageDialog(null, msgbox.dateiFehlt(dateiname), msgbox.dateifehltTitel, JOptionPane.ERROR_MESSAGE);
 		System.exit(0);
 	}

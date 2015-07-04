@@ -122,14 +122,14 @@ public class Spielfeld extends JPanel {
             				if(!(Variablen.getZustand()==10 && !partnerKorrekt)) {
             					spz.legegastkarte(Variablen.getSpielkartenecke().getAkthandkartnum(),j);
             				} else {
-            					spz.warnungsboxtext(new Meldungen().gastpartnerfehlt);
+            					spz.warnungsboxtext(new Sprache().gastpartnerfehlt);
             					spz.handkartendemarkieren();
             					spz.stuehledemarkieren(false);
             					spz.tischedemarkieren();
             				}
             				
             			} else {
-            				spz.warnungsboxtext(new Meldungen().stuhlbesetzt);
+            				spz.warnungsboxtext(new Sprache().stuhlbesetzt);
             				spz.handkartendemarkieren();
             				spz.stuehledemarkieren(false);
             				spz.tischedemarkieren();

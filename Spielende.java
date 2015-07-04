@@ -50,7 +50,7 @@ public class Spielende {
 	 * @param art Hier traegt man einen der drei Gruende ein, aus dem das Spiel beendet wurde.
 	 */
 	private void siegmeldung(int art) {
-		Meldungen msgbox = new Meldungen();
+		Sprache msgbox = new Sprache();
 		String grund;
 		switch(art) {
 		case 0:
@@ -70,7 +70,7 @@ public class Spielende {
 		int pkt0 = Variablen.getSpieler(0).getPunkte();
 		int pkt1 = Variablen.getSpieler(1).getPunkte();
 		
-		if(pkt0 > pkt1+20) {
+		if(pkt0 > pkt1+19) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(0), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
 			bestenlisteFuellen(0);
 		} else if(pkt0 > pkt1) {
@@ -79,11 +79,11 @@ public class Spielende {
 		} else if(pkt0 == pkt1) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(2), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
 			bestenlisteFuellen(-1);
+		} else if(pkt0+19 < pkt1) {
+			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(4), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
+			bestenlisteFuellen(1);
 		} else if(pkt0 < pkt1) {
 			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(3), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
-			bestenlisteFuellen(1);
-		} else if(pkt0+20 < pkt1) {
-			JOptionPane.showMessageDialog(null, grund+msgbox.siegermeldung(4), msgbox.spielende, JOptionPane.INFORMATION_MESSAGE);
 			bestenlisteFuellen(1);
 		}
 		
@@ -106,7 +106,7 @@ public class Spielende {
 	 * Diese Methode fragt den Spieler, ob er ein neues Spiel starten oder das Programm beenden moechte.
 	 */
 	public void abfrageNeuesspiel() {
-		Meldungen msgbox = new Meldungen();
+		Sprache msgbox = new Sprache();
 		int menue = JOptionPane.showOptionDialog(null,msgbox.endefrage,msgbox.endetitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.endoptionen, msgbox.endoptionen[0]);
         if(menue == 0) {
         	Spielstart spst = new Spielstart();

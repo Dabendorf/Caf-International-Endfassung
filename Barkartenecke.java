@@ -39,12 +39,12 @@ public class Barkartenecke extends JPanel {
 				public void mouseClicked(MouseEvent e) {
             		if(Variablen.getSpielkartenecke().getAkthandkartnum()!=-1) {
             			if(Variablen.getSpieler(42).getHandkarten().get(Variablen.getSpielkartenecke().getAkthandkartnum()).getLand().equals(Land.JOKER)) {
-            				new Spielzuege().warnungsboxtext(new Meldungen().barjoker);
+            				new Spielzuege().warnungsboxtext(new Sprache().barjoker);
             				new Spielzuege().tischedemarkieren();
             				new Spielzuege().stuehledemarkieren(false);
             				new Spielzuege().handkartendemarkieren();
             			} else if(Variablen.getZustand() == 10 || Variablen.getZustand() == 11) {
-            				new Spielzuege().warnungsboxtext(new Meldungen().barzuspaet);
+            				new Spielzuege().warnungsboxtext(new Sprache().barzuspaet);
             				new Spielzuege().tischedemarkieren();
             				new Spielzuege().stuehledemarkieren(false);
             				new Spielzuege().handkartendemarkieren();
