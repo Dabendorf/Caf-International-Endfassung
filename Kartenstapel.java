@@ -70,7 +70,7 @@ public class Kartenstapel extends JPanel {
 	 */
 	private void bildLaden() {
 		if(typ.equals(Typ.Leer)) {
-			this.setBackground(Color.white);
+			this.setBackground(Variablen.getSpielfeld().getHintgrdfarb());
 		} else if(typ.equals(Typ.Gastkartenstapel)) {
 			key = "./stapel_gaeste.png";
 		} else if(typ.equals(Typ.Laenderkartenstapel)) {

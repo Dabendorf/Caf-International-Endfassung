@@ -185,13 +185,18 @@ public class Spielzuege {
 	 * @param text Hier wird der anzuzeigende Text eingetragen.
 	 */
 	public void warnungsboxtext(String text) {
-		Variablen.getSpielfeld().getWarnungsbox().setText(text);
-		Thread thread = new Thread(new Runnable() {
+		if(Variablen.getWarnungsthread()!=null) {
+			Variablen.getWarnungsthread().interrupt();
+			Variablen.setWarnungsthread(null);
+		}
+		
+		Variablen.setWarnungsthread(new Thread(new Runnable() {
 	        public void run() {
 	            try {
 	            	SwingUtilities.invokeLater(new Runnable() {
 	            		@Override
 						public void run() {
+	            			Variablen.getSpielfeld().getWarnungsbox().setText(text);
 							Variablen.getSpielfeld().getWarnungsbox().setBorder(BorderFactory.createLineBorder(Color.red, 2));
 						}
 					});
@@ -199,24 +204,29 @@ public class Spielzuege {
 	            	SwingUtilities.invokeLater(new Runnable() {
 	            		@Override
 						public void run() {
-							warnungsboxreseten();
+	            			warnungsboxreseten();
 						}
 					});
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (InterruptedException e) {
+					warnungsboxreseten();
 				}
 	        }
-	    });
-		thread.setDaemon(true);
-		thread.start();
+	    }));
+		Variablen.getWarnungsthread().setDaemon(true);
+		Variablen.getWarnungsthread().start();
 	}
 	
 	/**
 	 * Diese Methode loescht saemtliche Inhalte der Warnungsbox sofort.
 	 */
 	public void warnungsboxreseten() {
-		Variablen.getSpielfeld().getWarnungsbox().setText("");
-		Variablen.getSpielfeld().getWarnungsbox().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 2));
+		SwingUtilities.invokeLater(new Runnable() {
+    		@Override
+			public void run() {
+    			Variablen.getSpielfeld().getWarnungsbox().setText("");
+    			Variablen.getSpielfeld().getWarnungsbox().setBorder(BorderFactory.createLineBorder(Variablen.getSpielfeld().getHintgrdfarb(), 2));
+			}
+		});
 	}
 
 }

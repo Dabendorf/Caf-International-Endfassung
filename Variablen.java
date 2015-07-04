@@ -49,6 +49,11 @@ public class Variablen {
     private static Statistikecke statistikecke = new Statistikecke();
     private static Spielfeld spielfeld = new Spielfeld();
     private static Spielkartenecke spielkartenecke = new Spielkartenecke();
+    
+    /**
+     * Dies ist die Thread-Variable fuer die Warnungsbox.
+     */
+    private static Thread warnungsthread;
 
 	/**
      * Die Variable zustand ist eine essentielle Variable zur Steuerung des Spielablaufes. Sie stellt numerisch dar, in welcher Phase sich das Spiel gerade befindet.<br>
@@ -138,6 +143,14 @@ public class Variablen {
 
 	public static Spielkartenecke getSpielkartenecke() {
 		return spielkartenecke;
+	}
+
+	public static Thread getWarnungsthread() {
+		return warnungsthread;
+	}
+
+	public static void setWarnungsthread(Thread warnungsthread) {
+		Variablen.warnungsthread = warnungsthread;
 	}
 
 }
