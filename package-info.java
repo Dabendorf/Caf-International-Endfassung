@@ -5,7 +5,7 @@
  * Ferner hinzuzufuegen ist eine Spielanleitung.
  * 
  * @author Lukas Schramm
- * @version 1.2.2 Beta - Vollstaendige Version mit funktionierendem Spielalgorithmus, inklusive Speichermanagement und Bestenliste
+ * @version 1.2.3 Beta - Vollstaendige Version mit funktionierendem Spielalgorithmus, inklusive Speichermanagement und Bestenliste
  * 
  *
  */
