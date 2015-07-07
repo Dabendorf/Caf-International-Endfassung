@@ -6,9 +6,9 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import cafeint.Kartenstapel.Typ;
@@ -75,7 +75,7 @@ public class Spielkartenecke extends JPanel {
 	            	}
 	            });
 				add(handkarten[i/2]);
-			} else if(i==1) {
+			} else if(i==9) {
 				anl = new Kartenstapel(Typ.Anleitung);
 				anl.setOpaque(true);
 				anl.setBorder(BorderFactory.createLineBorder(Color.black, 2));
@@ -84,13 +84,14 @@ public class Spielkartenecke extends JPanel {
 					public void mouseClicked(MouseEvent e) {
 						try {
 							Desktop.getDesktop().open(new File("dateien/anleitung.pdf"));
-						} catch (IOException e1) {
-							e1.printStackTrace();
+						} catch (Exception e1) {
+							Sprache msgbox = new Sprache();
+							JOptionPane.showMessageDialog(null, msgbox.anleitungfehlt, msgbox.dateifehltTitel, JOptionPane.ERROR_MESSAGE);
 						}
 					}
 				});
 				add(anl);
-			} else if(i==5) {
+			} else if(i==1) {
 				gastkst = new Kartenstapel(Typ.Gastkartenstapel);
 				gastkst.setOpaque(true);
 				gastkst.setBorder(BorderFactory.createLineBorder(Color.black, 2));
@@ -115,7 +116,7 @@ public class Spielkartenecke extends JPanel {
 	            	}
 	            });
 				add(gastkst);
-			} else if(i==9) {
+			} else if(i==5) {
 				landkst = new Kartenstapel(Typ.Laenderkartenstapel);
 				landkst.setOpaque(true);
 				landkst.setBorder(BorderFactory.createLineBorder(Color.black, 2));

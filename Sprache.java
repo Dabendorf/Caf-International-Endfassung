@@ -16,6 +16,7 @@ public class Sprache {
 	public String falschessystem = "System veraltet";
 	public String dateifehltTitel = "Fehlerhafte Datei";
 	public String windows = "Dieses Computerspiel wurde für OS X und Linux entwickelt."+umbruch+"Es ist nicht primär mit Windows kompatibel."+umbruch+"Sollte es zu Problemen bei der Ausführung kommen,"+umbruch+"dann öffne das Spiel bitte auf einem PC"+umbruch+"mit Mac OS X oder Linux!";
+	public String anleitungfehlt = "Die Speicherdatei /dateien/anleitung.pdf ist nicht vorhanden."+umbruch+"Stelle die Datei wieder her, um die Anleitung öffnen zu können.";
 	public String fragespielername = "Wie heißen die Spieler?";
 	public String spielername = "Name von Spieler ";
 	public String spielernamevergessen = "Bitte gib beide Spielernamen ein!";
@@ -72,6 +73,6 @@ public class Sprache {
 	 * @return Gibt einen String wieder, um den Spieler zu informieren.
 	 */
 	public String dateiFehlt(String dateiname) {
-		return "Die Speicherdatei "+dateiname+" ist nicht vorhanden."+umbruch+"Der Spielstart wird abgebrochen."+umbruch+"Stelle die Speicherdatei wieder her und versuche es erneut.";
+		return "Die Speicherdatei /"+dateiname+" ist nicht vorhanden."+umbruch+"Der Spielstart wird abgebrochen."+umbruch+"Stelle die Speicherdatei wieder her und versuche es erneut.";
 	}
 }
