@@ -22,7 +22,7 @@ public final class Startbildschirm extends JPanel {
 	private BufferedImage bi;
 	
 	/**
-	 * In dieser Paintmethode wird nur das Bild geladen, welches das gesamte Spiel ueber gezeigt wird.
+	 * In dieser Paintmethode wird nur das Bild geladen, welches zum Spielstart gezeigt wird.
 	 */
 	@Override
 	protected void paintComponent(Graphics gr) {
