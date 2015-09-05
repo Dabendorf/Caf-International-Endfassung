@@ -56,17 +56,17 @@ public class Variablen {
     private static Thread warnungsthread;
 
 	/**
-     * Die Variable zustand ist eine essentielle Variable zur Steuerung des Spielablaufes. Sie stellt numerisch dar, in welcher Phase sich das Spiel gerade befindet.<br>
-     * Sollte eine Methode ausgefuert werden, die der Nummer des zustandes widerspricht, wird sie nicht ausgefuehrt.<br>
-     * Bei allen Zahlen, die mit <b>0</b> beginnen startet das Spiel, bei allen die mit <b>1</b> beginnen legt man Karten, bei mit <b>2</b> beginnenden zieht man Karten, bei mit <b>3</b> beginnenden endet das Spiel.<br>
+     * Die Variable <b>zustand</b> ist eine essentielle Variable zur Steuerung des Spielablaufes. Sie stellt numerisch dar, in welcher Phase sich das Spiel gerade befindet.<br>
+     * Sollte eine Methode ausgefuert werden, die der Nummer des Zustandes widerspricht, wird sie nicht ausgefuehrt.<br>
+     * Bei allen Zahlen, die mit <b>0</b> beginnen startet das Spiel, bei allen die mit <b>1</b> beginnen legt man Karten, bei mit <b>2</b> beginnenden Zahlen zieht man Karten, bei mit <b>3</b> beginnenden Zahlen endet das Spiel.<br>
      * <br>
      * Die Zustaende sind folgende:<br>
-     * <b>0</b> Die Variable ist null, wenn das Spiel gerade gestartet wurde.<br>
-     * <b>10 - 12</b> Alle Variablen, die mit <b>1</b> beginnen zeigen, dass eine Gastkarte gelegt werden kann/muss. Die <b>12</b> sagt, dass noch 2, mindestens jedoch eine gelegt werden muss.
-     * <b>11</b> sagt, dass eine Gastkarte noch gelegt werden darf, jedoch aber die Runde beendet werden darf. <b>10</b> ist gleich der <b>11</b>, jedoch mit dem Unterschied, dass hier zwangsweise noch ein Gast gelegt werden.
-     * Dieser Zustand trifft nur auf, wenn ein Gast allein sitzt und einen Partner benoetigt.<br>
+     * <b>0</b> Die Variable ist 0, wenn das Spiel gerade gestartet wurde.<br>
+     * <b>10 - 12</b> Alle Variablen, die mit <b>1</b> beginnen zeigen, dass eine Gastkarte gelegt werden kann/muss. Die <b>12</b> sagt, dass noch zwei, mindestens jedoch eine Karte gelegt werden muss.
+     * <b>11</b> sagt, dass noch eine Gastkarte gelegt werden, die Runde jedoch beendet werden darf. <b>10</b> ist gleich der <b>11</b>, jedoch mit dem Unterschied, dass hier zwangsweise noch ein Gast gelegt werden muss.
+     * Dieser Zustand tritt nur auf, wenn ein Gast allein sitzt und einen Partner benoetigt.<br>
      * <b>21</b> Zeigt an, dass nun Gastkarten vom Stapel gezogen werden muessen.<br>
-     * <b>220 - 221</b> Zeigt an, dass nun Laenderkarte vom Stapel gezogen werden muessen. Es wird differenziert, weil nach Ziehen von Tischkarten der Zug noch nicht vorbei ist.
+     * <b>220 - 221</b> Zeigt an, dass nun eine Laenderkarte vom Stapel gezogen werden muessen. Es wird differenziert, weil nach Ziehen von Tischkarten der Zug noch nicht vorbei ist.
      * Es wird anschliessend <b>210</b> subtrahiert, um auf <b>10</b> oder <b>11</b>, je nach altem Zustand zu kommen.<br>
      * <b>31</b> Zeigt an, dass das Spiel aus einem der drei Spielbeendigungsgruende abgeschlossen wurde.
      */
