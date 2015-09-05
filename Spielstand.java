@@ -84,54 +84,60 @@ public class Spielstand {
 	public void laden() {
 		Properties spielstand = ladeProperties(spielstanddatei);
 		boolean spielgespeichert = Boolean.valueOf(entschluesseln(spielstand.getProperty("spielangefangen","false")));
-		if(spielgespeichert) {
+		try {
+			if(spielgespeichert) {
+				Sprache msgbox = new Sprache();
+				int menue = JOptionPane.showOptionDialog(null,msgbox.altesspielfrage,msgbox.altesspieltitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.altesspieloptionen, msgbox.altesspieloptionen[0]);
+	            if(menue == 0) {
+	            	Variablen.setAktSpieler(Integer.valueOf(entschluesseln(spielstand.getProperty("amZug"))));
+	    			Variablen.setZustand(Integer.valueOf(entschluesseln(spielstand.getProperty("zustand"))));
+	    			for(int i=0;i<2;i++) {
+	    				Variablen.getSpieler(i).setName(entschluesseln(spielstand.getProperty("spielername"+i)));
+	    				Variablen.getSpieler(i).setPunkte(Integer.valueOf(entschluesseln(spielstand.getProperty("spielerpunkte"+i))));
+	    				for(int h=0;h<5;h++) {
+	    					Variablen.getSpieler(i).getHandkarten().add(Gastkarte.parseGastkarte(entschluesseln(spielstand.getProperty("handkarte"+i+"-"+h))));
+	    				}
+	    			}
+	    			Programmstart progst = new Programmstart();
+	    			progst.grafikladen();
+	    			Variablen.getStatistikecke().getInfz(0).punktzahlschreiben();
+	    			Variablen.getStatistikecke().getInfz(1).punktzahlschreiben();
+	    			Variablen.getStatistikecke().getInfz(Variablen.getAktSpieler()).faerben(true);
+	    			int anzahlGastkarten = Integer.valueOf(entschluesseln(spielstand.getProperty("anzahlGastkarten")));
+	    			int anzahlLaenderkarten = Integer.valueOf(entschluesseln(spielstand.getProperty("anzahlLaenderkarten")));
+	    			int anzahlBarkarten = Integer.valueOf(entschluesseln(spielstand.getProperty("anzahlBarkarten")));
+	    			for(int i=0;i<anzahlGastkarten;i++) {
+	    				Variablen.getGastkarten().add(Gastkarte.parseGastkarte(entschluesseln(spielstand.getProperty("gastkarte"+i))));
+	    			}
+	    			for(int i=0;i<anzahlLaenderkarten;i++) {
+	    				Variablen.getLaenderkarten().add(Laenderkarte.parseLaenderkarte(entschluesseln(spielstand.getProperty("laenderkarte"+i))));
+	    			}
+	    			for(int i=0;i<anzahlBarkarten;i++) {
+	    				Variablen.getBarkarten().add(Gastkarte.parseGastkarte(entschluesseln(spielstand.getProperty("barkarte"+i))));
+	    				Variablen.getBarkartenecke().getBarzelle(i).setGast(Variablen.getBarkarten().get(i));
+	    			}
+	    			for(int i=0;i<Variablen.getStuehle().size();i++) {
+	    				Variablen.getStuehle().get(i).setStartGast(Gastkarte.parseGastkarte(entschluesseln(spielstand.getProperty("stuhl"+i))));
+	    			}
+	    			for(int i=0;i<Variablen.getTische().size();i++) {
+	    				Variablen.getTische().get(i).setLand(Laenderkarte.parseLaenderkarte(entschluesseln(spielstand.getProperty("tisch"+i))));
+	    			}
+	    			String temp = spielstand.getProperty("gastAllein","null");
+	    			if(temp!="null") {
+	    				int stuhlindex = Integer.valueOf(entschluesseln(temp));
+	    				Variablen.getStuehle().get(stuhlindex).setPartnerNoetig(true);
+	    				Variablen.getStuehle().get(stuhlindex).gruenfaerben();
+	    			}
+	    			CafeIntMain.getSpielframe().setVisible(true);
+	            } else {
+	            	neuesspiel();
+	            }
+			} else {
+				neuesspiel();
+			}
+		}catch(Exception e) {
 			Sprache msgbox = new Sprache();
-			int menue = JOptionPane.showOptionDialog(null,msgbox.altesspielfrage,msgbox.altesspieltitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.altesspieloptionen, msgbox.altesspieloptionen[0]);
-            if(menue == 0) {
-            	Variablen.setAktSpieler(Integer.valueOf(entschluesseln(spielstand.getProperty("amZug"))));
-    			Variablen.setZustand(Integer.valueOf(entschluesseln(spielstand.getProperty("zustand"))));
-    			for(int i=0;i<2;i++) {
-    				Variablen.getSpieler(i).setName(entschluesseln(spielstand.getProperty("spielername"+i)));
-    				Variablen.getSpieler(i).setPunkte(Integer.valueOf(entschluesseln(spielstand.getProperty("spielerpunkte"+i))));
-    				for(int h=0;h<5;h++) {
-    					Variablen.getSpieler(i).getHandkarten().add(Gastkarte.parseGastkarte(entschluesseln(spielstand.getProperty("handkarte"+i+"-"+h))));
-    				}
-    			}
-    			Programmstart progst = new Programmstart();
-    			progst.grafikladen();
-    			Variablen.getStatistikecke().getInfz(0).punktzahlschreiben();
-    			Variablen.getStatistikecke().getInfz(1).punktzahlschreiben();
-    			Variablen.getStatistikecke().getInfz(Variablen.getAktSpieler()).faerben(true);
-    			int anzahlGastkarten = Integer.valueOf(entschluesseln(spielstand.getProperty("anzahlGastkarten")));
-    			int anzahlLaenderkarten = Integer.valueOf(entschluesseln(spielstand.getProperty("anzahlLaenderkarten")));
-    			int anzahlBarkarten = Integer.valueOf(entschluesseln(spielstand.getProperty("anzahlBarkarten")));
-    			for(int i=0;i<anzahlGastkarten;i++) {
-    				Variablen.getGastkarten().add(Gastkarte.parseGastkarte(entschluesseln(spielstand.getProperty("gastkarte"+i))));
-    			}
-    			for(int i=0;i<anzahlLaenderkarten;i++) {
-    				Variablen.getLaenderkarten().add(Laenderkarte.parseLaenderkarte(entschluesseln(spielstand.getProperty("laenderkarte"+i))));
-    			}
-    			for(int i=0;i<anzahlBarkarten;i++) {
-    				Variablen.getBarkarten().add(Gastkarte.parseGastkarte(entschluesseln(spielstand.getProperty("barkarte"+i))));
-    				Variablen.getBarkartenecke().getBarzelle(i).setGast(Variablen.getBarkarten().get(i));
-    			}
-    			for(int i=0;i<Variablen.getStuehle().size();i++) {
-    				Variablen.getStuehle().get(i).setStartGast(Gastkarte.parseGastkarte(entschluesseln(spielstand.getProperty("stuhl"+i))));
-    			}
-    			for(int i=0;i<Variablen.getTische().size();i++) {
-    				Variablen.getTische().get(i).setLand(Laenderkarte.parseLaenderkarte(entschluesseln(spielstand.getProperty("tisch"+i))));
-    			}
-    			String temp = spielstand.getProperty("gastAllein","null");
-    			if(temp!="null") {
-    				int stuhlindex = Integer.valueOf(entschluesseln(temp));
-    				Variablen.getStuehle().get(stuhlindex).setPartnerNoetig(true);
-    				Variablen.getStuehle().get(stuhlindex).gruenfaerben();
-    			}
-    			CafeIntMain.getSpielframe().setVisible(true);
-            } else {
-            	neuesspiel();
-            }
-		} else {
+			JOptionPane.showMessageDialog(null, msgbox.dateiFehlt("dateien/"+spielstanddatei,true), msgbox.dateifehltTitel, JOptionPane.ERROR_MESSAGE);
 			neuesspiel();
 		}
 	}
@@ -274,7 +280,7 @@ public class Spielstand {
 	 */
 	private void absturz(String dateiname) {
 		Sprache msgbox = new Sprache();
-		JOptionPane.showMessageDialog(null, msgbox.dateiFehlt(dateiname), msgbox.dateifehltTitel, JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, msgbox.dateiFehlt(dateiname,false), msgbox.dateifehltTitel, JOptionPane.ERROR_MESSAGE);
 		System.exit(0);
 	}
 

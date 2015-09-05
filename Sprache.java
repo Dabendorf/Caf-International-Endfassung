@@ -68,11 +68,17 @@ public class Sprache {
 	}
 	
 	/**
-	 * Diese Methode gibt einen WarnString zurueck, dass eine Datei zum Abspeichern von Spielstaenden nicht angelegt bzw. aus dem Ordner entfernt wurde.
-	 * @param dateiname Name der fehlenden Datei.
+	 * Diese Methode gibt entweder einen WarnString zurueck, dass eine Datei zum Abspeichern von Spielstaenden nicht angelegt bzw. aus dem Ordner entfernt wurde oder
+	 * dass die Datei unvollstaendig und beschaedigt ist.
+	 * @param dateiname Name der fehlenden/fehlerhaften Datei.
+	 * @param vorhanden Boolean, ob die Datei wenigstens vorhanden ist.
 	 * @return Gibt einen String wieder, um den Spieler zu informieren.
 	 */
-	public String dateiFehlt(String dateiname) {
-		return "Die Speicherdatei /"+dateiname+" ist nicht vorhanden."+umbruch+"Der Spielstart wird abgebrochen."+umbruch+"Stelle die Speicherdatei wieder her und versuche es erneut.";
+	public String dateiFehlt(String dateiname,boolean vorhanden) {
+		if(!vorhanden) {
+			return "Die Speicherdatei /"+dateiname+" ist nicht vorhanden."+umbruch+"Der Spielstart wird abgebrochen."+umbruch+"Stelle die Speicherdatei wieder her und versuche es erneut.";
+		} else {
+			return "Die Speicherdatei /"+dateiname+" ist unvollständig oder beschädigt."+umbruch+"Der Spielstand kann nicht wiederhergestellt werden"+umbruch+"und ein neues Spiel wird gestartet.";
+		}
 	}
 }

@@ -4,7 +4,7 @@
  * Ausserdem ist eine Datei zur Speicherung von Bestpunktzahlen dabei.
  * 
  * @author Lukas Schramm
- * @version 1.2.5 Beta - Vollstaendige Version mit funktionierendem Spielalgorithmus, inklusive Speichermanagement, Bestenliste und Anleitung.
+ * @version 1.2.6 - Vollstaendige Version mit funktionierendem Spielalgorithmus, inklusive Speichermanagement, Bestenliste und Anleitung.
  * Vorlaeufige Endfassung.
  * 
  *
