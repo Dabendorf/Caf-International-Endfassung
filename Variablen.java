@@ -16,32 +16,32 @@ import java.util.TreeMap;
  */
 public class Variablen {
 	
-	/**
+	/*
 	 * Dies sind alle Variablen, die die Spieler betreffen.
 	 */
 	private static int aktspieler = 0;
 	private static Spieler[] spieler = {new Spieler(), new Spieler()};
 	
-	/**
+	/*
 	 * Dies sind alle Variablen, die mit Spielkarten zu tun haben.
 	 */
     private static List<Gastkarte> gastkarten = new ArrayList<Gastkarte>();
     private static List<Laenderkarte> laenderkarten = new ArrayList<Laenderkarte>();
     private static List<Gastkarte> barkarten = new ArrayList<Gastkarte>();
 
-	/**
+	/*
 	 * Dies sind die Variablen des Spielfeldes.
 	 */
     private static List<Tisch> tische = new ArrayList<Tisch>(12);
     private static List<Stuhl> stuehle = new ArrayList<Stuhl>(24);
     
-    /**
+    /*
      * Diese Methode enthalten die beiden TreeMaps, in denen saemtliche Bilder gespeichert sind.
      */
     private static Map<String,BufferedImage> tischcache = new TreeMap<String,BufferedImage>();
     private static Map<String,BufferedImage> stuhlcache = new TreeMap<String,BufferedImage>();
     
-    /**
+    /*
      * Dies sind vier der fuenf eingefuegten Designelemente.<br>
      * Die <b>Bildecke</b> hat keinerlei Steuerfunktionen und kann daher direkt ins Design eingegliedert werden.
      */
