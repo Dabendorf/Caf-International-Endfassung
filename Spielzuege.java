@@ -184,7 +184,7 @@ public class Spielzuege {
 	 * Er wird nach 5 Sekunden automatisch wieder entfernt.
 	 * @param text Hier wird der anzuzeigende Text eingetragen.
 	 */
-	public void warnungsboxtext(String text) {
+	public void warnungsboxtext(final String text) {
 		if(Variablen.getWarnungsthread()!=null) {
 			Variablen.getWarnungsthread().interrupt();
 			Variablen.setWarnungsthread(null);
