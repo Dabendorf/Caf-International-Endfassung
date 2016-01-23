@@ -71,7 +71,7 @@ public class CafeIntMain {
      */
     private void ablauf() {
     	new Programmstart().sysWin();
-    	new Spielstand().laden();
+    	new Spielstand(0).laden();
     }
     
     /**
@@ -84,9 +84,9 @@ public class CafeIntMain {
     	Sprache msgbox = new Sprache();
     	int menue = JOptionPane.showOptionDialog(null,msgbox.schliessfrage,msgbox.schliesstitel, JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, msgbox.schliessoptionen, msgbox.schliessoptionen[0]);
         if(menue == 0) {
-        	new Spielstand().speichern();
+        	new Spielstand(0).speichern();
         } else {
-        	new Spielstand().loescheSpielstand();
+        	new Spielstand(0).loescheSpielstand();
         }
         System.exit(0);
     }

@@ -31,9 +31,14 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class Bestenliste {
 
+	/**JFrame auf dem die Tabelle dargestellt wird*/
 	private JFrame frame1 = new JFrame("Bestenliste");
+	/**Highscoretabelle*/
 	private JTable tabelle1 = new JTable();
+	/**ArrayList mit Highscores*/
 	private ArrayList<Highscore> highscoreliste = new ArrayList<Highscore>();
+	/**Objekt der Klasse zum Aufrufen der Highscores*/
+	private Spielstand spst = new Spielstand(1);
 
 	public Bestenliste() {
 		frame1.setPreferredSize(new Dimension(450,300));
@@ -63,7 +68,6 @@ public class Bestenliste {
 	 * Hier werden alle alten Highscores aus der Highscorelistentabelle geladen und in die Highscoreliste integriert.
 	 */
 	private void highscoresladen() {
-		Spielstand spst = new Spielstand();
 		for(Highscore hsc:spst.allesHighscoresLaden()) {
 			highscoreliste.add(hsc);
 		}
@@ -96,7 +100,7 @@ public class Bestenliste {
 			    Format format = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 				zeile.add(format.format(date));
 				eintraege.add(zeile);
-				new Spielstand().highscorehinzufuegen(hsc,highscoreliste.indexOf(hsc));
+				spst.highscorehinzufuegen(hsc,highscoreliste.indexOf(hsc));
 			}
 		}
 
@@ -134,5 +138,4 @@ public class Bestenliste {
 	public void anzeigen(boolean anzeigen) {
 		frame1.setVisible(anzeigen);
 	}
-
 }

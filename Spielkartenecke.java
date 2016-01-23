@@ -83,7 +83,7 @@ public class Spielkartenecke extends JPanel {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						try {
-							Desktop.getDesktop().open(new File("dateien/anleitung.pdf"));
+							Desktop.getDesktop().open(new File("files/anleitung.pdf"));
 						} catch (Exception e1) {
 							Sprache msgbox = new Sprache();
 							JOptionPane.showMessageDialog(null, msgbox.anleitungfehlt, msgbox.dateifehltTitel, JOptionPane.ERROR_MESSAGE);
@@ -253,5 +253,4 @@ public class Spielkartenecke extends JPanel {
 	public void setAkthandkartnum(int akthandkartnum) {
 		this.akthandkartnum = akthandkartnum;
 	}
-
 }

@@ -112,7 +112,7 @@ public class Spielende {
         	Spielstart spst = new Spielstart();
         	spst.neuesspiel();
         } else {
-        	new Spielstand().loescheSpielstand();
+        	new Spielstand(0).loescheSpielstand();
         	System.exit(0);
         }
 	}
